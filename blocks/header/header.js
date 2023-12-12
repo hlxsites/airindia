@@ -1,5 +1,6 @@
 import { getMetadata } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
+import utils from '../../scripts/utils.js';
 
 // media query match that indicates mobile/tablet width
 const isDesktop = window.matchMedia('(min-width: 900px)');
@@ -87,6 +88,20 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
 }
 
 /**
+ * Create Hamburger and Close Icon for smaller devices
+ */
+function hamburgerAndCloseIcon() {
+  const iconHtml = `
+    <button aria-label="Main Menu"><svg width="100" height="100" viewBox="0 0 100 100">
+    <path class="line line1" d="M 20,29.000046 H 80.000231 C 80.000231,29.000046 94.498839,28.817352 94.532987,66.711331 94.543142,77.980673 90.966081,81.670246 85.259173,81.668997 79.552261,81.667751 75.000211,74.999942 75.000211,74.999942 L 25.000021,25.000058"></path>
+    <path class="line line2" d="M 20,50 H 80"></path>
+    <path class="line line3" d="M 20,70.999954 H 80.000231 C 80.000231,70.999954 94.498839,71.182648 94.532987,33.288669 94.543142,22.019327 90.966081,18.329754 85.259173,18.331003 79.552261,18.332249 75.000211,25.000058 75.000211,25.000058 L 25.000021,74.999942"></path>
+    </svg> </button>
+  `;
+  return iconHtml;
+}
+
+/**
  * decorates the header, mainly the nav
  * @param {Element} block The header block element
  */
@@ -108,6 +123,9 @@ export default async function decorate(block) {
   });
 
   const navBrand = nav.querySelector('.nav-brand');
+  const logoImgs = navBrand.querySelectorAll('picture');
+  logoImgs[0].classList.add('ai-red-logo');
+  logoImgs[1].classList.add('ai-white-logo');
   const brandLink = navBrand.querySelector('.button');
   if (brandLink) {
     brandLink.className = '';
@@ -128,14 +146,57 @@ export default async function decorate(block) {
     });
   }
 
+  const navTools = nav.querySelector('.nav-tools');
+  const navToolsWrapper = navTools.querySelector(':scope > div');
+  navToolsWrapper.classList.add('nav-tools-wrapper');
+  if (navTools) {
+    const tools = navTools.querySelectorAll('p');
+    tools.forEach((tool) => {
+      const anchor = document.createElement('a');
+      const iconWrap = tool.querySelector(':scope > span');
+      const iconClasses = iconWrap?.classList;
+      const iconType = iconWrap?.classList[1]?.split('-')[1];
+      anchor.id = iconType;
+      anchor.href = '#';
+      anchor.title = iconType;
+      anchor.classList = iconClasses;
+      const iconImg = iconWrap.querySelector('img');
+      utils.wrap(iconImg, anchor);
+      const anchorClone = iconWrap.querySelector('a')?.cloneNode(true);
+      if (anchorClone) {
+        navToolsWrapper.append(anchorClone);
+        tool.remove();
+      }
+    });
+  }
+
   // hamburger for mobile
   const hamburger = document.createElement('div');
   hamburger.classList.add('nav-hamburger');
-  hamburger.innerHTML = `<button type="button" aria-controls="nav" aria-label="Open navigation">
-      <span class="nav-hamburger-icon"></span>
-    </button>`;
-  hamburger.addEventListener('click', () => toggleMenu(nav, navSections));
-  nav.prepend(hamburger);
+  hamburger.innerHTML = hamburgerAndCloseIcon();
+  const hamburgerBtn = hamburger.querySelector('button');
+  hamburgerBtn.addEventListener('click', (event) => {
+    const btn = event.currentTarget;
+    const isOpen = btn.classList.contains('opened');
+    btn.classList.toggle('opened');
+    btn.setAttribute('aria-expanded', isOpen);
+    toggleMenu(nav, navSections);
+    if (!isOpen) {
+      block.classList.add('inverted');
+    }
+    if (isOpen && window.scrollY < 10) {
+      block.classList.remove('inverted');
+    }
+  });
+  window.onscroll = () => {
+    if (window.scrollY > 10) {
+      block.classList.add('inverted');
+    } else {
+      block.classList.remove('inverted');
+    }
+  };
+
+  nav.append(hamburger);
   nav.setAttribute('aria-expanded', 'false');
   // prevent mobile nav behavior on window resize
   toggleMenu(nav, navSections, isDesktop.matches);

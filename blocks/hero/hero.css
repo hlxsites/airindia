@@ -6,6 +6,9 @@ main .hero-container > div {
   
 main .hero-container {
   padding: 0;
+  
+  /* TODO remove it later */
+  margin-top: calc(var(--nav-height) * -1);
 }
   
 main .hero {
