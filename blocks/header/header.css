@@ -26,30 +26,15 @@ header nav {
       'sections sections sections';
   grid-template-rows: var(--nav-height) auto 1fr auto;
   grid-template-columns: 1fr auto 30px;
+  overflow-y: auto;
+  transition: height .5s;
 }
 
 header nav[aria-expanded="true"] {
   overflow-y: auto;
-  min-height: 100vh;
+  height: 100vh;
 }
 
-@media (width >= 600px) {
-  header nav {
-    padding: 0 2rem;
-  }
-}
-
-@media (width >= 900px) {
-  header nav {
-    display: flex;
-    justify-content: space-between;
-  }
-
-  header nav[aria-expanded="true"] {
-    min-height: 0;
-    overflow: visible;
-  }
-}
 
 header nav p {
   margin: 0;
@@ -127,13 +112,6 @@ header nav .nav-hamburger button.opened .line3 {
 
 /* Mobile Hamburger End */
 
-@media (width >= 900px) {
-  header nav .nav-hamburger {
-    display: none;
-    visibility: hidden;
-  }
-}
-
 /* brand */
 header .nav-brand {
   grid-area: brand;
@@ -176,15 +154,22 @@ header nav .nav-brand img {
 header nav .nav-sections {
   grid-area: sections;
   flex: 1 1 auto;
-  display: none;
+  /* display: none; */
   visibility: hidden;
-  background-color: var(--overlay-color);
+  /* background-color: var(--background-color); */
+  margin: 0 -1rem;
+  transform: translateX(-110%);
+  transition: 0.5s;
+  height: 100%;
+  max-height: calc(100vh - 60px);
+  overflow-y: auto;
 }
 
 header nav[aria-expanded="true"] .nav-sections {
-  display: block;
+  /* display: block; */
   visibility: visible;
   align-self: start;
+  transform: translateX(0);
 }
 
 header nav .nav-sections ul  {
@@ -206,11 +191,40 @@ header nav .nav-sections ul > li > ul > li {
   font-weight: 500;
 }
 
+
+@media (width >= 600px) {
+  header nav {
+    padding: 0 2rem;
+  }
+}
+
 @media (width >= 900px) {
+
+  header nav {
+    display: grid;
+    grid-template:
+      'brand tools'
+      'brand sections';
+    padding: 26px;
+  }
+
+  header nav[aria-expanded="true"] {
+    overflow: visible;
+    height: auto;
+  }
+
+  header nav .nav-hamburger {
+    display: none;
+    visibility: hidden;
+  }
+
   header nav .nav-sections {
-    display: block;
+    display: flex;
     visibility: visible;
     white-space: nowrap;
+    height: auto;
+    overflow-y: unset;
+    margin: 0;
   }
 
   header nav[aria-expanded="true"] .nav-sections {
