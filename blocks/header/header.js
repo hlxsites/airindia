@@ -102,6 +102,58 @@ function hamburgerAndCloseIcon() {
 }
 
 /**
+ *
+ * @param {Element} navTools the div which holds all the nav tool markup
+ */
+function createNavTools(navTools) {
+  const pElements = Array.from(navTools.querySelectorAll('p'));
+  const ul = document.createElement('ul');
+  ul.classList.add('nav-tools-list');
+
+  const mobileUl = document.createElement('ul');
+  mobileUl.classList.add('nav-tools-list-sm');
+  const liSM = document.createElement('li');
+  mobileUl.appendChild(liSM);
+  navTools.appendChild(ul);
+  navTools.appendChild(mobileUl);
+  pElements.forEach((elem) => {
+    const li = document.createElement('li');
+    const anchor = document.createElement('a');
+    anchor.href = '#';
+    anchor.appendChild(elem.firstChild);
+
+    while (elem.hasChildNodes()) {
+      const child = elem.firstChild;
+      if (child.tagName === 'A') {
+        anchor.href = child.href;
+        anchor.title = child.title;
+        if (child.textContent === 'Sign In') {
+          liSM.appendChild(anchor.cloneNode(true));
+        }
+        const textNode = document.createTextNode(child.innerText);
+        anchor.appendChild(textNode);
+        console.log('child.textContent::: ', child.textContent);
+
+        child.remove();
+      } else {
+        anchor.appendChild(child);
+      }
+    }
+
+    li.appendChild(anchor);
+    // ul.appendChild(li);
+
+    const subMenuItem = elem.nextElementSibling;
+    if (subMenuItem && subMenuItem.tagName === 'UL' && !subMenuItem.classList.contains('nav-tools-list')) {
+      li.appendChild(subMenuItem);
+    }
+
+    ul.appendChild(li);
+    elem.parentNode.removeChild(elem);
+  });
+}
+
+/**
  * decorates the header, mainly the nav
  * @param {Element} block The header block element
  */
@@ -146,29 +198,11 @@ export default async function decorate(block) {
     });
   }
 
+  // Create and modify nav tools markup
   const navTools = nav.querySelector('.nav-tools');
   const navToolsWrapper = navTools.querySelector(':scope > div');
   navToolsWrapper.classList.add('nav-tools-wrapper');
-  if (navTools) {
-    const tools = navTools.querySelectorAll('p');
-    tools.forEach((tool) => {
-      const anchor = document.createElement('a');
-      const iconWrap = tool.querySelector(':scope > span');
-      const iconClasses = iconWrap?.classList;
-      const iconType = iconWrap?.classList[1]?.split('-')[1];
-      anchor.id = iconType;
-      anchor.href = '#';
-      anchor.title = iconType;
-      anchor.classList = iconClasses;
-      const iconImg = iconWrap.querySelector('img');
-      utils.wrap(iconImg, anchor);
-      const anchorClone = iconWrap.querySelector('a')?.cloneNode(true);
-      if (anchorClone) {
-        navToolsWrapper.append(anchorClone);
-        tool.remove();
-      }
-    });
-  }
+  createNavTools(navToolsWrapper);
 
   // hamburger for mobile
   const hamburger = document.createElement('div');
