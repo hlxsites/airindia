@@ -132,7 +132,6 @@ function createNavTools(navTools) {
         }
         const textNode = document.createTextNode(child.innerText);
         anchor.appendChild(textNode);
-        console.log('child.textContent::: ', child.textContent);
 
         child.remove();
       } else {
@@ -141,7 +140,6 @@ function createNavTools(navTools) {
     }
 
     li.appendChild(anchor);
-    // ul.appendChild(li);
 
     const subMenuItem = elem.nextElementSibling;
     if (subMenuItem && subMenuItem.tagName === 'UL' && !subMenuItem.classList.contains('nav-tools-list')) {
@@ -186,6 +184,12 @@ export default async function decorate(block) {
 
   const navSections = nav.querySelector('.nav-sections');
   if (navSections) {
+    // Search input field for smaller devices
+    if (!isDesktop.matches) {
+      const mobileSearch = document.createElement('div');
+      mobileSearch.classList.add('mobile-search');
+    }
+
     navSections.querySelectorAll(':scope .default-content-wrapper > ul > li').forEach((navSection) => {
       if (navSection.querySelector('ul')) navSection.classList.add('nav-drop');
       navSection.addEventListener('click', () => {
