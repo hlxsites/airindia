@@ -129,19 +129,19 @@ header .header.header.inverted {
   color: var(--text-color);
 }
 
-header .header .nav-brand .ai-red-logo {
+header .header .nav-brand .icon-ai-logo-red {
   display: none;
 }
 
-header .header .nav-brand .ai-white-logo {
+header .header .nav-brand .icon-ai-logo-white {
   display: block;
 }
 
-header .header.inverted .nav-brand .ai-white-logo {
+header .header.inverted .nav-brand .icon-ai-logo-white {
   display: none;
 }
 
-header .header.inverted .nav-brand .ai-red-logo {
+header .header.inverted .nav-brand .icon-ai-logo-red {
   display: block;
 }
 

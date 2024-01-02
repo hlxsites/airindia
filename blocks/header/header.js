@@ -172,15 +172,15 @@ export default async function decorate(block) {
     if (section) section.classList.add(`nav-${c}`);
   });
 
-  const navBrand = nav.querySelector('.nav-brand');
-  const logoImgs = navBrand.querySelectorAll('picture');
-  logoImgs[0].classList.add('ai-red-logo');
-  logoImgs[1].classList.add('ai-white-logo');
-  const brandLink = navBrand.querySelector('.button');
-  if (brandLink) {
-    brandLink.className = '';
-    brandLink.closest('.button-container').className = '';
-  }
+  // const navBrand = nav.querySelector('.nav-brand');
+  // const logoImgs = navBrand.querySelectorAll('picture');
+  // logoImgs[0].classList.add('ai-red-logo');
+  // logoImgs[1].classList.add('ai-white-logo');
+  // const brandLink = navBrand.querySelector('.button');
+  // if (brandLink) {
+  //   brandLink.className = '';
+  //   brandLink.closest('.button-container').className = '';
+  // }
 
   const navSections = nav.querySelector('.nav-sections');
   if (navSections) {
@@ -233,6 +233,16 @@ export default async function decorate(block) {
       block.classList.remove('inverted');
     }
   };
+
+  block.addEventListener('mouseover', (event) => {
+    event.currentTarget.classList.add('inverted');
+  });
+
+  block.addEventListener('mouseout', (event) => {
+    if (window.scrollY <= 10) {
+      event.currentTarget.classList.remove('inverted');
+    }
+  });
 
   nav.append(hamburger);
   nav.setAttribute('aria-expanded', 'false');
