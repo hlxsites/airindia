@@ -55,6 +55,7 @@ main .hero img {
     height: 584px;
     padding: 0;
   }
+  
   main .hero h2 {
     line-height: 56px;
     transform: translateY(140%);
