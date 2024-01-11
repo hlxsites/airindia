@@ -10,7 +10,7 @@ main .hero-container {
   
 main .hero {
   position: relative;
-  min-height: 360px;
+  min-height: var(--banner-height-xs);
 }
 
 main .hero::after {
@@ -53,7 +53,7 @@ main .hero img {
 /* stylelint-disable-next-line media-feature-range-notation */
 @media (min-width: 600px) {
   main .hero {
-    height: 584px;
+    height: var(--banner-height-m);
     padding: 0;
   }
   

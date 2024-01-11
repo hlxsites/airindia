@@ -65,6 +65,10 @@
 
   /* nav height */
   --nav-height: 64px;
+
+   /*banner height */
+   --banner-height-xs: 360px;
+   --banner-height-m: 584px
 }
 
 @media (width >= 900px) {
