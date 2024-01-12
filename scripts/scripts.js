@@ -105,9 +105,10 @@ async function loadLazy(doc) {
   const element = hash ? doc.getElementById(hash.substring(1)) : false;
   if (hash && element) element.scrollIntoView();
 
+  /* Temporarily disable header/footer loading
   loadHeader(doc.querySelector('header'));
   loadFooter(doc.querySelector('footer'));
-
+*/
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
   loadFonts();
 
