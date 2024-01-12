@@ -37,12 +37,17 @@
   --ai-breadcrumb-link-color: #828a99;
   --ai-grey-border: #b0b5bf;
   --ai-grey-light: #d3d6db;
+  --global-colours-ai-blue-b-800: #11418f;
+
+  /* spacing */
   --spacing-xl: 24px;
   --spacing-medium: 16px;
   --spacing-small: 12px;
   --spacing-xs: 8px;
+
+  /* font sizes */
   --font-size-small: 12px;
-  --global-colours-ai-blue-b-800: #11418f;
+
 
   /* fonts */
   --body-font-family: "Nunito Sans";

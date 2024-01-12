@@ -105,7 +105,7 @@ async function loadLazy(doc) {
   const element = hash ? doc.getElementById(hash.substring(1)) : false;
   if (hash && element) element.scrollIntoView();
 
-  /* Temporarily disable header/footer loading
+  /* Temporarily disable header/footer loading. Uncomment after header/footer get ready
   loadHeader(doc.querySelector('header'));
   loadFooter(doc.querySelector('footer'));
 */

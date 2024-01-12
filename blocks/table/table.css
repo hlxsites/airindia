@@ -9,7 +9,6 @@
 
 .block.table th {
   text-align: inherit;
-  text-align: -webkit-match-parent;
 }
 
 .block.table tbody,
