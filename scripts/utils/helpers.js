@@ -1,3 +1,7 @@
+function parsePlaceholder(placeholder) {
+  return placeholder.replace(/&lt;&lt;/g, '<<').replace(/&gt;&gt;/g, '>>');
+}
+
 function findElementsWithText(element, text) {
   const elementsWithText = [];
   const treeWalker = document.createTreeWalker(
@@ -30,4 +34,5 @@ function toCamelCase(str) {
 export {
   findElementsWithText,
   toCamelCase,
+  parsePlaceholder,
 };

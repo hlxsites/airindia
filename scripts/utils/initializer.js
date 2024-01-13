@@ -1,5 +1,5 @@
 import { fetchPlaceholders, loadCSS, loadScript } from '../aem.js';
-import { findElementsWithText, toCamelCase } from './helpers.js';
+import { findElementsWithText, parsePlaceholder, toCamelCase } from './helpers.js';
 
 /**
  * Loads external components
@@ -13,8 +13,8 @@ export default async function loadExternalComponent(node, componentName) {
   if (foundElements.length > 0) {
     await fetchPlaceholders();
     [...foundElements].forEach(async (element) => {
-      element.parent.innerHTML = element.parent.innerHTML.replace(
-        toCamelCase(element.placeholder),
+      element.parent.innerHTML = parsePlaceholder(element.parent.innerHTML).replace(
+        element.placeholder,
         `${window.placeholders?.default[`${toCamelCase(componentName)}Placeholder`]}`,
       );
       const scripts = window.placeholders?.default[`${toCamelCase(componentName)}Script`]?.split(',');
@@ -24,7 +24,7 @@ export default async function loadExternalComponent(node, componentName) {
         });
       }
 
-      const styles = window.placeholders?.default[`${toCamelCase(componentName)}Styles`]?.split(',');
+      const styles = window.placeholders?.default[`${toCamelCase(componentName)}Style`]?.split(',');
       if (styles?.length > 0) {
         [...styles].forEach((style) => {
           loadCSS(style);
@@ -32,6 +32,6 @@ export default async function loadExternalComponent(node, componentName) {
       }
     });
   } else {
-    console.info(`No [<<${componentName}>>] on the page.`);
+    console.info(`No [:${componentName}:] on the page.`);
   }
 }
