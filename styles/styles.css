@@ -12,23 +12,43 @@
 
 :root {
   /* colors */
-  --dark-color: #000;
-  --link-color: #035fe6;
-  --link-hover-color: #136ff6;
-  --background-color: #fff;
-  --overlay-background-color: #eee;
-  --highlight-background-color: #ccc;
-  --text-color: #1f2b34;
-  --drop-shadow-color: #00000029;
-  --overlay-color: #fff;
-  --border-color: #a3a3a3;
+  --color-black: #000;
+  --color-white: #fff;
+  --global-ai-black: #1c1213;
+  --global-ai-bg-base: #fff;
+  --global-ai-purple: #531251;
+  --ai-color-purple: #531251;
+  --ai-color-dark-header: #1f2b34;
+  --ai-color-container: #f9f6ee;
+  --ai-text-body: #767676;
+  --ai-global-red: #da0e29;
+  --ai-highlight-color: #fff;
+  --ai-global-gray: #f7f8f8;
+  --ai-body-bg-color: #fff;
+  --ai-page-header-color: #b61032;
+  --ai-page-heading-color: #383c42;
+  --ai-page-description-color: #626773;
+  --ai-page-text-color: #626773;
+  --ai-page-link-color: #3174e0;
+  --ai-table-border-color: #edeef1;
+  --ai-accordion-bg-color: #f7f8f8;
+  --ai-accordion-border-color: #edeef1;
+  --ai-breadcrumb-active: #383c42;
+  --ai-breadcrumb-link-color: #828a99;
+  --ai-grey-border: #b0b5bf;
+  --ai-grey-light: #d3d6db;
+  --spacing-xl: 24px;
+  --spacing-medium: 16px;
+  --spacing-small: 12px;
+  --spacing-xs: 8px;
+  --font-size-small: 12px;
+  --global-colours-ai-blue-b-800: #11418f;
 
   /* fonts */
-  --body-font-family: NunitoSans, roboto, roboto-fallback;
-  --header-font-family: airindiaregular;
-  --heading-font-family: var(--body-font-family);
-  --fixed-font-family: 'Roboto Mono', menlo, consolas, 'Liberation Mono',
-    monospace;
+  --body-font-family: "Nunito Sans";
+  --heading-font-family: airindiaregular;
+  --heading-font-family-bold: airindiabold;
+  --variable-font-family: "AirIndia Variable";
 
   /* body sizes */
   --body-font-size-m: 22px;
@@ -44,43 +64,7 @@
   --heading-font-size-xs: 10px;
 
   /* nav height */
-  --nav-height: 76px;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-@font-face {
-  font-family: roboto-fallback;
-  size-adjust: 100.06%;
-  ascent-override: 95%;
-  src: local('Arial');
-}
-
-@font-face {
-  font-family: airindiaregular;
-  font-style: normal;
-  font-weight: 400;
-  src: url('../fonts/airindia-regular-webfont.eot');
-  src: url('../fonts/airindia-regular-webfont.eot?#iefix')
-      format('embedded-opentype'),
-    url('../fonts/airindia-regular-webfont.woff2') format('woff2'),
-    url('../fonts/airindia-regular-webfont.woff') format('woff'),
-    url('../fonts/airindia-regular-webfont.svg#airindiaregular') format('svg');
-}
-
-@font-face {
-  font-family: NunitoSans;
-  src: url('https://fonts.airindia.com/fonts/NunitoSans/NunitoSans-Light.eot');
-  src: url('https://fonts.airindia.com/fonts/NunitoSans/NunitoSans-Light.eot?#iefix')
-      format('embedded-opentype'),
-    url('https://fonts.airindia.com/fonts/NunitoSans/NunitoSans-Light.woff2')
-      format('woff2'),
-    url('https://fonts.airindia.com/fonts/NunitoSans/NunitoSans-Light.woff')
-      format('woff'),
-    url('https://fonts.airindia.com/fonts/NunitoSans/NunitoSans-Light.ttf')
-      format('truetype');
+  --nav-height: 64px;
 }
 
 @media (width >= 900px) {
@@ -129,18 +113,23 @@ h6 {
 h1 {
   font-size: var(--heading-font-size-xxl);
 }
+
 h2 {
   font-size: var(--heading-font-size-xl);
 }
+
 h3 {
   font-size: var(--heading-font-size-l);
 }
+
 h4 {
   font-size: var(--heading-font-size-m);
 }
+
 h5 {
   font-size: var(--heading-font-size-s);
 }
+
 h6 {
   font-size: var(--heading-font-size-xs);
 }
@@ -226,6 +215,19 @@ a.button.secondary,
 button.secondary {
   background-color: unset;
   border: 2px solid currentcolor;
+  color: var(--text-color);
+}
+
+main input {
+  font-size: 1.25rem;
+  width: 100%;
+  max-width: 50rem;
+  display: block;
+  margin-bottom: 1rem;
+  padding: 0.75rem 0.6rem;
+  border-radius: 0.25rem;
+  box-sizing: border-box;
+  border: 1px solid var(--text-color);
   color: var(--text-color);
 }
 
