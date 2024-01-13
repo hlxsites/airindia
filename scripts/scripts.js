@@ -13,6 +13,8 @@ import {
   loadCSS,
 } from './aem.js';
 
+import loadExternalComponent from './utils/initializer.js';
+
 const LCP_BLOCKS = []; // add your LCP blocks to the list
 
 /**
@@ -110,6 +112,9 @@ async function loadLazy(doc) {
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
   loadFonts();
+
+  loadExternalComponent(main, 'chatbot');
+  loadExternalComponent(main, 'search-flight');
 
   sampleRUM('lazy');
   sampleRUM.observe(main.querySelectorAll('div[data-block-name]'));
