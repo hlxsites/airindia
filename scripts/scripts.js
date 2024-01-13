@@ -116,7 +116,7 @@ async function loadLazy(doc) {
   loadExternalComponent(main, 'chatbot');
   // TODO: remove this hack once we have a better solution
   sessionStorage.setItem('env', 'cHJvZA==');
-  setTimeout(() => document.dispatchEvent(new CustomEvent('DOMContentLoaded')), 1000);
+  setTimeout(() => document.dispatchEvent(new CustomEvent('DOMContentLoaded')), 3000);
 
   sampleRUM('lazy');
   sampleRUM.observe(main.querySelectorAll('div[data-block-name]'));
