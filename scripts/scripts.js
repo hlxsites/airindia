@@ -114,7 +114,9 @@ async function loadLazy(doc) {
   loadFonts();
 
   loadExternalComponent(main, 'chatbot');
-  loadExternalComponent(main, 'search-flight');
+  // TODO: remove this hack once we have a better solution
+  sessionStorage.setItem('env', 'cHJvZA==');
+  setTimeout(() => document.dispatchEvent(new CustomEvent('DOMContentLoaded')), 1000);
 
   sampleRUM('lazy');
   sampleRUM.observe(main.querySelectorAll('div[data-block-name]'));

@@ -31,9 +31,6 @@ export default async function loadExternalComponent(node, componentName) {
         });
       }
     });
-
-    // TODO: remove this hack once we have a better solution
-    setTimeout(() => document.dispatchEvent(new CustomEvent('DOMContentLoaded')), 1000);
   } else {
     console.info(`No [<<${componentName}>>] on the page.`);
   }
