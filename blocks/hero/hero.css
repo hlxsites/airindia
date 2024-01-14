@@ -10,7 +10,7 @@ main .hero-container {
   
 main .hero {
   position: relative;
-  min-height: var(--banner-height-xs);
+  min-height: var(--hero-min-height-xs);
 }
 
 main .hero::after {
@@ -26,9 +26,9 @@ main .hero::after {
 
 main .hero h2 {
   font-family: var(--body-font-family);
-  font-size: 24px;
-  font-weight: 700;
-  line-height: 28px;
+  font-size: var( --heading-font-size-s);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--hero-line-height);
   color: var(--color-white);
   padding: 0 1rem;
   position: relative;
@@ -50,10 +50,9 @@ main .hero img {
   height: 100%;
 }
 
-/* stylelint-disable-next-line media-feature-range-notation */
 @media (min-width: 600px) {
   main .hero {
-    height: var(--banner-height-m);
+    height: var(--hero-height-m);
     padding: 0;
   }
   
@@ -63,7 +62,6 @@ main .hero img {
   }
 }
 
-/* stylelint-disable-next-line media-feature-range-notation */
 @media (min-width: 1200px) {
   main .hero h2 {
     max-width: 1200px;

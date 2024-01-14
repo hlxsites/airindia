@@ -66,9 +66,17 @@
   /* nav height */
   --nav-height: 64px;
 
-  /* banner height */
-  --banner-height-xs: 360px;
-  --banner-height-m: 584px
+  /* heo height */
+  --hero-min-height-xs: 360px;
+  --hero-height-m: 584px;
+
+   /* Hero Line Height */
+   --hero-line-height: 1.5;
+
+  /* Font Weight */
+  --font-weight-bold: 700;
+
+ 
 }
 
 @media (width >= 900px) {
