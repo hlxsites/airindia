@@ -49,9 +49,17 @@
 
   /* fonts */
   --body-font-family: "Nunito Sans";
-  --heading-font-family: airindiaregular;
+  --ai-regular-font-family: airindiaregular, sans-serif;
   --heading-font-family-bold: airindiabold;
   --variable-font-family: "AirIndia Variable";
+
+  /* header sizes */
+  --header-font-size-xxl: 48px;
+  --header-font-size-xl: 32px;
+  --header-font-size-l: 24px;
+  --header-font-size-m: 16px;
+  --header-font-size-s: 12px;
+  --header-font-size-xs: 10px;
 
   /* body sizes */
   --layout-max-width: 1264px;
@@ -72,7 +80,7 @@
   --nav-height-desktop: 134px;
 }
 
-@media (width >= 900px) {
+/* @media (width >= 900px) {
   :root {
     --heading-font-size-xxl: 60px;
     --heading-font-size-xl: 48px;
@@ -81,7 +89,7 @@
     --heading-font-size-s: 24px;
     --heading-font-size-xs: 22px;
   }
-}
+} */
 
 body {
   font-size: var(--body-font-size-m);
@@ -231,6 +239,10 @@ button.secondary {
   color: var(--text-color);
 }
 
+input {
+  font-size: 1.1rem;
+}
+
 main input {
   font-size: 1.25rem;
   width: 100%;
@@ -242,10 +254,6 @@ main input {
   box-sizing: border-box;
   border: 1px solid var(--text-color);
   color: var(--text-color);
-}
-
-input {
-  font-size: 1.1rem;
 }
 
 input:hover {

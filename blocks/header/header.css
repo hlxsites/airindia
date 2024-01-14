@@ -2,6 +2,7 @@
 :root {
   --mega-menu-padding-h: calc((100vw - var(--layout-max-width)) / 2 + 32px);
   --header-transition: all 0.5s;
+  --box-shadow-bottom: 0 10px 10px 0 var(--ai-box-shadow-color);
 }
 
 /* header and nav layout */
@@ -11,8 +12,8 @@ header .nav-wrapper {
   z-index: 2;
   position: fixed;
   height: var(--nav-height);
-  box-shadow: 0 2px 10px var(--ai-box-shadow-color);
-  font-size: var(--heading-font-size-s);
+  box-shadow: var(--box-shadow-bottom);
+  font-size: var(--header-font-size-s);
 }
 
 header nav {
@@ -26,6 +27,14 @@ header nav {
   max-width: var(--layout-max-width);
   height: 100%;
   padding: 0 1rem;
+}
+
+header nav .nav-sections .default-content-wrapper {
+  position: relative;
+}
+
+header nav .nav-sections.search-show > .default-content-wrapper {
+  visibility: hidden;
 }
 
 header .nav-wrapper .section.nav-tools .default-content-wrapper {
@@ -128,7 +137,6 @@ header nav[aria-expanded='true'] .nav-hamburger-icon::after {
 header .nav-brand {
   grid-area: brand;
   flex-basis: 128px;
-  font-size: var(--heading-font-size-s);
   font-weight: 700;
   line-height: 1;
 }
@@ -163,10 +171,6 @@ header nav .nav-sections {
   height: 90vh;
   padding: 0 1rem;
   width: 100vw;
-}
-
-header nav .nav-sections.search-show > .default-content-wrapper {
-  visibility: hidden;
 }
 
 header nav[aria-expanded='true'] .nav-sections {
@@ -208,7 +212,7 @@ header nav .nav-sections .nav-drop::after {
   right: 0.75rem;
   width: 0.5rem;
   height: 0.5rem;
-  border: 3px solid currentColor;
+  border: 3px solid currentcolor;
   border-radius: 0 1px 0 0;
   border-width: 3px 3px 0 0;
   transform: translateY(-50%) rotate(45deg);
@@ -226,12 +230,8 @@ header nav .nav-sections .nav-drop .link-title,
 header nav .nav-sections .sub-nav-drop .sub-link-title,
 header .nav-wrapper .section.nav-tools .default-content-wrapper,
 header nav .nav-sections .sub-nav-drop .go-back {
-  font-family: var(--heading-font-family);
+  font-family: var(--ai-regular-font-family);
   text-transform: uppercase;
-}
-
-header nav .nav-sections .default-content-wrapper {
-  position: relative;
 }
 
 header nav .nav-sections .sub-nav-drop {
@@ -258,10 +258,9 @@ header nav .nav-sections .sub-nav-drop .go-back {
   background: #f2f2f2;
   color: #000;
   cursor: pointer;
-  font-size: 1rem;
+  font-size: var(--header-font-size-m);
   font-weight: 500;
   padding: 1rem 2.5rem;
-  font-family: airindiaregular, sans-serif;
   margin-left: -1rem;
   width: 100vw;
   position: relative;
@@ -272,7 +271,7 @@ header nav .nav-sections .sub-nav-drop .sticky-wrapper {
   flex-direction: column;
 }
 
-header nav .nav-sections .sub-nav-drop .go-back:before {
+header nav .nav-sections .sub-nav-drop .go-back::before {
   content: '';
   display: inline-block;
   position: absolute;
@@ -280,7 +279,7 @@ header nav .nav-sections .sub-nav-drop .go-back:before {
   left: 1.25rem;
   width: 0.5rem;
   height: 0.5rem;
-  border: 3px solid currentColor;
+  border: 3px solid currentcolor;
   border-radius: 0 1px 0 0;
   border-width: 3px 3px 0 0;
   transform: translateY(-50%) rotate(225deg);
@@ -292,21 +291,21 @@ header nav .nav-sections .sub-nav-drop .current-menu-title {
   text-transform: uppercase;
   padding: 20px;
   color: #a3a3a3;
-  font-size: 24px;
+  font-size: var(--header-font-size-l);
   font-weight: 500;
   background: #fff
     url('https://www.airindia.com/content/dam/air-india/Pattern_Menu.png');
 }
 
 header nav .nav-sections .sub-nav-drop .sub-link-title {
-  font-size: 1rem;
+  font-size: var(--header-font-size-m);
   font-weight: 600;
   text-transform: uppercase;
 }
 
 header nav .nav-sections .sub-nav-drop li.sub-link-text {
   padding: 1rem 0;
-  font-size: 15px;
+  font-size: var(--header-font-size-m);
   color: var(--dark-color);
   font-weight: 500;
 }
@@ -421,11 +420,11 @@ header nav .nav-tools {
   }
 
   header nav .nav-sections .nav-drop .link-title {
-    font-size: 12px;
+    font-size: var(--header-font-size-s);
     position: relative;
   }
 
-  header nav .nav-sections .nav-drop .link-title:after {
+  header nav .nav-sections .nav-drop .link-title::after {
     content: '';
     position: absolute;
     width: 0;
@@ -437,7 +436,7 @@ header nav .nav-tools {
     transition: var(--header-transition);
   }
 
-  header nav .nav-sections .nav-drop:hover .link-title:after {
+  header nav .nav-sections .nav-drop:hover .link-title::after {
     width: 100%;
   }
 
@@ -472,7 +471,7 @@ header nav .nav-tools {
     width: 100vw;
     background-color: var(--ai-overlay-bg-color);
     white-space: initial;
-    box-shadow: 0 10px 10px 0 var(--ai-box-shadow-color);
+    box-shadow: var(--box-shadow-bottom);
     height: 0;
     transition: var(--header-transition);
     overflow: hidden;
@@ -522,7 +521,7 @@ header nav .nav-tools {
   header .nav-wrapper .section.nav-tools .default-content-wrapper {
     display: flex;
     justify-content: flex-end;
-    font-size: 12px;
+    font-size: inherit;
     gap: 1.5rem;
     cursor: pointer;
   }
@@ -581,7 +580,7 @@ header nav .nav-tools {
     height: unset;
     padding: unset;
     width: 100%;
-    box-shadow: 0 2px 10px var(--ai-box-shadow-color);
+    box-shadow: var(--box-shadow-bottom);
     border: 1px solid var(--ai-table-border-color);
   }
 
@@ -594,7 +593,7 @@ header nav .nav-tools {
     top: calc(var(--nav-height-desktop) - 24px);
     width: 100vw;
     background-color: var(--ai-overlay-bg-color);
-    box-shadow: 0 10px 10px 0 var(--ai-box-shadow-color);
+    box-shadow: var(--box-shadow-bottom);
     height: 0;
     overflow: hidden;
     padding: 0 var(--mega-menu-padding-h);;
@@ -611,7 +610,7 @@ header nav .nav-tools {
     color: var(--ai-global-red);
     font-family: var(--body-font-family);
     margin-bottom: 24px;
-    font-size: 24px;
+    font-size: var(--header-font-size-l);
     font-style: normal;
     font-weight: 700;
   }
@@ -620,7 +619,7 @@ header nav .nav-tools {
     position: relative;
   }
 
-  .header-nav-search-box-highlight:after {
+  .header-nav-search-box-highlight::after {
     content: '';
     position: absolute;
     left: 0%;
@@ -635,7 +634,7 @@ header nav .nav-tools {
     position: absolute;
     top: 0;
     right: var(--mega-menu-padding-h);
-    font-size: 36px;
+    font-size: var(--header-font-size-xl);
     font-weight: normal;
     cursor: pointer;
   }
