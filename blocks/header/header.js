@@ -18,8 +18,8 @@ function toggleAllNavSections (sections, expanded = false) {
 function wrapNavDrops (navSections, parentSelector, linkTextClass) {
   const navDrops = Array.from(navSections.querySelectorAll(parentSelector));
   navDrops.forEach((navDrop) => {
-    if (Array.from(navDrop.querySelectorAll("ul")).length === 0) {
-      navDrop.classList.add("sub-link-text");
+    if (Array.from(navDrop.querySelectorAll('ul')).length === 0) {
+      navDrop.classList.add('sub-link-text');
       return;
     }
     const textContent = navDrop.firstChild?.nodeValue?.trim();
@@ -31,14 +31,24 @@ function wrapNavDrops (navSections, parentSelector, linkTextClass) {
       navDrop.removeChild(navDrop.firstChild);
     }
     navDrop.insertBefore(wrapperElement, navDrop.firstElementChild);
-    wrapNavDrops(navDrop, "li", "sub-link-title");
+    wrapNavDrops(navDrop, 'li', 'sub-link-title');
   });
 }
 
-function createSearchBox () {
+function removeHeaderSearchBox () {
+  const navTools = document.querySelector('.nav-tools');
+  const search = navTools?.querySelector('.icon-search')?.parentNode;
+  const navSections = document.querySelector('header #nav .nav-sections');
+  search?.classList?.remove('header-nav-search-box-highlight');
+  navSections?.classList?.remove('search-show');
+  document.querySelector('.header-nav-search-box')?.remove();
+}
+
+function createSearchBox (label = 'Search') {
   const searchBoxHtml = `
   <div class="header-nav-search-box" id="header-nav-search-box">
-    <label for="search-box" class="sr-only">Search</label>
+    <span class="header-nav-search-box-close">&times;</span>
+    <label for="search-box" class="header-nav-search-box-label" role="heading" aria-level="2">${label}</label>
     <input type="text" id="search-box">
     <a class="search-icon">
       <svg width="21" height="21" viewBox="0 0 21 21" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -46,8 +56,10 @@ function createSearchBox () {
       </svg> 
     </a> 
   </div>`;
-  const searchBoxWrapper = document.createElement("div");
+  const searchBoxWrapper = document.createElement('div');
   searchBoxWrapper.innerHTML = searchBoxHtml;
+  const searchClose = searchBoxWrapper.querySelector('.header-nav-search-box-close');
+  searchClose?.addEventListener('click', removeHeaderSearchBox);
   return searchBoxWrapper.firstElementChild;
 }
 
@@ -70,41 +82,41 @@ function closeOnEscape (e) {
 
 function openSubNavMobile (menu) {
   menu.setAttribute('aria-expanded', 'true');
-  const menuTitle = menu.querySelector(".link-title")?.textContent || '';
-  const menuWrapper = menu.closest(".default-content-wrapper");
-  const subNavWrapper = document.createElement("div");
-  subNavWrapper.classList.add("sub-nav-drop");
+  const menuTitle = menu.querySelector('.link-title')?.textContent || '';
+  const menuWrapper = menu.closest('.default-content-wrapper');
+  const subNavWrapper = document.createElement('div');
+  subNavWrapper.classList.add('sub-nav-drop');
 
-  const stickyWrapper = document.createElement("div");
-  stickyWrapper.classList = "sticky-wrapper";
-  const goBack = document.createElement("a");
-  goBack.textContent = "Main Menu";
-  goBack.classList.add("go-back");
-  goBack.addEventListener("click", (e) => {
-    subNavWrapper.classList.remove("transition");
+  const stickyWrapper = document.createElement('div');
+  stickyWrapper.classList = 'sticky-wrapper';
+  const goBack = document.createElement('a');
+  goBack.textContent = 'Main Menu';
+  goBack.classList.add('go-back');
+  goBack.addEventListener('click', () => {
+    subNavWrapper.classList.remove('transition');
     setTimeout(() => {
       subNavWrapper.remove();
     }, 500);
   });
   stickyWrapper.appendChild(goBack);
 
-  const currentTitle = document.createElement("div");
-  currentTitle.classList.add("current-menu-title");
+  const currentTitle = document.createElement('div');
+  currentTitle.classList.add('current-menu-title');
   currentTitle.textContent = menuTitle;
   stickyWrapper.appendChild(currentTitle);
   subNavWrapper.appendChild(stickyWrapper);
 
-  subNavWrapper.appendChild(menu.querySelector("ul")?.cloneNode(true));
+  subNavWrapper.appendChild(menu.querySelector('ul')?.cloneNode(true));
   menuWrapper.insertBefore(subNavWrapper, menuWrapper.firstElementChild);
   setTimeout(() => {
-    subNavWrapper.classList.add("transition");
+    subNavWrapper.classList.add('transition');
   }, 0);
 }
 
 function delegateNavSectionsClick (e) {
-  if (e.target.closest(".nav-drop") && !isDesktop.matches) {
-    toggleAllNavSections(e.target.closest(".nav-sections"));
-    openSubNavMobile(e.target.closest(".nav-drop"));
+  if (e.target.closest('.nav-drop') && !isDesktop.matches) {
+    toggleAllNavSections(e.target.closest('.nav-sections'));
+    openSubNavMobile(e.target.closest('.nav-drop'));
   }
 }
 
@@ -145,6 +157,7 @@ function toggleMenu (nav, navSections, forceExpanded = null) {
         drop.addEventListener('focus', focusNavSection);
       }
     });
+    removeHeaderSearchBox();
   } else {
     navDrops.forEach((drop) => {
       drop.removeAttribute('role');
@@ -152,7 +165,7 @@ function toggleMenu (nav, navSections, forceExpanded = null) {
       drop.removeEventListener('focus', focusNavSection);
     });
     /** Add Search option only for mobile menu */
-    if (!document.querySelector("#header-nav-search-box")) {
+    if (!document.querySelector('.header-nav-search-box')) {
       const searchBox = createSearchBox();
       navSections.insertBefore(searchBox, navSections.firstElementChild);
     }
@@ -163,6 +176,55 @@ function toggleMenu (nav, navSections, forceExpanded = null) {
     window.addEventListener('keydown', closeOnEscape);
   } else {
     window.removeEventListener('keydown', closeOnEscape);
+  }
+}
+
+function handleNavSectionExpand (navSection, navSections, action = 'toggle') {
+  if (isDesktop.matches) {
+    const expanded = navSection.getAttribute('aria-expanded') === 'true';
+    toggleAllNavSections(navSections);
+    if (action === 'expand') {
+      navSection.setAttribute('aria-expanded', 'true');
+    } else if (action === 'collapse') {
+      navSection.setAttribute('aria-expanded', 'false');
+    } else {
+      navSection.setAttribute('aria-expanded', expanded ? 'false' : 'true');
+    }
+  }
+}
+
+function headerSeachClickHandler (search, navSections) {
+  if (document.querySelector('.header-nav-search-box')) {
+    removeHeaderSearchBox();
+    return;
+  }
+  const searchBox = createSearchBox('What are you looking for?');
+  const nav = document.querySelector('header #nav');
+  search.classList.add('header-nav-search-box-highlight');
+  nav.insertAdjacentElement('beforebegin', searchBox);
+  setTimeout(()=>{
+    searchBox?.classList?.add("show");
+  },0);
+  navSections.classList.add('search-show');
+}
+
+function decorateNavTools (navSections) {
+  const navTools = document.querySelector('.nav-tools');
+  navSections.insertBefore(navTools, navSections.firstChild);
+  const navToolLists = Array.from(navTools.querySelectorAll('ul>li')) || [];
+  navToolLists.forEach((list) => {
+    if (list.querySelector('ul')) {
+      list.addEventListener('mouseover', () => {
+        list.setAttribute('aria-expanded', 'true');
+      });
+      list.addEventListener('mouseleave', () => {
+        list.setAttribute('aria-expanded', 'false');
+      });
+    }
+  });
+  const search = navTools.querySelector('.icon-search')?.parentNode;
+  if (search) {
+    search.addEventListener('click', headerSeachClickHandler.bind(null, search, navSections));
   }
 }
 
@@ -196,18 +258,20 @@ export default async function decorate (block) {
 
   const navSections = nav.querySelector('.nav-sections');
   if (navSections) {
-    navSections.querySelectorAll(':scope .default-content-wrapper > ul > li').forEach((navSection) => {
+    navSections.querySelectorAll('.default-content-wrapper > ul > li').forEach((navSection) => {
       if (navSection.querySelector('ul')) navSection.classList.add('nav-drop');
       navSection.addEventListener('click', () => {
-        if (isDesktop.matches) {
-          const expanded = navSection.getAttribute('aria-expanded') === 'true';
-          toggleAllNavSections(navSections);
-          navSection.setAttribute('aria-expanded', expanded ? 'false' : 'true');
-        }
+        handleNavSectionExpand(navSection, navSections);
+      });
+      navSection.addEventListener('mouseover', () => {
+        handleNavSectionExpand(navSection, navSections, 'expand');
+      });
+      navSection.addEventListener('mouseleave', () => {
+        handleNavSectionExpand(navSection, navSections, 'collapse');
       });
     });
-    navSections.addEventListener("click", delegateNavSectionsClick);
-    wrapNavDrops(navSections, ".nav-drop", "link-title");
+    navSections.addEventListener('click', delegateNavSectionsClick);
+    wrapNavDrops(navSections, '.nav-drop', 'link-title');
   }
 
   // hamburger for mobile
@@ -227,4 +291,6 @@ export default async function decorate (block) {
   navWrapper.className = 'nav-wrapper';
   navWrapper.append(nav);
   block.append(navWrapper);
+
+  decorateNavTools(navSections);
 }
