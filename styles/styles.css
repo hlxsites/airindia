@@ -70,6 +70,18 @@
 
   /* nav height */
   --nav-height: 64px;
+
+  /* heo height */
+  --hero-min-height-xs: 360px;
+  --hero-height-m: 584px;
+
+   /* Hero Line Height */
+   --hero-line-height: 1.5;
+
+  /* Font Weight */
+  --font-weight-bold: 700;
+
+ 
 }
 
 *,
@@ -150,5 +162,10 @@ main .section ul > li::before {
   main .section {
     padding: 24px;
     max-width: 74pc;
+  }
+  
+  main .section > div {
+    max-width: 1200px;
+    margin: auto;
   }
 }
