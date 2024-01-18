@@ -26,9 +26,9 @@
   border-bottom: 1px solid var(--ai-table-border-color);
   border-left: 1px solid var(--ai-table-border-color);
   color: var(--ai-page-text-color);
-  font-size: 1pc;
-  font-weight: 400;
-  line-height: 24px;
+  font-size: var(--bs-body-font-size);
+  font-weight: var(--bs-body-font-weight);
+  line-height: var(--hero-line-height);
   padding: 8px 0.6pc;
   text-align: left;
   vertical-align: baseline;

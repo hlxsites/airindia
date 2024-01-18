@@ -59,6 +59,11 @@
   --body-font-size-m: 22px;
   --body-font-size-s: 18px;
   --body-font-size-xs: 16px;
+  --bs-body-font-family: var(--bs-font-sans-serif);
+  --bs-body-font-size: 1rem;
+  --bs-body-font-weight: 400;
+  --bs-body-line-height: 1.5;
+
 
   /* heading sizes */
   --heading-font-size-xxl: 48px;
@@ -75,13 +80,12 @@
   --hero-min-height-xs: 360px;
   --hero-height-m: 584px;
 
-   /* Hero Line Height */
-   --hero-line-height: 1.5;
+  /* Hero Line Height */
+  --hero-line-height: 1.5;
 
   /* Font Weight */
   --font-weight-bold: 700;
 
- 
 }
 
 *,
@@ -94,10 +98,10 @@ body {
   background-color: var(--ai-global-gray);
   display: none;
   font-family: var(--body-font-family);
-  font-size: 1pc;
+  font-size: var(--bs-body-font-size);
   font-style: normal;
-  font-weight: 400;
-  line-height: 1.5;
+  font-weight: var(--bs-body-font-weight);
+  line-height: var(--bs-body-line-height);
   margin: 0 auto;
   max-width: 160pc;
   padding: 0;
@@ -109,16 +113,21 @@ body.appear {
 }
 
 main .section {
-  background: var(--ai-body-bg-color);
   margin-bottom: 1pc;
   margin-inline: auto;
-  padding: 12px;
 }
+
+main .section>div {
+  background: var(--ai-body-bg-color);
+  padding: 24px;
+  margin: auto;
+}
+
 
 main .section h3 {
   background: var(--ai-global-gray);
   color: var(--ai-page-heading-color);
-  font-size: 20px;
+  font-size: var(--heading-font-size-s);
   font-weight: 600;
   line-height: 24px;
   padding: 10px;
@@ -126,9 +135,9 @@ main .section h3 {
 
 main .section p {
   color: var(--ai-page-text-color);
-  font-size: 1pc;
-  font-weight: 400;
-  line-height: 24px;
+  font-size: var(--bs-body-font-size);
+  font-weight: var(--bs-body-font-weight);
+  line-height: var(--bs-body-line-height);
   margin-bottom: 10px;
 }
 
@@ -137,7 +146,7 @@ main .section ul {
   padding-left: 0;
 }
 
-main .section ul > li {
+main .section ul>li {
   color: var(--ai-page-text-color);
   font-size: 1pc;
   list-style: none;
@@ -146,8 +155,8 @@ main .section ul > li {
   position: relative;
 }
 
-main .section ul > li::before {
-  border: 1px solid #da0e29;
+main .section ul>li::before {
+  border: 1px solid var(--ai-global-red);
   border-width: 2px 2px 0 0;
   content: "";
   height: 7px;
@@ -158,14 +167,8 @@ main .section ul > li::before {
   width: 7px;
 }
 
-@media (width >= 768px) {
-  main .section {
-    padding: 24px;
-    max-width: 74pc;
-  }
-  
-  main .section > div {
+@media (width >=768px) {
+  main .section>div {
     max-width: 1200px;
-    margin: auto;
   }
 }

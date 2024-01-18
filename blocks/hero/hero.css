@@ -1,11 +1,15 @@
 /* block specific CSS goes here */
 
-main .hero-container > div {
+main .hero-container>div {
   max-width: unset;
 }
 
 main .hero-container {
   margin-top: calc(var(--nav-height) * -1);
+}
+
+main .hero-container .hero-wrapper {
+  padding: 0;
 }
 
 main .hero {
@@ -14,7 +18,7 @@ main .hero {
 }
 
 main .hero::after {
-  background: var( --global-ai-black);
+  background: var(--global-ai-black);
   content: "";
   height: 100%;
   left: 0;
@@ -26,7 +30,7 @@ main .hero::after {
 
 main .hero h2 {
   font-family: var(--body-font-family);
-  font-size: var( --heading-font-size-s);
+  font-size: var(--heading-font-size-s);
   font-weight: var(--font-weight-bold);
   line-height: var(--hero-line-height);
   color: var(--color-white);
