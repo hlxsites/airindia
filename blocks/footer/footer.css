@@ -86,13 +86,13 @@ footer .footer .footer-top-item p a{
 }
 
 .footer-top-item{
-  border-bottom: 1px solid #eaeaea;
+  border-bottom: 1px solid var(--ai-footer-text);
 }
 
 .footer-top-item h6::after {
   content: '\276F';
   transform: rotate(90deg);
-  color: #777;
+  color: var(--ai-accordion-icon-color);
   font-weight: bold;
   float: right;
   margin-left: 5px;
