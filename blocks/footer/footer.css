@@ -41,6 +41,13 @@ footer .footer-top a:hover, footer .footer-middle a:hover {
 footer .footer {
   max-width: var(--layout-max-width);
   margin: auto;
+  padding: 0;
+}
+
+@media (min-width: 992px) {  
+  footer .footer { 
+    padding: 0 15px;
+  }
 }
 
 .footer-middle-item p{
@@ -135,7 +142,7 @@ footer .footer .footer-top-item p a{
   transform: rotate(270deg);
 }
 
-@media (width >= 768px) {
+  @media (min-width: 768px) {  
   .footer-top-item ul{
     max-height: 100%;
     overflow: hidden;
@@ -168,7 +175,7 @@ footer .footer .footer-top-item p a{
 
   footer .footer .footer-top-item p img{
     height: 43px;
-    width: 135px;
+    width: 100%;
     padding-right: 10px;
   }
 
@@ -186,7 +193,7 @@ footer .footer .footer-top-item p a{
 
 }
 
-@media (width >= 992px) {
+@media (min-width: 992px) {
   .footer-top .default-content-wrapper, .footer-middle .default-content-wrapper{
     display: grid;
     grid-template-columns: 25% 25% 25% 25%;

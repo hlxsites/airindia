@@ -1,4 +1,4 @@
-import { getMetadata } from '../../scripts/aem.js';
+import { getMetadata, createOptimizedPicture } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
 
 function createAccordion() {
@@ -47,6 +47,7 @@ function decorateFooter(block, selectorClass) {
 
     tempDiv.appendChild(topItem);
   }
+  tempDiv.querySelectorAll('img').forEach((img) => img.closest('picture').replaceWith(createOptimizedPicture(img.src, img.alt, false, [{ width: '750' }])));
 }
 
 /**
