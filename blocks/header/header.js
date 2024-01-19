@@ -1,5 +1,5 @@
-import { getMetadata } from '../../scripts/aem.js';
-import { loadFragment } from '../fragment/fragment.js';
+import { getMetadata, fetchPlaceholders } from '../../scripts/aem.js';
+import { loadFragment } from '../fragment/fragment.js';;
 
 // media query match that indicates mobile/tablet width
 const isDesktop = window.matchMedia('(min-width: 900px)');
@@ -89,13 +89,14 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
 /**
  * Create a skip to main link
  */
-function addSkipToMain() {
+async function addSkipToMain() {
+  await fetchPlaceholders();
   const navWrapper = document.querySelector('.nav-wrapper');
   // create and insert skip link before header
   const skipLink = document.createElement('a');
   skipLink.href = '#main';
   skipLink.className = 'skip-main';
-  skipLink.innerText = 'Skip to main content';
+  skipLink.innerText = window.placeholders?.default?.lblSkip || 'Skip to main content';
   navWrapper.prepend(skipLink);
   // add id to main element to support skip link
   const main = document.querySelector('main');
