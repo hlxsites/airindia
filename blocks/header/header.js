@@ -1,4 +1,4 @@
-import { getMetadata } from '../../scripts/aem.js';
+import { getMetadata, fetchPlaceholders } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
 import { getPlaceholderDataFor } from '../../scripts/utils.js';
 
@@ -250,6 +250,23 @@ function decorateNavTools(navSections) {
 }
 
 /**
+ * Create a skip to main link
+ */
+async function addSkipToMain() {
+  await fetchPlaceholders();
+  const navWrapper = document.querySelector('.nav-wrapper');
+  // create and insert skip link before header
+  const skipLink = document.createElement('a');
+  skipLink.href = '#main';
+  skipLink.className = 'skip-main';
+  skipLink.innerText = window.placeholders?.default?.lblSkip || 'Skip to main content';
+  navWrapper.prepend(skipLink);
+  // add id to main element to support skip link
+  const main = document.querySelector('main');
+  main.id = 'main';
+}
+
+/**
  * decorates the header, mainly the nav
  * @param {Element} block The header block element
  */
@@ -317,4 +334,6 @@ export default async function decorate(block) {
   block.append(navWrapper);
 
   decorateNavTools(navSections);
+  // add skip to main link
+  addSkipToMain();
 }

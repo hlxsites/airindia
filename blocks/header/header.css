@@ -639,3 +639,24 @@ header nav .nav-tools {
     cursor: pointer;
   }
 }
+
+/* skip main */
+.skip-main {
+  color: var(--ai-color-dark-header);
+  opacity: 0;
+  font-size: var(--body-font-size-xs);
+  pointer-events: none;
+  position: absolute;
+  top: 90px;
+  z-index: 9999;
+  text-decoration: none;
+}
+
+.skip-main:focus {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.header:not(.inverted) .skip-main:focus {
+  color: var(--color-white);
+}
