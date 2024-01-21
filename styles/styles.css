@@ -350,14 +350,14 @@ main .section.highlight {
 }
 
 /** MEDIA QUERY FOR >MOBILE */
-@media (width >= 600px) {
+@media (width >= 768px) {
   main .section {
     padding: 4rem 2rem;
   }
 }
 
 
-@media (width >= 900px) {
+@media (width >= 1024px) {
   .section > div {
     max-width: 75rem;
     margin: auto;
@@ -365,11 +365,5 @@ main .section.highlight {
 
   header {
     height: var(--nav-height-desktop);
-  }
-}
-
-@media (width >=768px) {
-  main .section>div {
-    max-width: 1200px;
   }
 }

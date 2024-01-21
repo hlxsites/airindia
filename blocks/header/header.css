@@ -388,8 +388,17 @@ header nav .nav-tools {
 
   header nav .nav-sections ul > li > ul {
     display: flex;
-    gap: 2rem 5rem;
+    gap: 2rem 3rem;
     flex-flow: column wrap;
+  }
+
+  header nav .nav-sections .default-content-wrapper > ul > li {
+    flex: 0 1 auto;
+    position: static;
+  }
+
+  header nav .nav-sections ul > li.nav-drop > ul > li{
+    max-width: 25%;
   }
 
   header nav .nav-sections .default-content-wrapper > ul {
@@ -442,16 +451,10 @@ header nav .nav-tools {
     position: static;
   }
 
-  header nav .nav-sections .default-content-wrapper > ul > li {
-    flex: 0 1 auto;
-    position: static;
-  }
-
   header nav .nav-sections .nav-drop ul > li > ul {
     max-height: 14.5rem;
   }
 
-  /* header nav .nav-sections .nav-drop[aria-expanded='true'] > ul { */
   header nav .nav-sections .default-content-wrapper > ul > li > ul {
     display: flex;
     opacity: 0;
@@ -510,6 +513,9 @@ header nav .nav-tools {
   header nav .nav-sections .nav-drop .sub-link-text img {
     position: relative;
     top: -2.5rem;
+    width: 80%;
+    height: auto;
+    margin-left: 1rem;
   }
 
   header .nav-wrapper .section.nav-tools .default-content-wrapper {
