@@ -21,6 +21,7 @@ function wrapNavDrops(navSections, parentSelector, linkTextClass) {
   navDrops.forEach((navDrop) => {
     if (Array.from(navDrop.querySelectorAll('ul')).length === 0) {
       navDrop.classList.add('sub-link-text');
+      navDrop.setAttribute('tabindex', 0);
       return;
     }
     const textContent = navDrop.firstChild?.nodeValue?.trim();
@@ -300,6 +301,9 @@ export default async function decorate(block) {
       if (navSection.querySelector('ul')) navSection.classList.add('nav-drop');
       navSection.addEventListener('click', () => {
         handleNavSectionExpand(navSection, navSections);
+      });
+      navSection.addEventListener('focus', () => {
+        handleNavSectionExpand(navSection, navSections, 'expand');
       });
       navSection.addEventListener('mouseover', () => {
         handleNavSectionExpand(navSection, navSections, 'expand');
