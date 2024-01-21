@@ -1,16 +1,17 @@
 /** HEADER SPECIFIC VARIABLES */
 :root {
-  --mega-menu-padding-h: calc((100vw - var(--layout-max-width)) / 2 + 2rem);
+  --mega-menu-padding-h: max(calc((100vw - var(--layout-max-width)) / 2 + 2rem), 1.5rem);
   --header-transition: all 0.5s;
   --box-shadow-bottom: 0 10px 10px 0 var(--ai-box-shadow-color);
 }
 
 /* header and nav layout */
 header .nav-wrapper {
+  position: fixed;
   background-color: var(--ai-overlay-bg-color);
   width: 100%;
   z-index: 2;
-  position: fixed;
+  top: 0;
   height: var(--nav-height);
   box-shadow: var(--box-shadow-bottom);
   font-size: var(--header-font-size-s);
@@ -184,17 +185,9 @@ header nav .nav-sections ul {
   padding-left: 0;
 }
 
-/* header nav .nav-sections ul > li {
-  font-weight: 700;
-} */
-
 header nav .nav-sections ul > li > ul {
   margin-top: 0;
 }
-
-/* header nav .nav-sections ul > li > ul > li {
-  font-weight: 500;
-} */
 
 header nav .nav-sections .nav-drop > ul {
   display: none;
@@ -255,8 +248,8 @@ header nav .nav-sections .sub-nav-drop.transition {
 }
 
 header nav .nav-sections .sub-nav-drop .go-back {
-  background: #f2f2f2;
-  color: #000;
+  background: var(--ai-table-border-color);
+  color: var(--color-black);
   cursor: pointer;
   font-size: var(--header-font-size-m);
   font-weight: 500;
@@ -290,11 +283,11 @@ header nav .nav-sections .sub-nav-drop .current-menu-title {
   width: 100vw;
   text-transform: uppercase;
   padding: 1.25rem;
-  color: #a3a3a3;
+  color: var(--ai-title-gray-color);
   font-size: var(--header-font-size-l);
   font-weight: 500;
-  background: #fff
-    url('https://www.airindia.com/content/dam/air-india/Pattern_Menu.png');
+  background: var(--color-white)
+    url('../../icons/Pattern_Menu.png');
 }
 
 header nav .nav-sections .sub-nav-drop .sub-link-title {
@@ -341,11 +334,12 @@ header nav .nav-tools {
   position: relative;
 }
 
-.header-nav-search-box .search-icon svg {
+.header-nav-search-box .search-icon .search-icon {
   position: absolute;
   right: 0.5rem;
   top: 50%;
   transform: translateY(-50%);
+  cursor: pointer;
 }
 
 .header-nav-search-box-close {
@@ -354,7 +348,7 @@ header nav .nav-tools {
 
 /** MEDIA QUERY FOR >MOBILE */
 
-@media (width >= 900px) {
+@media (width >= 1024px) {
   header .nav-wrapper {
     height: var(--nav-height-desktop);
   }
@@ -596,7 +590,7 @@ header nav .nav-tools {
     box-shadow: var(--box-shadow-bottom);
     height: 0;
     overflow: hidden;
-    padding: 0 var(--mega-menu-padding-h);;
+    padding: 0 var(--mega-menu-padding-h);
     transition: var(--header-transition);
   }
 

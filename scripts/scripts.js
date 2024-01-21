@@ -11,6 +11,7 @@ import {
   waitForLCP,
   loadBlocks,
   loadCSS,
+  fetchPlaceholders,
 } from './aem.js';
 
 const LCP_BLOCKS = []; // add your LCP blocks to the list
@@ -126,8 +127,17 @@ function loadDelayed() {
   // load anything that can be postponed to the latest here
 }
 
+/**
+ * Loads placeholders content
+ */
+async function loadPlaceHolders() {
+  fetchPlaceholders();
+}
+
 async function loadPage() {
   await loadEager(document);
+  // Loading placeholders before all blocks are loaded
+  await loadPlaceHolders();
   await loadLazy(document);
   loadDelayed();
 }
