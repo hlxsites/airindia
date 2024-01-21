@@ -250,6 +250,17 @@ function decorateNavTools(navSections) {
   }
 }
 
+function addScrollHandler() {
+  window.addEventListener('scroll', () => {
+    const navWrapper = document.querySelector('header .nav-wrapper');
+    if (window.scrollY >= 10) {
+      navWrapper?.classList.add('short');
+    } else {
+      navWrapper?.classList.remove('short');
+    }
+  });
+}
+
 /**
  * Create a skip to main link
  */
@@ -260,7 +271,7 @@ async function addSkipToMain() {
   const skipLink = document.createElement('a');
   skipLink.href = '#main';
   skipLink.className = 'skip-main';
-  skipLink.innerText = window.placeholders?.default?.lblSkip || 'Skip to main content';
+  skipLink.innerText = getPlaceholderDataFor('lblSkip') || 'Skip to main content';
   navWrapper.prepend(skipLink);
   // add id to main element to support skip link
   const main = document.querySelector('main');
@@ -338,6 +349,7 @@ export default async function decorate(block) {
   block.append(navWrapper);
 
   decorateNavTools(navSections);
+  addScrollHandler();
   // add skip to main link
   addSkipToMain();
 }

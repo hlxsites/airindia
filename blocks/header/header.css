@@ -2,6 +2,7 @@
 :root {
   --mega-menu-padding-h: max(calc((100vw - var(--layout-max-width)) / 2 + 2rem), 1.5rem);
   --header-transition: all 0.5s;
+  --header-transition-rapid: all 0.1s;
   --box-shadow-bottom: 0 10px 10px 0 var(--ai-box-shadow-color);
 }
 
@@ -351,6 +352,11 @@ header nav .nav-tools {
 @media (width >= 1024px) {
   header .nav-wrapper {
     height: var(--nav-height-desktop);
+    transition: var(--header-transition-rapid);
+  }
+
+  header .nav-wrapper.short {
+    height: var(--nav-height-desktop-short);
   }
 
   header nav {
@@ -524,6 +530,13 @@ header nav .nav-tools {
     font-size: inherit;
     gap: 1.5rem;
     cursor: pointer;
+    height: 2.25rem;
+    transition: var(--header-transition-rapid);
+  }
+
+  header .nav-wrapper.short .section.nav-tools .default-content-wrapper {
+    height: 0;
+    overflow: hidden;
   }
 
   header .nav-wrapper .section.nav-tools .default-content-wrapper > * {
