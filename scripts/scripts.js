@@ -117,10 +117,7 @@ async function loadLazy(doc) {
   loadFonts();
 
   // load external components (defined in the text content of the page [<<componentName>>])
-  import('./utils/initializer.js').then((module) => {
-    console.log('loadExternalComponent', module.default(main, 'chatbot'));
-    //  await loadExternalComponent(main, 'chatbot');
-  });
+  import('./utils/initializer.js').then((module) => module.default(main, 'chatbot'));
 
   sampleRUM('lazy');
   sampleRUM.observe(main.querySelectorAll('div[data-block-name]'));
