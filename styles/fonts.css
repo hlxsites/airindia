@@ -1,3 +1,18 @@
+
+/* fallback font for AirIndia Variable (normal - 400) */
+@font-face {
+  font-family: "airindia-variable-normal-400-fallback";
+  size-adjust: 114%;
+  src: local("Arial");
+}
+
+/* fallback font for Nunito Sans (normal - 400) */
+@font-face {
+  font-family: "nunito-sans-normal-400-fallback";
+  size-adjust: 110%;
+  src: local("Arial");
+}
+
 @font-face {
   font-family: airindiabold;
   font-style: normal;
