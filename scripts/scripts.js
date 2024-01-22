@@ -13,8 +13,6 @@ import {
   loadCSS,
 } from './aem.js';
 
-import loadExternalComponent from './utils/initializer.js';
-
 const LCP_BLOCKS = []; // add your LCP blocks to the list
 
 /**
@@ -25,7 +23,12 @@ function buildHeroBlock(main) {
   const h1 = main.querySelector('h1');
   const picture = main.querySelector('picture');
   // eslint-disable-next-line no-bitwise
-  if (h1 && picture && (h1.compareDocumentPosition(picture) & Node.DOCUMENT_POSITION_PRECEDING)) {
+  if (
+    h1
+    && picture
+    // eslint-disable-next-line no-bitwise
+    && h1.compareDocumentPosition(picture) & Node.DOCUMENT_POSITION_PRECEDING
+  ) {
     const section = document.createElement('div');
     section.append(buildBlock('hero', { elems: [picture, h1] }));
     main.prepend(section);
@@ -114,7 +117,10 @@ async function loadLazy(doc) {
   loadFonts();
 
   // load external components (defined in the text content of the page [<<componentName>>])
-  loadExternalComponent(main, 'chatbot');
+  import('./utils/initializer.js').then(async (module) => {
+    console.log('loadExternalComponent', await module.default(main, 'chatbot'));
+    //  await loadExternalComponent(main, 'chatbot');
+  });
 
   sampleRUM('lazy');
   sampleRUM.observe(main.querySelectorAll('div[data-block-name]'));
