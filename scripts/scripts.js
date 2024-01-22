@@ -113,10 +113,8 @@ async function loadLazy(doc) {
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
   loadFonts();
 
+  // load external components (defined in the text content of the page [<<componentName>>])
   loadExternalComponent(main, 'chatbot');
-  // // TODO: remove this hack once we have a better solution
-  // sessionStorage.setItem('env', 'cHJvZA==');
-  // setTimeout(() => document.dispatchEvent(new CustomEvent('DOMContentLoaded')), 3000);
 
   sampleRUM('lazy');
   sampleRUM.observe(main.querySelectorAll('div[data-block-name]'));

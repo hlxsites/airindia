@@ -1,7 +1,22 @@
+/** @module utils/helpers */
+/**
+ * Parses a placeholder string
+ * @param {string} placeholder
+ * @returns {string}
+ */
 function parsePlaceholder(placeholder) {
   return placeholder.replace(/&lt;&lt;/g, '<<').replace(/&gt;&gt;/g, '>>');
 }
 
+/**
+ * Finds all elements with the given text
+ * @param {HTMLElement} element
+ *  The element to search
+ * @param {string} text
+ * The text to search for
+ * @returns {Array}
+ * An array of objects with the parent element and the placeholder text
+ */
 function findElementsWithText(element, text) {
   const elementsWithText = [];
   const treeWalker = document.createTreeWalker(
@@ -27,6 +42,11 @@ function findElementsWithText(element, text) {
   return elementsWithText;
 }
 
+/**
+ * Converts a string to camel case
+ * @param {string} str
+ * @returns {string}
+ */
 function toCamelCase(str) {
   return str.replace(/-([a-z])/g, (match, letter) => letter.toUpperCase());
 }

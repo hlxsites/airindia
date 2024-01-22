@@ -32,6 +32,6 @@ export default async function loadExternalComponent(node, componentName) {
       }
     });
   } else {
-    console.info(`No [:${componentName}:] on the page.`);
+    console.info(`No [<<${componentName}>>] on the page.`);
   }
 }
