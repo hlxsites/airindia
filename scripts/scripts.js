@@ -130,7 +130,7 @@ function loadDelayed() {
 async function loadPage() {
   await loadEager(document);
   // Loading placeholders before all blocks are loaded
-  fetchPlaceholders();
+  await fetchPlaceholders();
   await loadLazy(document);
   loadDelayed();
 }
