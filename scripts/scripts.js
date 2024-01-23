@@ -127,17 +127,10 @@ function loadDelayed() {
   // load anything that can be postponed to the latest here
 }
 
-/**
- * Loads placeholders content
- */
-async function loadPlaceHolders() {
-  fetchPlaceholders();
-}
-
 async function loadPage() {
   await loadEager(document);
   // Loading placeholders before all blocks are loaded
-  await loadPlaceHolders();
+  fetchPlaceholders();
   await loadLazy(document);
   loadDelayed();
 }

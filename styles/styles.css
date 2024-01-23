@@ -107,7 +107,7 @@
 
 }
 
-@media (width >= 900px) {
+@media (min-width: 900px) {
   :root {
     --heading-font-size-xxl: 3.75rem;
     --heading-font-size-xl: 3rem;
@@ -356,14 +356,14 @@ main .section.highlight {
 }
 
 /** MEDIA QUERY FOR >MOBILE */
-@media (width >= 768px) {
+@media (min-width: 768px) {
   main .section {
     padding: 4rem 2rem;
   }
 }
 
 
-@media (width >= 1024px) {
+@media (min-width: 1024px) {
   .section > div {
     max-width: 75rem;
     margin: auto;

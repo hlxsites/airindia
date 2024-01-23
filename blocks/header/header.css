@@ -349,7 +349,7 @@ header nav .nav-tools {
 
 /** MEDIA QUERY FOR >MOBILE */
 
-@media (width >= 1024px) {
+@media (min-width: 1024px) {
   header .nav-wrapper {
     height: var(--nav-height-desktop);
     transition: var(--header-transition-rapid);
