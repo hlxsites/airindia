@@ -16,6 +16,22 @@ import {
 
 const LCP_BLOCKS = []; // add your LCP blocks to the list
 
+/*
+  * Returns the environment type based on the hostname.
+*/
+export function getEnvType(hostname = window.location.hostname) {
+  const fqdnToEnvType = {
+    'www.airindia.com': 'live',
+    'airindia.com': 'live',
+    'main--airindia--hlxsites.hlx.page': 'preview',
+    'main--airindia--hlxsites.hlx.live': 'live',
+    // TODO: Temporary fix for preview. Remove before merging to main
+    'gtm--airindia--hlxsites.hlx.page': 'preview',
+    'gtm--airindia--hlxsites.hlx.live': 'live',
+  };
+  return fqdnToEnvType[hostname] || 'dev';
+}
+
 /**
  * Builds hero block and prepends to main in a new section.
  * @param {Element} main The container element
