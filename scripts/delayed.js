@@ -26,8 +26,8 @@ async function loadGTM() {
 async function loadAdobeLaunch() {
   const adobeotmSrc = {
     dev: 'https://assets.adobedtm.com/d8581f94b285/4e9e4938e0dc/launch-43a3ffd400eb-development.min.js',
-    preview: 'https://assets.adobedtm.com/d8581f94b285/4e9e4938e0dc/launch-43a3ffd400eb-development.min.js', // TODO: update with preview script
-    live: 'https://assets.adobedtm.com/d8581f94b285/4e9e4938e0dc/launch-43a3ffd400eb-development.min.js', // TODO: update with live script
+    preview: 'https://assets.adobedtm.com/d8581f94b285/4e9e4938e0dc/launch-ce0d5a5ddfb7-staging.min.js',
+    live: 'https://assets.adobedtm.com/d8581f94b285/4e9e4938e0dc/launch-4f07f2129862.min.js',
   };
   await loadScript(adobeotmSrc[getEnvType()]);
 }
