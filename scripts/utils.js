@@ -22,6 +22,6 @@ export function getMembership() {
 
 // Temporary placeholder function to mimic the signin behaviour. Will be refactored
 export function getUserInfo() {
-  const membershipData = getMembership();
-  const [userData] = membershipData?.responsePayload?.data;
+  // const membershipData = getMembership();
+  // const [userData] = membershipData?.responsePayload?.data;
 }
