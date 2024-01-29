@@ -36,4 +36,5 @@ async function loadAdobeLaunch() {
 await loadAdobeLaunch();
 await loadGTM();
 
+// Load chatbot script
 loadExternalComponent('chatbot');
