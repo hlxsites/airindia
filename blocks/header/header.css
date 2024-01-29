@@ -43,6 +43,18 @@ header .nav-wrapper .section.nav-tools .default-content-wrapper {
   display: none;
 }
 
+header .nav-wrapper .section.nav-tools .default-content-wrapper .hide{
+  display: none;
+}
+
+header .nav-wrapper .section.nav-tools .default-content-wrapper .profile {
+  position: relative;
+}
+
+header .nav-wrapper .section.nav-tools .default-content-wrapper .profile-data-wrapper {
+  position: absolute;
+}
+
 header nav[aria-expanded='true'] {
   grid-template:
     'hamburger brand' var(--nav-height)
@@ -528,7 +540,6 @@ header nav .nav-tools {
     display: flex;
     justify-content: flex-end;
     font-size: inherit;
-    gap: 1.5rem;
     cursor: pointer;
     height: 2.25rem;
     transition: var(--header-transition-rapid);
