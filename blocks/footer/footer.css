@@ -1,5 +1,4 @@
 footer {
-  font-family: var(--body-font-family);
   padding: 40px 0;
   background: url("../../icons/header-pattern.svg") repeat-x,linear-gradient(0deg,var(--ai-color-container),var(--ai-color-container));
 }
@@ -207,4 +206,15 @@ footer .footer .footer-top-item p a{
   .footer .separator {
     margin: 20px 0;
   }
+}
+
+/** fix for chatbot css conflicts **/
+
+footer.block {
+  font-family: var(--body-font-family);
+}
+
+footer.block h6 {
+  margin-top: 1em;
+  margin-bottom: 0.5em;
 }

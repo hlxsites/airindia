@@ -129,7 +129,7 @@ html {
   font-size: 16px;
 }
 
-body, body.appear {
+body {
   background-color: var(--ai-global-gray);
   display: none;
   font-family: var(--body-font-family);
@@ -376,6 +376,17 @@ main .section.highlight {
 
 
 /** fix for chatbot css conflicts **/
+
+html body.appear {
+  background-color: var(--ai-global-gray);
+  font-family: var(--body-font-family);
+  font-size: var(--bs-body-font-size);
+  font-style: normal;
+  font-weight: var(--bs-body-font-weight);
+  line-height: var(--bs-body-line-height);
+  margin: 0 auto;
+}
+
 body.appear main h3, body.appear main p{
   margin: 16px 0;
 }
