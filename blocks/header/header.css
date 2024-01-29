@@ -188,7 +188,6 @@ header nav .nav-sections ul {
 
 header nav .nav-sections ul > li > ul {
   margin-top: 0;
-  font-family: var(--body-font-family);
 }
 
 header nav .nav-sections .nav-drop > ul {
@@ -227,8 +226,6 @@ header .nav-wrapper .section.nav-tools .default-content-wrapper,
 header nav .nav-sections .sub-nav-drop .go-back {
   font-family: var(--ai-regular-font-family);
   text-transform: uppercase;
-  color: var(--color-black);
-  text-decoration: none;
 }
 
 header nav .nav-sections .sub-nav-drop {
@@ -517,8 +514,6 @@ header nav .nav-tools {
     text-transform: uppercase;
     font-weight: 700;
     margin: 1.5rem 0;
-    color: var(--color-black);
-    text-decoration: none;
   }
 
   header nav .nav-sections .nav-drop .sub-link-text img {
@@ -677,4 +672,20 @@ header nav .nav-tools {
 
 .header:not(.inverted) .skip-main:focus {
   color: var(--color-white);
+}
+
+
+/** fix for chatbot css conflicts **/
+
+header nav .nav-sections .nav-drop .link-title, 
+header nav .nav-sections .nav-drop .sub-link-title,
+header nav .nav-sections .sub-nav-drop .sub-link-title, 
+header .nav-wrapper .section.nav-tools .default-content-wrapper, 
+header nav .nav-sections .sub-nav-drop .go-back {
+  color: var(--color-black);
+  text-decoration: none;
+}
+
+header nav a:any-link {
+  text-decoration: none;
 }

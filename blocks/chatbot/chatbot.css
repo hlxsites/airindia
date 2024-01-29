@@ -1,8 +1,0 @@
-.section.chatbot-container {
-    display: none;
-}
-
-/** fix for chatbot conflicts **/
-body.appear main h3, body.appear main p{
-    margin: 16px 0;
-}

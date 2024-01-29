@@ -9,9 +9,17 @@ import {
  * @param {*} node
  * @param {*} componentName
  */
-export default async function loadExternalComponent(componentName, element = document) {
+export default async function loadExternalComponent(componentName, element = document.body) {
   await fetchPlaceholders();
-  element.innerHTML = `${window.placeholders?.default[`${toCamelCase(componentName)}Placeholder`]}`;
+
+  if (window.placeholders?.default[`${toCamelCase(componentName)}Placeholder`]) {
+    // Create a new DOMParser
+    const parser = new DOMParser();
+    // Parse the HTML string
+    const contentDocument = parser.parseFromString(`${window.placeholders?.default[`${toCamelCase(componentName)}Placeholder`]}`, 'text/html');
+    element.appendChild(contentDocument.body.firstChild);
+  }
+
   const scripts = window.placeholders?.default[`${toCamelCase(componentName)}Script`]?.split(',');
   if (scripts?.length > 0) {
     [...scripts].forEach((script) => {
