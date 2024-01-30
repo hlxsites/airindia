@@ -42,12 +42,14 @@ header nav .nav-sections.search-show > .default-content-wrapper {
   visibility: hidden;
 }
 
-header .nav-wrapper .section.nav-tools .default-content-wrapper .hide {
+header .nav-wrapper .section.nav-tools .default-content-wrapper p.hide {
   display: none;
 }
 
-header .nav-wrapper .section.nav-tools .default-content-wrapper .show {
+header .nav-wrapper .section.nav-tools .default-content-wrapper p.show {
   display: flex;
+  font-size: 0;
+  cursor: pointer;
 }
 
 header .nav-wrapper .section.nav-tools .default-content-wrapper .profile {
@@ -747,6 +749,11 @@ header .nav-wrapper .section.nav-tools .default-content-wrapper p a {
 
   header .nav-wrapper .section.nav-tools .default-content-wrapper > *:hover {
     background-color: var(--ai-table-border-color);
+  }
+
+  header .nav-wrapper .section.nav-tools .default-content-wrapper p.show {
+    font-size: inherit;
+    cursor: pointer;
   }
 
   .header-nav-search-box {
