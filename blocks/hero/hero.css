@@ -4,12 +4,13 @@ main .hero-container>div {
   max-width: unset;
 }
 
-main .hero-container {
-  margin-top: calc(var(--nav-height) * -1);
-}
-
+main .hero-container,
 main .hero-container .hero-wrapper {
   padding: 0;
+}
+
+main .hero-container .hero-wrapper p{
+  margin: 0;
 }
 
 main .hero {
@@ -37,7 +38,7 @@ main .hero h2 {
   padding: 0 1rem;
   position: relative;
   transform: translateY(150%);
-  z-index: 10;
+  z-index: 1;
 }
 
 main .hero picture {
