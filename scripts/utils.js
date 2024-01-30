@@ -12,7 +12,9 @@ export function getPlaceholderDataFor(key) {
 
 // Temporary placeholder function to mimic the signin behaviour. Will be refactored
 export function isLoggedIn() {
-  return !!window.sessionStorage.getItem('accessToken');
+  // return !!window.sessionStorage.getItem('accessToken');
+  // Temporarily to mimic the login experience
+  return true;
 }
 
 // Temporary placeholder function to mimic the signin behaviour. Will be refactored

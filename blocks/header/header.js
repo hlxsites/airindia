@@ -10,13 +10,13 @@ const isDesktop = window.matchMedia('(min-width: 1024px)');
  * @param {Element} sections The container element
  * @param {Boolean} expanded Whether the element should be expanded or collapsed
  */
-function toggleAllNavSections(sections, expanded = false) {
+function toggleAllNavSections (sections, expanded = false) {
   sections?.querySelectorAll('.nav-sections .default-content-wrapper > ul > li').forEach((section) => {
     section.setAttribute('aria-expanded', expanded);
   });
 }
 
-function wrapNavDrops(navSections, parentSelector, linkTextClass) {
+function wrapNavDrops (navSections, parentSelector, linkTextClass) {
   const navDrops = Array.from(navSections.querySelectorAll(parentSelector));
   navDrops.forEach((navDrop) => {
     if (Array.from(navDrop.querySelectorAll('ul')).length === 0) {
@@ -37,7 +37,7 @@ function wrapNavDrops(navSections, parentSelector, linkTextClass) {
   });
 }
 
-function performHeaderSearch(e) {
+function performHeaderSearch (e) {
   const searchTxt = e.target.closest('div')?.querySelector('input')?.value?.trim();
   const headerSearchUrl = getPlaceholderDataFor('headerSearchResultsUrl');
   if (searchTxt && headerSearchUrl) {
@@ -45,7 +45,7 @@ function performHeaderSearch(e) {
   }
 }
 
-function removeHeaderSearchBox() {
+function removeHeaderSearchBox () {
   const navTools = document.querySelector('.nav-tools');
   const search = navTools?.querySelector('.icon-search')?.parentNode;
   const navSections = document.querySelector('header #nav .nav-sections');
@@ -54,7 +54,7 @@ function removeHeaderSearchBox() {
   document.querySelector('.header-nav-search-box')?.remove();
 }
 
-function createSearchBox(label = 'Search') {
+function createSearchBox (label = 'Search') {
   const searchBoxHtml = `
   <div class="header-nav-search-box" id="header-nav-search-box">
     <span class="header-nav-search-box-close">&times;</span>
@@ -80,7 +80,7 @@ function createSearchBox(label = 'Search') {
   return searchBoxWrapper.firstElementChild;
 }
 
-function closeOnEscape(e) {
+function closeOnEscape (e) {
   if (e.code === 'Escape') {
     const nav = document.getElementById('nav');
     const navSections = nav.querySelector('.nav-sections');
@@ -97,7 +97,7 @@ function closeOnEscape(e) {
   }
 }
 
-function openSubNavMobile(menu) {
+function openSubNavMobile (menu) {
   menu.setAttribute('aria-expanded', 'true');
   const menuTitle = menu.querySelector('.link-title')?.textContent || '';
   const menuWrapper = menu.closest('.default-content-wrapper');
@@ -130,18 +130,18 @@ function openSubNavMobile(menu) {
   }, 0);
 }
 
-function closeSubNavMobile() {
+function closeSubNavMobile () {
   document.querySelector('.sub-nav-drop').remove();
 }
 
-function delegateNavSectionsClick(e) {
+function delegateNavSectionsClick (e) {
   if (e.target.closest('.nav-drop') && !isDesktop.matches) {
     toggleAllNavSections(e.target.closest('.nav-sections'));
     openSubNavMobile(e.target.closest('.nav-drop'));
   }
 }
 
-function openOnKeydown(e) {
+function openOnKeydown (e) {
   const focused = document.activeElement;
   const isNavDrop = focused.className === 'nav-drop';
   if (isNavDrop && (e.code === 'Enter' || e.code === 'Space')) {
@@ -152,7 +152,7 @@ function openOnKeydown(e) {
   }
 }
 
-function focusNavSection() {
+function focusNavSection () {
   document.activeElement.addEventListener('keydown', openOnKeydown);
 }
 
@@ -162,7 +162,7 @@ function focusNavSection() {
  * @param {Element} navSections The nav sections within the container element
  * @param {*} forceExpanded Optional param to force nav expand behavior when not null
  */
-function toggleMenu(nav, navSections, forceExpanded = null) {
+function toggleMenu (nav, navSections, forceExpanded = null) {
   const expanded = forceExpanded !== null ? !forceExpanded : nav.getAttribute('aria-expanded') === 'true';
   const button = nav.querySelector('.nav-hamburger button');
   document.body.style.overflowY = (expanded || isDesktop.matches) ? '' : 'hidden';
@@ -191,16 +191,9 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
       navSections.insertBefore(searchBox, navSections.firstElementChild);
     }
   }
-  // enable menu collapse on escape keypress
-  if (!expanded || isDesktop.matches) {
-    // collapse menu on escape press
-    window.addEventListener('keydown', closeOnEscape);
-  } else {
-    window.removeEventListener('keydown', closeOnEscape);
-  }
 }
 
-function handleNavSectionExpand(navSection, navSections, action = 'toggle') {
+function handleNavSectionExpand (navSection, navSections, action = 'toggle') {
   if (isDesktop.matches) {
     const expanded = navSection.getAttribute('aria-expanded') === 'true';
     toggleAllNavSections(navSections);
@@ -214,7 +207,7 @@ function handleNavSectionExpand(navSection, navSections, action = 'toggle') {
   }
 }
 
-function headerSearchClickHandler(search, navSections) {
+function headerSearchClickHandler (search, navSections) {
   if (document.querySelector('.header-nav-search-box')) {
     removeHeaderSearchBox();
     return;
@@ -230,7 +223,7 @@ function headerSearchClickHandler(search, navSections) {
   navSections.classList.add('search-show');
 }
 
-function setupProfileInfo(profileElem) {
+function setupProfileInfo (profileElem) {
   profileElem?.classList.add('profile');
   const profileWrapper = document.createElement('div');
   profileWrapper.className = 'profile-wrapper';
@@ -238,11 +231,11 @@ function setupProfileInfo(profileElem) {
     <div class="user-icon">JD</div>
     <h2 class="user-name">John Doe</h2>
     <div class="user-ffn">
-      <span class="title">FFN</span>
+      <span class="title">FFN:</span>
       <span class="value">123456789</span>
     </div>
     <div class="user-email">john.doe@example.dummy</div>
-    <div class="user-points">0 POINTS</div>
+    <h6 class="user-points">0 POINTS</h6>
     <div class="user-club">Base Tier</div>
     <div class="user-actions">
       <button type="button" class="my-account">My account</button>
@@ -255,7 +248,11 @@ function setupProfileInfo(profileElem) {
   // profileElem.addEventListener('click', toggleProfileInfo);
 }
 
-function decorateNavTools(navSections) {
+function toggleProfileInfo () {
+  document.querySelector('.profile-wrapper')?.classList.toggle('show');
+}
+
+function decorateNavTools (navSections) {
   const navTools = document.querySelector('.nav-tools');
   // navSections.insertBefore(navTools, navSections.firstChild);
   const navToolLists = Array.from(navTools.querySelectorAll('ul>li')) || [];
@@ -276,17 +273,18 @@ function decorateNavTools(navSections) {
 
   const paragraphs = navTools.querySelectorAll('.default-content-wrapper p');
   if (isLoggedIn() && paragraphs?.length >= 0) {
-    paragraphs[paragraphs.length - 2]?.classList.add('hide');
-    paragraphs[paragraphs.length - 1]?.classList.add('show');
-    setupProfileInfo(paragraphs[paragraphs.length - 1]);
+    paragraphs[ paragraphs.length - 2 ]?.classList.add('hide');
+    paragraphs[ paragraphs.length - 1 ]?.classList.add('show');
+    setupProfileInfo(paragraphs[ paragraphs.length - 1 ]);
+    paragraphs[ paragraphs.length - 1 ]?.addEventListener('click', toggleProfileInfo);
     // const memebershipData = getMembership();
   } else {
-    paragraphs[paragraphs.length - 1]?.classList.add('hide');
-    paragraphs[paragraphs.length - 2]?.classList.add('show');
+    paragraphs[ paragraphs.length - 1 ]?.classList.add('hide');
+    paragraphs[ paragraphs.length - 2 ]?.classList.add('show');
   }
 }
 
-function addScrollHandler() {
+function addScrollHandler () {
   window.addEventListener('scroll', () => {
     const navWrapper = document.querySelector('header .nav-wrapper');
     if (window.scrollY >= 10) {
@@ -300,7 +298,7 @@ function addScrollHandler() {
 /**
  * Create a skip to main link
  */
-async function addSkipToMain() {
+async function addSkipToMain () {
   await fetchPlaceholders();
   const navWrapper = document.querySelector('.nav-wrapper');
   // create and insert skip link before header
@@ -314,11 +312,22 @@ async function addSkipToMain() {
   main.id = 'main';
 }
 
+function addGlobalEventHandlers () {
+  addScrollHandler();
+  // enable menu collapse on escape keypress
+  if (isDesktop.matches) {
+    // collapse menu on escape press
+    window.addEventListener('keydown', closeOnEscape);
+  } else {
+    window.removeEventListener('keydown', closeOnEscape);
+  }
+}
+
 /**
  * decorates the header, mainly the nav
  * @param {Element} block The header block element
  */
-export default async function decorate(block) {
+export default async function decorate (block) {
   // load nav as fragment
   const navMeta = getMetadata('nav');
   const navPath = navMeta ? new URL(navMeta).pathname : '/nav';
@@ -329,9 +338,9 @@ export default async function decorate(block) {
   nav.id = 'nav';
   while (fragment.firstElementChild) nav.append(fragment.firstElementChild);
 
-  const classes = ['brand', 'sections', 'tools'];
+  const classes = [ 'brand', 'sections', 'tools' ];
   classes.forEach((c, i) => {
-    const section = nav.children[i];
+    const section = nav.children[ i ];
     if (section) section.classList.add(`nav-${c}`);
   });
 
@@ -385,7 +394,7 @@ export default async function decorate(block) {
   block.append(navWrapper);
 
   decorateNavTools(navSections);
-  addScrollHandler();
+  addGlobalEventHandlers();
   // add skip to main link
   addSkipToMain();
 }

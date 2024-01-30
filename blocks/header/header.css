@@ -54,6 +54,92 @@ header .nav-wrapper .section.nav-tools .default-content-wrapper .profile {
   position: relative;
 }
 
+header .nav-wrapper .section.nav-tools .default-content-wrapper .profile-wrapper {
+  position: absolute;
+  background-image: url('../../icons/header-pattern.svg');
+  padding: 24px;
+  top: 32px;
+  right: 0;
+  background-color: #fff;
+  text-align: center;
+  display: none;
+  width: 315px;
+  box-shadow: #64646f33 0 7px 29px 0;
+}
+
+header .nav-wrapper .section.nav-tools .default-content-wrapper .profile-wrapper.show {
+  display: block
+}
+
+.section.nav-tools .default-content-wrapper .profile-wrapper .user-ffn,
+.section.nav-tools .default-content-wrapper .profile-wrapper .user-email,
+.section.nav-tools .default-content-wrapper .profile-wrapper .user-club {
+  font-weight: normal;
+  font-family: var(--body-font-family);
+  font-size: 1rem;
+  text-transform: none;
+  margin: 16px 0;
+  color: var(--ai-page-text-color);
+}
+
+.section.nav-tools .default-content-wrapper .profile-wrapper .user-points {
+  border: 1px solid var(--ai-grey-border);
+  border-radius: 4px;
+  color: var(--global-ai-purple);
+  padding: 8px;
+  margin: 1rem auto;
+  width: fit-content;
+}
+
+.section.nav-tools .default-content-wrapper .profile-wrapper .user-ffn .value {
+  font-weight: 600;
+}
+
+
+.section.nav-tools .default-content-wrapper .profile-wrapper .user-actions .my-account {
+  background-color: var(--ai-global-red);
+  color: var(--color-white)!important;
+  border-radius: inherit;
+  text-transform: none;
+  padding: 8px 32px;
+  text-align: center;
+  font-size: 1rem;
+  font-style: normal;
+  cursor: pointer;
+  margin: 4px auto;
+  display: block;
+}
+
+.section.nav-tools .default-content-wrapper .profile-wrapper .user-actions .logoutbtn {
+  margin: 0;
+  background-image: url('../../icons/logout.svg');
+  background-repeat: no-repeat;
+  background-position: right center;
+}
+
+.section.nav-tools .default-content-wrapper .profile-wrapper::before {
+  border-bottom: 10px solid #fff;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  content: '';
+  position: absolute;
+  right: 30px;
+  top: -10px;
+}
+
+.section.nav-tools .default-content-wrapper .profile-wrapper .user-icon {
+  background-image: url('../../icons/slide-userIconBG-base.png');
+  background-repeat: no-repeat;
+  width: 82px;
+  height: 82px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  font-size: 18px;
+  color: #fff;
+}
+
 header
   .nav-wrapper
   .section.nav-tools
@@ -233,7 +319,8 @@ header nav .nav-sections .nav-drop[aria-expanded='true'] > ul {
 header nav .nav-sections .nav-drop .link-title,
 header nav .nav-sections .sub-nav-drop .sub-link-title,
 header .nav-wrapper .section.nav-tools .default-content-wrapper,
-header nav .nav-sections .sub-nav-drop .go-back {
+header nav .nav-sections .sub-nav-drop .go-back,
+.section.nav-tools .default-content-wrapper .profile-wrapper button {
   font-family: var(--ai-regular-font-family);
   text-transform: uppercase;
 }
@@ -372,7 +459,7 @@ header .nav-wrapper .section.nav-tools .default-content-wrapper p a {
     grid-template:
       'hamburger brand' var(--nav-height)
       'sections sections' 1fr
-      'tools tools' var(--nav-height) /  20px 1fr 1fr;
+      'tools tools' var(--nav-height) / 20px 1fr 1fr;
     min-height: 100vh;
     min-height: 0;
     overflow: visible;
