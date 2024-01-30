@@ -301,9 +301,9 @@ export default async function decorate(block) {
 
   const navBrand = nav.querySelector('.nav-brand');
   const brandImg = navBrand.querySelector('img');
-    if (brandImg) {
-      brandImg.setAttribute("alt", "Air India");
-    }
+  if (brandImg) {
+    brandImg.setAttribute('alt', 'Air India');
+  }
   const brandLink = navBrand.querySelector('.button');
   if (brandLink) {
     brandLink.className = '';
