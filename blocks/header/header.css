@@ -23,9 +23,11 @@ header .nav-wrapper {
   top: 0;
   height: var(--nav-height);
   font-size: var(--header-font-size-s);
+  transition: background-color 0.5s;
 }
 
-header .nav-wrapper:hover, header .nav-wrapper.short {
+header .nav-wrapper:hover,
+header .nav-wrapper.short {
   background-color: var(--ai-overlay-bg-color);
   box-shadow: var(--box-shadow-bottom);
 }
@@ -65,7 +67,11 @@ header .nav-wrapper .section.nav-tools .default-content-wrapper .profile {
   position: relative;
 }
 
-header .nav-wrapper .section.nav-tools .default-content-wrapper .profile-wrapper {
+header
+  .nav-wrapper
+  .section.nav-tools
+  .default-content-wrapper
+  .profile-wrapper {
   position: absolute;
   background-image: url('../../icons/header-pattern.svg');
   padding: 24px;
@@ -78,8 +84,12 @@ header .nav-wrapper .section.nav-tools .default-content-wrapper .profile-wrapper
   box-shadow: #64646f33 0 7px 29px 0;
 }
 
-header .nav-wrapper .section.nav-tools .default-content-wrapper .profile-wrapper.show {
-  display: block
+header
+  .nav-wrapper
+  .section.nav-tools
+  .default-content-wrapper
+  .profile-wrapper.show {
+  display: block;
 }
 
 .section.nav-tools .default-content-wrapper .profile-wrapper .user-ffn,
@@ -106,10 +116,13 @@ header .nav-wrapper .section.nav-tools .default-content-wrapper .profile-wrapper
   font-weight: 600;
 }
 
-
-.section.nav-tools .default-content-wrapper .profile-wrapper .user-actions .my-account {
+.section.nav-tools
+  .default-content-wrapper
+  .profile-wrapper
+  .user-actions
+  .my-account {
   background-color: var(--ai-global-red);
-  color: var(--color-white)!important;
+  color: var(--color-white) !important;
   border-radius: inherit;
   text-transform: none;
   padding: 8px 32px;
@@ -121,7 +134,11 @@ header .nav-wrapper .section.nav-tools .default-content-wrapper .profile-wrapper
   display: block;
 }
 
-.section.nav-tools .default-content-wrapper .profile-wrapper .user-actions .logoutbtn {
+.section.nav-tools
+  .default-content-wrapper
+  .profile-wrapper
+  .user-actions
+  .logoutbtn {
   margin: 0;
   background-image: url('../../icons/logout.svg');
   background-repeat: no-repeat;
@@ -301,12 +318,15 @@ header nav[aria-expanded='true'] .nav-sections {
 
 header .nav-wrapper nav .nav-tools {
   color: #fff;
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 32px;
 }
 
 header .nav-wrapper:hover nav .nav-sections,
 header .nav-wrapper.short nav .nav-sections,
 header .nav-wrapper:hover nav .nav-tools,
-header .nav-wrapper.short nav .nav-tools  {
+header .nav-wrapper.short nav .nav-tools {
   color: var(--ai-page-text-color);
 }
 
@@ -459,14 +479,6 @@ header nav .nav-sections .sub-nav-drop img {
   display: none;
 }
 
-/* tools */
-header nav .nav-tools {
-  grid-area: tools;
-  display: flex;
-  justify-content: flex-end;
-  margin-right: 32px;
-}
-
 /** Search **/
 .header-nav-search-box {
   position: relative;
@@ -498,6 +510,10 @@ header nav .nav-tools {
 
 .header-nav-search-box-close {
   display: none;
+}
+
+header .block nav a:any-link {
+  text-decoration: none;
 }
 
 header .nav-wrapper .section.nav-tools .default-content-wrapper p,
@@ -538,8 +554,11 @@ header .nav-wrapper .section.nav-tools .default-content-wrapper p a {
   }
 
   header .nav-wrapper.short nav,
-  header .nav-wrapper.short nav[aria-expanded='true'] {
-    grid-template-rows: auto;
+  header .nav-wrapper.short nav[aria-expanded='true'],
+  header .nav-wrapper.short:hover nav,
+  header .nav-wrapper.short:hover nav[aria-expanded='true'] {
+    grid-template-rows: 1fr;
+    grid-template-columns: 10px 1fr 1fr;
   }
 
   header nav .nav-hamburger {
@@ -566,7 +585,7 @@ header .nav-wrapper .section.nav-tools .default-content-wrapper p a {
     order: 3;
   }
 
-  header nav .nav-tools {
+  header .nav-wrapper nav .nav-tools {
     order: 2;
     grid-area: unset;
     display: unset;
@@ -882,31 +901,35 @@ header .nav-wrapper .section.nav-tools .default-content-wrapper p a {
   color: var(--color-white);
 }
 
-
 /** fix for chatbot css conflicts **/
 
-
 header .block nav .nav-sections .nav-drop .sub-link-title,
-header .block nav .nav-sections .sub-nav-drop .sub-link-title,  
+header .block nav .nav-sections .sub-nav-drop .sub-link-title,
 header .block nav .nav-sections .sub-nav-drop .go-back {
   color: var(--color-black);
   text-decoration: none;
 }
 
-header .block nav .nav-sections .nav-drop .link-title, 
+header .block nav .nav-sections .nav-drop .link-title,
 header .block .nav-wrapper nav .section.nav-tools .default-content-wrapper {
   color: var(--color-white);
   text-decoration: none;
 }
 
-header .block .nav-wrapper.short nav .nav-sections .nav-drop .link-title, 
-header .block .nav-wrapper:hover nav .section.nav-tools .default-content-wrapper,
-header .block .nav-wrapper.short nav .section.nav-tools .default-content-wrapper,
+header .block .nav-wrapper.short nav .nav-sections .nav-drop .link-title,
+header
+  .block
+  .nav-wrapper:hover
+  nav
+  .section.nav-tools
+  .default-content-wrapper,
+header
+  .block
+  .nav-wrapper.short
+  nav
+  .section.nav-tools
+  .default-content-wrapper,
 header .block .nav-wrapper:hover nav .nav-sections .nav-drop .link-title {
   color: var(--color-black);
-  text-decoration: none;
-}
-
-header .block nav a:any-link {
   text-decoration: none;
 }
