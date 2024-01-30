@@ -131,7 +131,7 @@ function openSubNavMobile(menu) {
 }
 
 function closeSubNavMobile() {
-  document.querySelector('.sub-nav-drop').remove();
+  document.querySelector('.sub-nav-drop')?.remove();
 }
 
 function delegateNavSectionsClick(e) {
@@ -252,6 +252,10 @@ function toggleProfileInfo() {
   document.querySelector('.profile-wrapper')?.classList.toggle('show');
 }
 
+function hideProfileInfo() {
+  document.querySelector('.profile-wrapper')?.classList.remove('show');
+}
+
 function decorateNavTools(navSections) {
   const navTools = document.querySelector('.nav-tools');
   // navSections.insertBefore(navTools, navSections.firstChild);
@@ -312,14 +316,19 @@ async function addSkipToMain() {
   main.id = 'main';
 }
 
+function globalEscapeHandler(e) {
+  closeOnEscape(e);
+  hideProfileInfo();
+}
+
 function addGlobalEventHandlers() {
   addScrollHandler();
   // enable menu collapse on escape keypress
   if (isDesktop.matches) {
     // collapse menu on escape press
-    window.addEventListener('keydown', closeOnEscape);
+    window.addEventListener('keydown', globalEscapeHandler);
   } else {
-    window.removeEventListener('keydown', closeOnEscape);
+    window.removeEventListener('keydown', globalEscapeHandler);
   }
 }
 
@@ -360,12 +369,15 @@ export default async function decorate(block) {
     navSections.querySelectorAll('.default-content-wrapper > ul > li').forEach((navSection) => {
       if (navSection.querySelector('ul')) navSection.classList.add('nav-drop');
       navSection.addEventListener('click', () => {
+        hideProfileInfo();
         handleNavSectionExpand(navSection, navSections);
       });
       navSection.addEventListener('focus', () => {
+        hideProfileInfo();
         handleNavSectionExpand(navSection, navSections, 'expand');
       });
       navSection.addEventListener('mouseover', () => {
+        hideProfileInfo();
         handleNavSectionExpand(navSection, navSections, 'expand');
       });
       navSection.addEventListener('mouseleave', () => {

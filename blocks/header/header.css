@@ -397,6 +397,7 @@ header nav .nav-sections .sub-nav-drop .go-back,
   text-transform: uppercase;
   margin: 1rem 0;
   font-size: 12px;
+  color: var(--color-black);
 }
 
 header nav .nav-sections .sub-nav-drop {
