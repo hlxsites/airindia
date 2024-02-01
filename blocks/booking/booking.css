@@ -11193,8 +11193,20 @@ textarea.form-control-lg {
 main .section.booking-container {
     padding: 0;
     margin-top: -200px;
+    position: relative;
 }
 
 main .section.booking-container .booking-wrapper {
     background: none;
+}
+
+.booking.search-flight {
+    background-color: var(--global-ai-bg-base);
+    min-height: 650px;
+}
+
+@media screen and (min-width: 767px) {
+    .booking.search-flight {
+        min-height: 0;
+    }
 }
