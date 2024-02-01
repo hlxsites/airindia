@@ -11210,3 +11210,30 @@ main .section.booking-container .booking-wrapper {
         min-height: 260px;
     }
 }
+
+/* Apply shimmer effect to an element */
+.booking.search-flight {
+    position: relative;
+    overflow: hidden;
+  }
+  
+  /* Apply shimmer animation to ::before and ::after pseudo-elements */
+.booking.search-flight::before,
+.booking.search-flight::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to right, transparent 0%, var(--ai-global-gray) 90%, transparent 100%);
+  transform: translateX(-100%);
+  animation: shimmer 1.5s infinite linear;
+}
+
+/* Keyframes for the shimmer animation */
+@keyframes shimmer {
+  to {
+    transform: translateX(100%);
+  }
+}

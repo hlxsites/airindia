@@ -37,6 +37,7 @@ async function loadAdobeLaunch() {
 await loadAdobeLaunch();
 await loadGTM();
 
+initBooking();
+
 // Load chatbot script
 loadExternalComponent('chatbot');
-initBooking();
