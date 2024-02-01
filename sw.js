@@ -10,6 +10,21 @@ const tokens = [
 let placeholders = {};
 
 /**
+ * Sanitizes a string for use as class name.
+ * @param {string} name The unsanitized string
+ * @returns {string} The class name
+ */
+function toClassName(name) {
+  return typeof name === 'string'
+    ? name
+      .toLowerCase()
+      .replace(/[^0-9a-z]/gi, '-')
+      .replace(/-+/g, '-')
+      .replace(/^-|-$/g, '')
+    : '';
+}
+
+/**
  * Sanitizes a string for use as a js property name.
  * @param {string} name The unsanitized string
  * @returns {string} The camelCased name
@@ -18,47 +33,10 @@ function toCamelCase(name) {
   return toClassName(name).replace(/-([a-z])/g, (g) => g[1].toUpperCase());
 }
 
-/**
- * Gets placeholders object.
- * @param {string} [prefix] Location of placeholders
- * @returns {object} Window placeholders object
- */
-// eslint-disable-next-line import/prefer-default-export
-async function fetchPlaceholders(prefix = 'default') {
-  placeholders = placeholders || {};
-  if (!placeholders[prefix]) {
-    placeholders[prefix] = new Promise((resolve) => {
-      fetch(`${prefix === 'default' ? '' : prefix}/placeholders.json`)
-        .then((resp) => {
-          if (resp.ok) {
-            return resp.json();
-          }
-          return {};
-        })
-        .then((json) => {
-          const placeholders = {};
-          json.data
-            .filter((placeholder) => placeholder.Key)
-            .forEach((placeholder) => {
-              placeholders[toCamelCase(placeholder.Key)] = placeholder.Text;
-            });
-          placeholders[prefix] = placeholders;
-          resolve(placeholders[prefix]);
-        })
-        .catch(() => {
-          // error loading placeholders
-          placeholders[prefix] = {};
-          resolve(placeholders[prefix]);
-        });
-    });
-  }
-  return placeholders[`${prefix}`];
-}
-
 async function fetchMockTokens(key) {
   try {
     // Parse and return the JSON data
-    const mockData = JSON.parse(placeholders);
+    const mockData = placeholders[key];
     console.log('Mock data:', mockData);
 
     return new Response(mockData, {
@@ -98,11 +76,12 @@ async function fetchMockData(key) {
 
 // Install and activate the service worker
 self.addEventListener('install', (event) => {
-  event.waitUntil(async () => {
-    await fetchPlaceholders();
-  });
-  console.log('placeholders:', placeholders);
+  event.waitUntil(self.skipWaiting());
   console.log('Service Worker installed');
+});
+
+self.addEventListener('message', (event) => {
+  placeholders = event.data?.default;
 });
 
 self.addEventListener('activate', (event) => {
@@ -122,7 +101,7 @@ self.addEventListener('fetch', async (event) => {
     // const mockData = await fetchMockData(paths[paths.length - 1]);
     // console.log(`mock Respone for ${paths[paths.length - 1]}:`, mockData);
     if (tokens.includes(paths[paths.length - 1])) {
-      event.respondWith(fetchMockTokens(paths[paths.length - 1]));
+      event.respondWith(fetchMockTokens(toCamelCase(paths[paths.length - 1])));
       return;
     }
     event.respondWith(fetchMockData(paths[paths.length - 1]));

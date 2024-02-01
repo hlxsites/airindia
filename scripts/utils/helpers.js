@@ -1,8 +1,15 @@
+import { fetchPlaceholders } from '../aem.js';
+
 function initServiceWorker() {
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('/sw.js', { scope: '/' })
-      .then((registration) => {
+      .then(async (registration) => {
+        await fetchPlaceholders();
         console.log('Service Worker registered with scope:', registration.scope);
+        if (registration.active) {
+          registration.active
+            .postMessage(window.placeholders);
+        }
       })
       .catch((error) => {
         console.error('Service Worker registration failed:', error);
