@@ -11207,6 +11207,6 @@ main .section.booking-container .booking-wrapper {
 
 @media screen and (min-width: 767px) {
     .booking.search-flight {
-        min-height: 0;
+        min-height: 260px;
     }
 }
