@@ -35,7 +35,3 @@ export default async function loadExternalComponent(componentName, element = doc
     });
   }
 }
-
-export {
-  loadExternalComponent,
-};

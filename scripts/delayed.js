@@ -3,6 +3,7 @@ import { sampleRUM, loadScript } from './aem.js';
 // eslint-disable-next-line import/no-cycle
 import { getEnvType } from './scripts.js';
 import loadExternalComponent from './utils/initializer.js';
+import { initBooking } from '../blocks/booking/booking.js';
 
 // Core Web Vitals RUM collection
 sampleRUM('cwv');
@@ -38,3 +39,4 @@ await loadGTM();
 
 // Load chatbot script
 loadExternalComponent('chatbot');
+initBooking();

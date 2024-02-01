@@ -58,7 +58,7 @@ async function fetchPlaceholders(prefix = 'default') {
 async function fetchMockTokens(key) {
   try {
     // Parse and return the JSON data
-    const mockData = placeholders;
+    const mockData = JSON.parse(placeholders);
     console.log('Mock data:', mockData);
 
     return new Response(mockData, {

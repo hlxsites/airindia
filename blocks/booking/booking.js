@@ -1,5 +1,5 @@
 import { isLocalhostWithPort } from '../../scripts/utils/helpers.js';
-import { loadExternalComponent } from '../../scripts/utils/initializer.js';
+import loadExternalComponent from '../../scripts/utils/initializer.js';
 
 const urlParams = 'https://www.airindia.in';
 
@@ -25,8 +25,11 @@ let headerValueLOY = '';
 // let key = 'envdetails';
 const envDetails = {};
 
-async function initBooking(envPath) {
-  await fetch(envPath)
+let container;
+
+export async function initBooking() {
+  loadExternalComponent('search-flight', container);
+  await fetch(configModelUrl)
     .then((res) => res.json())
     .then(async (response) => {
       envParam = response;
@@ -130,14 +133,10 @@ async function initBooking(envPath) {
  */
 export default async function decorate(block) {
   // Create a shadow root for the specified element
-  const container = block;
-  // const shadowRoot = container.attachShadow({ mode: 'open' });
-  loadExternalComponent('search-flight', container);
-  await initBooking(configModelUrl);
+  container = block;
 }
 
-/** function to handle booking */
-
+/** dummy function to handle dependency */
 window.checkSignInForRefx = () => {
-  console.log("checkSignInForRefx");
+  console.log('checkSignInForRefx');
 };
