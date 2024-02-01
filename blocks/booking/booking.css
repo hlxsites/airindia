@@ -11203,10 +11203,40 @@ main .section.booking-container .booking-wrapper {
 .booking.search-flight {
     background-color: var(--global-ai-bg-base);
     min-height: 650px;
+    position: relative;
 }
 
 @media screen and (min-width: 767px) {
     .booking.search-flight {
         min-height: 260px;
+    }
+}
+
+
+.booking.search-flight::before,
+.booking.search-flight::after {
+    content: "";
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    width: 50px;
+    height: 50px;
+    border: 5px solid transparent;
+    border-top-color: var(--ai-grey-border);
+    border-radius: 50%;
+    box-sizing: border-box;
+    animation: spin 1s linear infinite;
+}
+
+.booking.search-flight::after {
+    animation-delay: 0.5s;
+}
+
+@keyframes spin {
+    0% {
+    transform: rotate(0deg);
+    }
+    100% {
+    transform: rotate(360deg);
     }
 }
