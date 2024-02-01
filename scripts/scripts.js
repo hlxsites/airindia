@@ -143,7 +143,7 @@ function loadDelayed() {
 }
 
 async function loadPage() {
-  initServiceWorker();
+  // initServiceWorker();
   await loadEager(document);
   // Loading placeholders before all blocks are loaded
   await fetchPlaceholders();
