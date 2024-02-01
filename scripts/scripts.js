@@ -14,6 +14,8 @@ import {
   fetchPlaceholders,
 } from './aem.js';
 
+import { initServiceWorker } from './utils/helpers.js';
+
 const LCP_BLOCKS = []; // add your LCP blocks to the list
 
 /*
@@ -141,6 +143,7 @@ function loadDelayed() {
 }
 
 async function loadPage() {
+  initServiceWorker();
   await loadEager(document);
   // Loading placeholders before all blocks are loaded
   await fetchPlaceholders();
