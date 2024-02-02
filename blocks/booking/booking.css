@@ -11387,12 +11387,14 @@ textarea.form-control-lg {
 
 main .section.booking-container {
     padding: 0;
-    margin-top: -200px;
+    margin-top: -114px;
     position: relative;
 }
 
 main .section.booking-container .booking-wrapper {
     background: none;
+    padding: 0;
+    box-shadow: 0 4px 8px #00000029;
 }
 
 .booking.search-flight {
