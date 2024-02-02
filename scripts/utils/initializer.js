@@ -11,8 +11,6 @@ import CMP_CONFIG from './constants.js';
  * @param {*} componentName
  */
 export default async function loadExternalComponent(componentName, element = document.body) {
-  await fetchPlaceholders();
-
   if (CMP_CONFIG[`${toCamelCase(componentName)}Placeholder`]) {
     // Create a new DOMParser
     const parser = new DOMParser();
@@ -23,15 +21,15 @@ export default async function loadExternalComponent(componentName, element = doc
 
   const scripts = CMP_CONFIG[`${toCamelCase(componentName)}Script`]?.split(',');
   if (scripts?.length > 0) {
-    [...scripts].forEach((script) => {
-      loadScript(script, { defer: true }, element);
+    [...scripts].forEach(async (script) => {
+      await loadScript(script, {}, element);
     });
   }
 
   const styles = CMP_CONFIG[`${toCamelCase(componentName)}Style`]?.split(',');
   if (styles?.length > 0) {
-    [...styles].forEach((style) => {
-      loadCSS(style, element);
+    [...styles].forEach(async (style) => {
+      await loadCSS(style, element);
     });
   }
 }

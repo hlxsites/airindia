@@ -5,24 +5,12 @@ const urlParams = 'https://www.airindia.in';
 
 const configModelUrl = `${urlParams}/content/.EnvironmentVariableServlet.json`;
 
-const notAllowedDomains = [
-  'cadetpilot-dev.airindia.com',
-  'cadetpilot-qa.airindia.com',
-  'cadetpilot-staging.airindia.com',
-  'cadetpilot.airindia.com',
-  'newsroom-dev.airindia.com',
-  'newsroom-qa.airindia.com',
-  'newsroom-staging.airindia.com',
-  'newsroom.airindia.com',
-];
-
 let envParam = {};
 let vaultServiceUrl = '';
 let loyaltyVaultService = '';
 const dataValuesForVault = {};
 let headerValueDXP = '';
 let headerValueLOY = '';
-// let key = 'envdetails';
 const envDetails = {};
 
 let container;
@@ -35,10 +23,6 @@ export async function initBooking() {
       envParam = response;
       envParam.environment = isLocalhostWithPort('4502') ? 'qa' : envParam?.ENV_CONFIG;
 
-      if (notAllowedDomains.includes(window.location.hostname) || window.location.href.includes('ai-campaign-booking')
-        || window.location.href.includes('google-flight-booking')) {
-        return false;
-      }
       if (envParam?.environment === 'prod') {
         vaultServiceUrl = 'https://api.airindia.com/kvtoken/token-key';
         headerValueDXP = 'DXP';
