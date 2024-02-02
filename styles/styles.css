@@ -154,7 +154,7 @@ body.appear {
 main .section {
   margin-bottom: 1pc;
   margin-inline: auto;
-  padding: 4rem 1rem;
+  padding: 0 1rem 1rem;
 }
 
 a {
@@ -356,14 +356,14 @@ main .section.highlight {
 }
 
 /** MEDIA QUERY FOR >MOBILE */
-@media (min-width: 768px) {
-  main .section {
-    padding: 0 2rem 2rem;
-  }
-}
 
 
 @media (min-width: 1024px) {
+
+  main .section {
+    padding: 0 2rem 2rem;
+  }
+
   .section > div {
     max-width: 75rem;
     margin: auto;

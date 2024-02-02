@@ -127,11 +127,6 @@ async function loadLazy(doc) {
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
   loadFonts();
 
-  // initialize booking block
-  import('../blocks/booking/booking.js').then(({ initBooking }) => {
-    setTimeout(() => initBooking(), 2000);
-  });
-
   sampleRUM('lazy');
   sampleRUM.observe(main.querySelectorAll('div[data-block-name]'));
   sampleRUM.observe(main.querySelectorAll('picture > img'));
