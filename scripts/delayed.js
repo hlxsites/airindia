@@ -36,5 +36,9 @@ async function loadAdobeLaunch() {
 await loadAdobeLaunch();
 await loadGTM();
 
+import('../blocks/booking/booking.js').then(({ initBooking }) => {
+  initBooking();
+});
+
 // Load chatbot script
 loadExternalComponent('chatbot');

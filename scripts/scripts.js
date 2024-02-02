@@ -127,8 +127,9 @@ async function loadLazy(doc) {
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
   loadFonts();
 
+  // initialize booking block
   import('../blocks/booking/booking.js').then(({ initBooking }) => {
-    setTimeout(() => initBooking(), 1500);
+    setTimeout(() => initBooking(), 2000);
   });
 
   sampleRUM('lazy');
