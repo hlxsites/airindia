@@ -128,7 +128,7 @@ async function loadLazy(doc) {
   loadFonts();
 
   import('../blocks/booking/booking.js').then(({ initBooking }) => {
-    setTimeout(() => initBooking(), 2000);
+    setTimeout(() => initBooking(), 1500);
   });
 
   sampleRUM('lazy');
