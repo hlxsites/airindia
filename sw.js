@@ -52,7 +52,7 @@ async function fetchMockTokens(key) {
 }
 
 async function fetchMockData(key) {
-  const path = `mock/${key}${key.includes('json') ? '' : '.json'}`
+  const path = `/mock/${key}${key.includes('json') ? '' : '.json'}`
   try {
     // Fetch the external JSON file
     const response = await fetch(path);
