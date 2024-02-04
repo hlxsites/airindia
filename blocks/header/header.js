@@ -1,6 +1,6 @@
 import { getMetadata, fetchPlaceholders } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
-import { getPlaceholderDataFor, isLoggedIn } from '../../scripts/utils.js';
+import { getUserInfo, getPlaceholderDataFor, isLoggedIn } from '../../scripts/utils/headerUtils.js';
 
 // media query match that indicates mobile/tablet width
 const isDesktop = window.matchMedia('(min-width: 1024px)');
@@ -223,20 +223,21 @@ function headerSearchClickHandler(search, navSections) {
   navSections.classList.add('search-show');
 }
 
-function setupProfileInfo(profileElem) {
+async function setupProfileInfo(profileElem) {
+  const userInfo = await getUserInfo();
   profileElem?.classList.add('profile');
   const profileWrapper = document.createElement('div');
   profileWrapper.className = 'profile-wrapper';
   profileWrapper.innerHTML = `
-    <div class="user-icon">JD</div>
-    <h2 class="user-name">John Doe</h2>
+    <div class="user-icon">${userInfo?.initials}</div>
+    <h2 class="user-name">${userInfo?.name}</h2>
     <div class="user-ffn">
       <span class="title">FFN:</span>
-      <span class="value">123456789</span>
+      <span class="value">${userInfo?.ffn}</span>
     </div>
-    <div class="user-email">john.doe@example.dummy</div>
-    <h6 class="user-points">0 POINTS</h6>
-    <div class="user-club">Base Tier</div>
+    <div class="user-email">${userInfo?.email}</div>
+    <h6 class="user-points">${userInfo?.points} POINTS</h6>
+    <div class="user-club">${userInfo?.club}</div>
     <div class="user-actions">
       <button type="button" class="my-account">My account</button>
       <button type="button" class="change-pwd">Change Password</button>
@@ -281,7 +282,6 @@ function decorateNavTools(navSections) {
     paragraphs[paragraphs.length - 1]?.classList.add('show');
     setupProfileInfo(paragraphs[paragraphs.length - 1]);
     paragraphs[paragraphs.length - 1]?.addEventListener('click', toggleProfileInfo);
-    // const memebershipData = getMembership();
   } else {
     paragraphs[paragraphs.length - 1]?.classList.add('hide');
     paragraphs[paragraphs.length - 2]?.classList.add('show');
