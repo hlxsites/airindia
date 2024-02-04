@@ -15,8 +15,24 @@ const envDetails = {};
 
 let container;
 
+/**
+ * updates the additional content for flight search
+ * Copied form Live site 'https://www.airindia.com/etc.clientlibs/air-india/components/AIComponents/flightSearch/clientlibs.lc-3d41f7d1323459209150a2d7287c7da7-lc.min.js'
+*/
+function updateFlightContent() {
+  const t = document.documentElement.lang;
+  document.querySelector('#searchflightangularselecter').setAttribute('language', t);
+  const e = document.querySelectorAll('.flightsearch-link');
+  const l = {
+    multicity: [...e][0].textContent.split(',')[0],
+    eligibility: [...e][0].textContent.split(',')[1],
+  };
+  document.querySelector('#searchflightangularselecter').setAttribute('contentlist', JSON.stringify(l));
+}
+
 export async function initBooking() {
-  loadExternalComponent('search-flight', container);
+  await loadExternalComponent('search-flight', container);
+  updateFlightContent();
   await fetch(configModelUrl)
     .then((res) => res.json())
     .then(async (response) => {
@@ -68,8 +84,10 @@ export async function initBooking() {
             const configset = new CustomEvent('configset', {
               detail: envDetails,
             });
-            window.dispatchEvent(configset);
-            console.log('event ser');
+            setTimeout(() => {
+              window.dispatchEvent(configset);
+            }, 1000);
+            console.log('event dispatched for configset');
           })
           .catch((err) => {
             console.error(err);

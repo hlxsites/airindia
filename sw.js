@@ -5,6 +5,7 @@ const tokens = [
   'get-loy-token-key',
   'get-token-key',
   'token-key',
+  '.EnvironmentVariableServlet',
 ];
 
 let placeholders = {};
@@ -51,9 +52,10 @@ async function fetchMockTokens(key) {
 }
 
 async function fetchMockData(key) {
+  const path = `mock/${key}${key.includes('json') ? '' : '.json'}`
   try {
     // Fetch the external JSON file
-    const response = await fetch(`mock/${key}.json`);
+    const response = await fetch(path);
 
     if (!response.ok) {
       throw new Error(`Failed to fetch mock data: ${response.status} ${response.statusText}`);
@@ -68,7 +70,7 @@ async function fetchMockData(key) {
       headers: { 'Content-Type': 'application/json' },
     });
   } catch (error) {
-    console.error('Error fetching mock data:', error);
+    console.error(`Error fetching mock data of url:${path}`, error);
     // Return an error response if fetching fails
     return new Response(null, { status: 500, statusText: 'Internal Server Error' });
   }
@@ -93,14 +95,12 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', async (event) => {
   const hostURL = new URL(self.location);
   const { request } = event;
-  console.log(request.url);
-  console.log(request.url.includes('api.net') ? `api:${request.url}` : 'not api');
   // Check if the request is an API request with a different port
-  if (request.url.includes('api') && hostURL.port !== '4502') {
+  if (((request.url.includes('api') && !request.url.includes('chrome-extension')) || request.url.includes('EnvironmentVariableServlet')) && hostURL.port !== '4502') {
     const paths = request.url.split('/');
-    // const mockData = await fetchMockData(paths[paths.length - 1]);
-    // console.log(`mock Respone for ${paths[paths.length - 1]}:`, mockData);
+    console.log('API request and not from the port 4502:', request.url);
     if (tokens.includes(paths[paths.length - 1])) {
+      console.log('Request is for tokens:', request.url);
       event.respondWith(fetchMockTokens(toCamelCase(paths[paths.length - 1])));
       return;
     }
