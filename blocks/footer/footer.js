@@ -48,9 +48,10 @@ function decorateFooter(block, selectorClass) {
     tempDiv.appendChild(topItem);
   }
   tempDiv.querySelectorAll('img').forEach((img) => img.closest('picture').replaceWith(createOptimizedPicture(img.src, img.alt, false, [{ width: '750' }])));
-  if(tempDiv.querySelector('#air-india-app + p a')){
-    tempDiv.querySelector('#air-india-app + p a').setAttribute('alt', 'Learn more about Air India mobile app');
-    tempDiv.querySelector('#air-india-app + p a').setAttribute('title', 'Learn more about Air India mobile app');
+  const aiAppAnchor = tempDiv.querySelector('#air-india-app + p a');
+  if(aiAppAnchor){
+    aiAppAnchor.setAttribute('alt', 'Learn about Air India mobile app');
+    aiAppAnchor.textContent = 'Learn about Air India mobile app';
   }
 }
 
