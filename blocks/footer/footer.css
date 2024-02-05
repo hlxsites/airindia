@@ -27,6 +27,12 @@ footer .footer-top a:hover, footer .footer-middle a:hover {
   text-decoration: underline;
 }
 
+@media (min-width: 769px) {  
+  footer .footer-top a, footer .footer-middle a { 
+    padding: 5px 0;
+  }
+}
+
 .footer-top li, .footer-middle li{
   list-style-type: none;
   margin: 0;
