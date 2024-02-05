@@ -48,6 +48,7 @@ function decorateFooter(block, selectorClass) {
     tempDiv.appendChild(topItem);
   }
   tempDiv.querySelectorAll('img').forEach((img) => img.closest('picture').replaceWith(createOptimizedPicture(img.src, img.alt, false, [{ width: '750' }])));
+  tempDiv.querySelector('#air-india-app + p a').setAttribute('title', 'Learn more about Air India mobile app');
 }
 
 /**
