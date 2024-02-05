@@ -30,6 +30,16 @@ function updateFlightContent() {
   document.querySelector('#searchflightangularselecter').setAttribute('contentlist', JSON.stringify(l));
 }
 
+/**
+ * initBooking
+ * @returns {void}
+ * @description - This function is used to initialize the booking block
+ * It loads the external component and updates the flight content
+ *
+ * It also fetches the environment variables and dispatches the event
+ * to set the environment variables in the window object for the external components to use it 
+ * for API calls and other purposes
+ */
 export async function initBooking() {
   await loadExternalComponent('search-flight', container);
   updateFlightContent();
@@ -87,10 +97,10 @@ export async function initBooking() {
 
             window.dispatchEvent(configset);
 
-            console.log('event dispatched for configset');
+            console.log('[booking.js] [initBooking] event dispatched for configset');
           })
           .catch((err) => {
-            console.error(err);
+            console.error('[booking.js] [initBooking]', err);
           });
       } catch (e) {
         console.error(e);
@@ -120,10 +130,10 @@ export async function initBooking() {
             window.dispatchEvent(configset);
           })
           .catch((err) => {
-            console.error(err);
+            console.error('[booking.js] [initBooking]', err);
           });
       } catch (e) {
-        console.error(e);
+        console.error('[booking.js] [initBooking]', e);
       }
       return true;
     });
@@ -134,11 +144,10 @@ export async function initBooking() {
  * @param {Element} block The header block element
  */
 export default async function decorate(block) {
-  // Create a shadow root for the specified element
   container = block;
 }
 
 /** dummy function to handle dependency */
 window.checkSignInForRefx = () => {
-  console.log('checkSignInForRefx');
+  console.log('[booking.js] [checkSignInForRefx]');
 };

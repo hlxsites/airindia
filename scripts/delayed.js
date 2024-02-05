@@ -5,7 +5,10 @@ import { getEnvType } from './scripts.js';
 import loadExternalComponent from './utils/initializer.js';
 import { initBooking } from '../blocks/booking/booking.js';
 
-initBooking();
+// Initialize the booking block if present on the page
+if (document.querySelector('.booking')) {
+  initBooking();
+}
 
 // Core Web Vitals RUM collection
 sampleRUM('cwv');
