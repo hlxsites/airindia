@@ -14,12 +14,13 @@ footer h6 {
 
 footer .footer-top a, footer .footer-middle a{
   color: var(--color-black);
+  display: inline-block;
   font-weight: 400;
   line-height: 17px;
   text-decoration: none;
   font-size: var(--paragraph-font-size-s);
   white-space: nowrap;
-  padding: 5px 0;
+  padding: 7px 0;
 }
 
 footer .footer-top a:hover, footer .footer-middle a:hover {
