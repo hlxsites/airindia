@@ -37,7 +37,7 @@ function updateFlightContent() {
  * It loads the external component and updates the flight content
  *
  * It also fetches the environment variables and dispatches the event
- * to set the environment variables in the window object for the external components to use it 
+ * to set the environment variables in the window object for the external components to use it
  * for API calls and other purposes
  */
 export async function initBooking() {
