@@ -1,4 +1,4 @@
-import { isLocalhostWithPort } from '../../scripts/utils/helpers.js';
+import { isLocalhostWithPort } from './booking-helpers.js';
 import loadExternalComponent from '../../scripts/utils/initializer.js';
 
 const urlParams = 'https://www.airindia.in';
@@ -151,3 +151,4 @@ export default async function decorate(block) {
 window.checkSignInForRefx = () => {
   console.log('[booking.js] [checkSignInForRefx]');
 };
+

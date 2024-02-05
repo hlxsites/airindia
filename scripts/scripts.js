@@ -14,7 +14,7 @@ import {
   fetchPlaceholders,
 } from './aem.js';
 
-import { initServiceWorker } from './utils/helpers.js';
+import { initServiceWorker } from '../blocks/booking/booking-helpers.js';
 
 const LCP_BLOCKS = []; // add your LCP blocks to the list
 
