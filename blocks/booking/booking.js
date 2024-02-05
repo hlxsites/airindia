@@ -84,9 +84,9 @@ export async function initBooking() {
             const configset = new CustomEvent('configset', {
               detail: envDetails,
             });
-            setTimeout(() => {
-              window.dispatchEvent(configset);
-            }, 1000);
+            
+            window.dispatchEvent(configset);
+            
             console.log('event dispatched for configset');
           })
           .catch((err) => {

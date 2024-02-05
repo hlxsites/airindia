@@ -25,17 +25,21 @@ export default async function loadExternalComponent(componentName, element = doc
     });
   }
 
+  const promises = [];
+
   const scripts = CMP_CONFIG[`${toCamelCase(componentName)}Script`]?.split(',');
   if (scripts?.length > 0) {
     [...scripts].forEach(async (script) => {
-      await loadScript(script, {}, element);
+      promises.push(loadScript(script, {}, element));
     });
   }
 
   const styles = CMP_CONFIG[`${toCamelCase(componentName)}Style`]?.split(',');
   if (styles?.length > 0) {
     [...styles].forEach(async (style) => {
-      await loadCSS(style, element);
+      promises.push(loadCSS(style, element));
     });
   }
+
+  return Promise.all(promises);
 }
