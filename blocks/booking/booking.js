@@ -1,4 +1,3 @@
-import { isLocalhostWithPort } from './booking-helpers.js';
 import loadExternalComponent from '../../scripts/utils/initializer.js';
 
 const urlParams = 'https://www.airindia.in';
@@ -47,7 +46,7 @@ export async function initBooking() {
     .then((res) => res.json())
     .then(async (response) => {
       envParam = response;
-      envParam.environment = isLocalhostWithPort('4502') ? 'qa' : envParam?.ENV_CONFIG;
+      envParam.environment = envParam?.ENV_CONFIG;
 
       if (envParam?.environment === 'prod') {
         vaultServiceUrl = 'https://api.airindia.com/kvtoken/token-key';
@@ -151,4 +150,3 @@ export default async function decorate(block) {
 window.checkSignInForRefx = () => {
   console.log('[booking.js] [checkSignInForRefx]');
 };
-
