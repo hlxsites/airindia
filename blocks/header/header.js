@@ -279,6 +279,22 @@ async function addSkipToMain() {
 }
 
 /**
+ * attach href attributes to Anchor tags
+ */
+
+function attachHrefToAnchorTags() {
+  const nav = document.getElementById('nav');
+  nav.querySelectorAll('a').forEach((anchor) => {
+    if (!anchor.getAttribute('href')) {
+      anchor.setAttribute('href', '#');
+    }
+    anchor.addEventListener('click', (e) => {
+      e.preventDefault();
+    });
+  });
+}
+
+/**
  * decorates the header, mainly the nav
  * @param {Element} block The header block element
  */
@@ -356,4 +372,5 @@ export default async function decorate(block) {
   addScrollHandler();
   // add skip to main link
   addSkipToMain();
+  attachHrefToAnchorTags();
 }
