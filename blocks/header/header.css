@@ -12,13 +12,13 @@
 /* header and nav layout */
 header {
   position: fixed;
-  z-index: 10;
+  z-index: 100;
 }
 
 header .nav-wrapper {
   position: fixed;
   background-color: transparent;
-  width: 100%;
+  width: 100vw;
   z-index: 2;
   top: 0;
   height: var(--nav-height);
@@ -65,6 +65,31 @@ header .nav-wrapper .section.nav-tools .default-content-wrapper p.show {
 
 header .nav-wrapper .section.nav-tools .default-content-wrapper .profile {
   position: relative;
+}
+
+header .nav-wrapper .section.nav-tools .default-content-wrapper .profile .icon-profile{
+  background-image: url('../../icons/signin-light.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+header .nav-wrapper:hover .section.nav-tools .default-content-wrapper .profile .icon-profile{
+  background-image: url('../../icons/signin.svg');
+}
+
+
+header nav .nav-brand img {
+  width: 7.25rem;
+  height: 3rem;
+}
+
+header nav .nav-sections .sub-nav-drop picture,
+header nav .nav-sections .sub-nav-drop img {
+  display: none;
+}
+
+header .nav-wrapper .section.nav-tools .default-content-wrapper .profile .icon-profile img{
+  display: none;
 }
 
 header
@@ -290,11 +315,6 @@ header .nav-wrapper.short .nav-brand .icon.icon-ai-logo-white {
   display: none;
 }
 
-header nav .nav-brand img {
-  width: 7.25rem;
-  height: 3rem;
-}
-
 /* sections */
 header nav .nav-sections {
   grid-area: sections;
@@ -320,7 +340,7 @@ header .nav-wrapper nav .nav-tools {
   color: #fff;
   display: flex;
   justify-content: flex-end;
-  margin-right: 32px;
+  margin-right: 40px;
 }
 
 header .nav-wrapper:hover nav .nav-sections,
@@ -473,11 +493,6 @@ header nav .nav-sections .sub-nav-drop li.sub-link-text {
   font-size: var(--header-font-size-m);
   color: var(--dark-color);
   font-weight: 500;
-}
-
-header nav .nav-sections .sub-nav-drop picture,
-header nav .nav-sections .sub-nav-drop img {
-  display: none;
 }
 
 /** Search **/
@@ -755,6 +770,16 @@ header .nav-wrapper .section.nav-tools .default-content-wrapper p a {
     width: 80%;
     height: auto;
     margin-left: 1rem;
+  }
+
+  header .nav-wrapper .section.nav-tools .default-content-wrapper .profile .icon-profile,
+  header .nav-wrapper:hover .section.nav-tools .default-content-wrapper .profile .icon-profile {
+    background-image: none;
+  }
+  
+  
+  header .nav-wrapper .section.nav-tools .default-content-wrapper .profile .icon-profile img{
+    display: block;
   }
 
   header .nav-wrapper .section.nav-tools .default-content-wrapper {

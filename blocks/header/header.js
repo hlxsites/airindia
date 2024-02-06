@@ -156,6 +156,10 @@ function focusNavSection() {
   document.activeElement.addEventListener('keydown', openOnKeydown);
 }
 
+function hideProfileInfo() {
+  document.querySelector('.profile-wrapper')?.classList.remove('show');
+}
+
 /**
  * Toggles the entire nav
  * @param {Element} nav The container element
@@ -163,6 +167,7 @@ function focusNavSection() {
  * @param {*} forceExpanded Optional param to force nav expand behavior when not null
  */
 function toggleMenu(nav, navSections, forceExpanded = null) {
+  hideProfileInfo();
   const expanded = forceExpanded !== null ? !forceExpanded : nav.getAttribute('aria-expanded') === 'true';
   const button = nav.querySelector('.nav-hamburger button');
   document.body.style.overflowY = (expanded || isDesktop.matches) ? '' : 'hidden';
@@ -251,10 +256,6 @@ async function setupProfileInfo(profileElem) {
 
 function toggleProfileInfo() {
   document.querySelector('.profile-wrapper')?.classList.toggle('show');
-}
-
-function hideProfileInfo() {
-  document.querySelector('.profile-wrapper')?.classList.remove('show');
 }
 
 function decorateNavTools(navSections) {
