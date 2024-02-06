@@ -9,8 +9,9 @@ main .hero-container .hero-wrapper {
   padding: 0;
 }
 
-main .hero-container .hero-wrapper p{
+main .hero-container .hero-wrapper *{
   margin: 0;
+  padding: 0;
 }
 
 main .hero {
