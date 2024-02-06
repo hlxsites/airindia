@@ -1,3 +1,4 @@
+import { initServiceWorker } from '../blocks/booking/booking-helpers.js';
 import {
   sampleRUM,
   buildBlock,
@@ -141,6 +142,10 @@ function loadDelayed() {
 }
 
 async function loadPage() {
+  // Initialize service worker
+  // TODO: remove once the API is ready
+  initServiceWorker();
+
   await loadEager(document);
   // Loading placeholders before all blocks are loaded
   await fetchPlaceholders();
