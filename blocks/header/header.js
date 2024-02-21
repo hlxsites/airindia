@@ -370,9 +370,11 @@ export default async function decorate(block) {
   });
 
   const navBrand = nav.querySelector('.nav-brand');
-  const brandImg = navBrand.querySelector('img');
-  if (brandImg) {
-    brandImg.setAttribute('alt', 'Air India');
+  const brandImg = navBrand.querySelectorAll('img');
+  if (brandImg.length > 0) {
+    brandImg.forEach((img) => {
+      img.setAttribute('alt', 'Air India');
+    });
   }
   const brandLink = navBrand.querySelector('.button');
   if (brandLink) {
@@ -424,6 +426,8 @@ export default async function decorate(block) {
   navWrapper.className = 'nav-wrapper';
   navWrapper.append(nav);
   block.append(navWrapper);
+
+  navWrapper.querySelector('.icon-profile img')?.setAttribute('alt', 'My Profile');
 
   decorateNavTools(navSections);
   addGlobalEventHandlers();
