@@ -95,13 +95,15 @@ export async function initBooking() {
             });
 
             window.dispatchEvent(configset);
-
+            // eslint-disable-next-line
             console.log('[booking.js] [initBooking] event dispatched for configset');
           })
           .catch((err) => {
+            // eslint-disable-next-line
             console.error('[booking.js] [initBooking]', err);
           });
       } catch (e) {
+        // eslint-disable-next-line
         console.error(e);
       }
 
@@ -129,9 +131,11 @@ export async function initBooking() {
             window.dispatchEvent(configset);
           })
           .catch((err) => {
+            // eslint-disable-next-line
             console.error('[booking.js] [initBooking]', err);
           });
       } catch (e) {
+        // eslint-disable-next-line
         console.error('[booking.js] [initBooking]', e);
       }
       return true;
@@ -148,5 +152,6 @@ export default async function decorate(block) {
 
 /** dummy function to handle dependency */
 window.checkSignInForRefx = () => {
+  // eslint-disable-next-line
   console.log('[booking.js] [checkSignInForRefx]');
 };

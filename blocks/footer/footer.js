@@ -49,7 +49,7 @@ function decorateFooter(block, selectorClass) {
   }
   tempDiv.querySelectorAll('img').forEach((img) => img.closest('picture').replaceWith(createOptimizedPicture(img.src, img.alt, false, [{ width: '750' }])));
   const aiAppAnchor = tempDiv.querySelector('#air-india-app + p a');
-  if(aiAppAnchor){
+  if (aiAppAnchor) {
     aiAppAnchor.setAttribute('alt', 'Learn about Air India mobile app');
     aiAppAnchor.textContent = 'Learn about Air India mobile app';
   }

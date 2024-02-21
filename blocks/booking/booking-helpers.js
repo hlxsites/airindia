@@ -5,6 +5,7 @@ function initServiceWorker() {
     navigator.serviceWorker.register('/sw.js', { scope: '/' })
       .then(async (registration) => {
         await fetchPlaceholders();
+        // eslint-disable-next-line
         console.log('Service Worker registered with scope:', registration.scope);
         if (registration.active) {
           registration.active
@@ -12,6 +13,7 @@ function initServiceWorker() {
         }
       })
       .catch((error) => {
+        // eslint-disable-next-line
         console.error('Service Worker registration failed:', error);
       });
   }
