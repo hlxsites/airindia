@@ -120,12 +120,6 @@ async function loadLazy(doc) {
   const element = hash ? doc.getElementById(hash.substring(1)) : false;
   if (hash && element) element.scrollIntoView();
 
-  if (document.querySelector('.booking')) { // Initialize the booking block if present on the page
-    import('../blocks/booking/booking.js').then(({ initBooking }) => {
-      initBooking();
-    });
-  }
-
   loadHeader(doc.querySelector('header'));
   loadFooter(doc.querySelector('footer'));
 
