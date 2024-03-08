@@ -30,7 +30,7 @@ export default async function loadExternalComponent(componentName, element = doc
   const scripts = CMP_CONFIG[`${toCamelCase(componentName)}Script`]?.split(',');
   if (scripts?.length > 0) {
     [...scripts].forEach(async (script) => {
-      promises.push(loadScript(script, {}, element));
+      promises.push(loadScript(script, { async: true }, element));
     });
   }
 
