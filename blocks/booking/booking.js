@@ -40,102 +40,103 @@ function updateFlightContent() {
  * for API calls and other purposes
  */
 export async function initBooking() {
-  await loadExternalComponent('search-flight', container);
-  updateFlightContent();
-  await fetch(configModelUrl)
-    .then((res) => res.json())
-    .then(async (response) => {
-      envParam = response;
-      envParam.environment = envParam?.ENV_CONFIG;
+  loadExternalComponent('search-flight', container).then(async () => {
+    updateFlightContent();
+    fetch(configModelUrl)
+      .then((res) => res.json())
+      .then(async (response) => {
+        envParam = response;
+        envParam.environment = envParam?.ENV_CONFIG;
 
-      if (envParam?.environment === 'prod') {
-        vaultServiceUrl = 'https://api.airindia.com/kvtoken/token-key';
-        headerValueDXP = 'DXP';
-        loyaltyVaultService = 'https://api-loyalty.airindia.com/kv-token/get-loy-token-key';
-        headerValueLOY = 'LOY';
-      }
-      if (envParam?.environment === 'stage') {
-        vaultServiceUrl = 'https://api-staging.airindia.com/kvtoken/get-token-key';
-        headerValueDXP = 'DXP';
-        loyaltyVaultService = 'https://api-loyalty-staging.airindia.com/kv-token/get-loy-token-key';
-        headerValueLOY = 'LOY';
-      }
-      if (envParam?.environment === 'qa') {
-        vaultServiceUrl = 'https://ai-shrd-sandbx-apgw-001.azure-api.net/kvtoken/qa/get-token-key';
-        headerValueDXP = 'DXP';
-        loyaltyVaultService = 'https://ai-shrd-sandbx-apgw-001.azure-api.net/kvtoken/qa/get-token-key';
-        headerValueLOY = 'DXP';
-      }
-      if (envParam?.environment === 'dev') {
-        vaultServiceUrl = 'https://ai-shrd-sandbx-apgw-001.azure-api.net/kvtoken/dev/get-token-key';
-        headerValueDXP = 'DXP';
-        loyaltyVaultService = 'https://ai-shrd-sandbx-apgw-001.azure-api.net/kvtoken/dev/get-token-key';
-        headerValueLOY = 'DXP';
-      }
-      try {
-        await fetch(vaultServiceUrl, {
-          method: 'POST', // *GET, POST, PUT, DELETE, etc.
-          cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-          headers: {
-            Accept: 'application/json',
-            'Access-Control-Allow-Origin': '*',
-            'Content-Type': 'application/json',
-            appName: headerValueDXP,
-          },
-          body: JSON.stringify(dataValuesForVault),
-          // body data type must match "Content-Type" header
-        })
-          .then((res) => res.json())
-          .then(async (vaultResponse) => {
-            envDetails.env = envParam?.environment;
-            envDetails.dxpVaultDetails = vaultResponse;
-
-            const configset = new CustomEvent('configset', {
-              detail: envDetails,
-            });
-
-            window.dispatchEvent(configset);
-
-            console.log('[booking.js] [initBooking] event dispatched for configset');
+        if (envParam?.environment === 'prod') {
+          vaultServiceUrl = 'https://api.airindia.com/kvtoken/token-key';
+          headerValueDXP = 'DXP';
+          loyaltyVaultService = 'https://api-loyalty.airindia.com/kv-token/get-loy-token-key';
+          headerValueLOY = 'LOY';
+        }
+        if (envParam?.environment === 'stage') {
+          vaultServiceUrl = 'https://api-staging.airindia.com/kvtoken/get-token-key';
+          headerValueDXP = 'DXP';
+          loyaltyVaultService = 'https://api-loyalty-staging.airindia.com/kv-token/get-loy-token-key';
+          headerValueLOY = 'LOY';
+        }
+        if (envParam?.environment === 'qa') {
+          vaultServiceUrl = 'https://ai-shrd-sandbx-apgw-001.azure-api.net/kvtoken/qa/get-token-key';
+          headerValueDXP = 'DXP';
+          loyaltyVaultService = 'https://ai-shrd-sandbx-apgw-001.azure-api.net/kvtoken/qa/get-token-key';
+          headerValueLOY = 'DXP';
+        }
+        if (envParam?.environment === 'dev') {
+          vaultServiceUrl = 'https://ai-shrd-sandbx-apgw-001.azure-api.net/kvtoken/dev/get-token-key';
+          headerValueDXP = 'DXP';
+          loyaltyVaultService = 'https://ai-shrd-sandbx-apgw-001.azure-api.net/kvtoken/dev/get-token-key';
+          headerValueLOY = 'DXP';
+        }
+        try {
+          await fetch(vaultServiceUrl, {
+            method: 'POST', // *GET, POST, PUT, DELETE, etc.
+            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+            headers: {
+              Accept: 'application/json',
+              'Access-Control-Allow-Origin': '*',
+              'Content-Type': 'application/json',
+              appName: headerValueDXP,
+            },
+            body: JSON.stringify(dataValuesForVault),
+            // body data type must match "Content-Type" header
           })
-          .catch((err) => {
-            console.error('[booking.js] [initBooking]', err);
-          });
-      } catch (e) {
-        console.error(e);
-      }
+            .then((res) => res.json())
+            .then(async (vaultResponse) => {
+              envDetails.env = envParam?.environment;
+              envDetails.dxpVaultDetails = vaultResponse;
 
-      try {
-        await fetch(loyaltyVaultService, {
-          method: 'POST', // *GET, POST, PUT, DELETE, etc.
-          cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-          headers: {
-            Accept: 'application/json',
-            'Access-Control-Allow-Origin': '*',
-            'Content-Type': 'application/json',
-            appName: headerValueLOY,
-            // 'Content-Type': 'application/x-www-form-urlencoded',
-          },
-          body: JSON.stringify(dataValuesForVault),
-          // body data type must match "Content-Type" header
-        })
-          .then((res) => res.json())
-          .then((loyaltyVaultResponse) => {
-            envDetails.loyaltyVaultDetails = loyaltyVaultResponse;
+              const configset = new CustomEvent('configset', {
+                detail: envDetails,
+              });
 
-            const configset = new CustomEvent('loyaltyconfigset', {
-              detail: envDetails,
+              window.dispatchEvent(configset);
+
+              console.log('[booking.js] [initBooking] event dispatched for configset');
+            })
+            .catch((err) => {
+              console.error('[booking.js] [initBooking]', err);
             });
-            window.dispatchEvent(configset);
+        } catch (e) {
+          console.error(e);
+        }
+
+        try {
+          await fetch(loyaltyVaultService, {
+            method: 'POST', // *GET, POST, PUT, DELETE, etc.
+            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+            headers: {
+              Accept: 'application/json',
+              'Access-Control-Allow-Origin': '*',
+              'Content-Type': 'application/json',
+              appName: headerValueLOY,
+              // 'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: JSON.stringify(dataValuesForVault),
+            // body data type must match "Content-Type" header
           })
-          .catch((err) => {
-            console.error('[booking.js] [initBooking]', err);
-          });
-      } catch (e) {
-        console.error('[booking.js] [initBooking]', e);
-      }
-      return true;
-    });
+            .then((res) => res.json())
+            .then((loyaltyVaultResponse) => {
+              envDetails.loyaltyVaultDetails = loyaltyVaultResponse;
+
+              const configset = new CustomEvent('loyaltyconfigset', {
+                detail: envDetails,
+              });
+              window.dispatchEvent(configset);
+            })
+            .catch((err) => {
+              console.error('[booking.js] [initBooking]', err);
+            });
+        } catch (e) {
+          console.error('[booking.js] [initBooking]', e);
+        }
+        return true;
+      });
+  });
 }
 
 /**
