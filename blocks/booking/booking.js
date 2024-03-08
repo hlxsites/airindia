@@ -145,7 +145,9 @@ export async function initBooking() {
  */
 export default async function decorate(block) {
   container = block;
-  initBooking();
+  setTimeout(() => {
+    initBooking();
+  }, 1000);
 }
 
 /** dummy function to handle dependency */
