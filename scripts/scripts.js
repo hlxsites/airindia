@@ -143,7 +143,7 @@ function loadDelayed() {
 }
 
 function isEDSHost(url) {
-  return (url.includes('.page') || url.includes('.live') || url.includes('localhost'));
+  return (url.includes('.hlx.page') || url.includes('.hlx.live') || url.includes('localhost'));
 }
 
 async function loadPage() {
