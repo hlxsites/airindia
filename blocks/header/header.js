@@ -59,7 +59,7 @@ function createSearchBox(label = 'Search') {
   <div class="header-nav-search-box" id="header-nav-search-box">
     <span class="header-nav-search-box-close">&times;</span>
     <label for="search-box" class="header-nav-search-box-label" role="heading" aria-level="2">${label}</label>
-    <input type="text" id="search-box" name="search-box" aria-labelledby="search-box">
+    <input type="text" id="search-box" name="search-box" aria-label="Search" aria-labelledby="search-box">
     <a class="search-icon">
       <img data-icon-name="search" src="/icons/search-red.svg" class="search-icon" alt="Search" />
     </a> 
@@ -340,6 +340,22 @@ function addGlobalEventHandlers() {
 }
 
 /**
+ * attach href attributes to Anchor tags
+ */
+
+function attachHrefToAnchorTags() {
+  const nav = document.getElementById('nav');
+  nav.querySelectorAll('a').forEach((anchor) => {
+    if (!anchor.getAttribute('href')) {
+      anchor.setAttribute('href', '#');
+    }
+    anchor.addEventListener('click', (e) => {
+      e.preventDefault();
+    });
+  });
+}
+
+/**
  * decorates the header, mainly the nav
  * @param {Element} block The header block element
  */
@@ -361,9 +377,11 @@ export default async function decorate(block) {
   });
 
   const navBrand = nav.querySelector('.nav-brand');
-  const brandImg = navBrand.querySelector('img');
-  if (brandImg) {
-    brandImg.setAttribute('alt', 'Air India');
+  const brandImg = navBrand.querySelectorAll('img');
+  if (brandImg.length > 0) {
+    brandImg.forEach((img) => {
+      img.setAttribute('alt', 'Air India');
+    });
   }
   const brandLink = navBrand.querySelector('.button');
   if (brandLink) {
@@ -416,8 +434,11 @@ export default async function decorate(block) {
   navWrapper.append(nav);
   block.append(navWrapper);
 
+  navWrapper.querySelector('.icon-profile img')?.setAttribute('alt', 'My Profile');
+
   decorateNavTools(navSections);
   addGlobalEventHandlers();
   // add skip to main link
   addSkipToMain();
+  attachHrefToAnchorTags();
 }
