@@ -1,4 +1,3 @@
-import { initServiceWorker } from '../blocks/booking/booking-helpers.js';
 import {
   sampleRUM,
   buildBlock,
@@ -14,6 +13,8 @@ import {
   loadCSS,
   fetchPlaceholders,
 } from './aem.js';
+
+import { initServiceWorker } from '../blocks/booking/booking-helpers.js';
 
 const LCP_BLOCKS = []; // add your LCP blocks to the list
 
@@ -141,10 +142,16 @@ function loadDelayed() {
   // load anything that can be postponed to the latest here
 }
 
+function isEDSHost(url) {
+  return (url.includes('.hlx.page') || url.includes('.hlx.live') || url.includes('localhost'));
+}
+
 async function loadPage() {
   // Initialize service worker
   // TODO: remove once the API is ready
-  initServiceWorker();
+  if (isEDSHost(window.location.hostname)) {
+    initServiceWorker();
+  }
 
   await loadEager(document);
   // Loading placeholders before all blocks are loaded
