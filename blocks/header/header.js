@@ -59,7 +59,7 @@ function createSearchBox(label = 'Search') {
   <div class="header-nav-search-box" id="header-nav-search-box">
     <span class="header-nav-search-box-close">&times;</span>
     <label for="search-box" class="header-nav-search-box-label" role="heading" aria-level="2">${label}</label>
-    <input type="text" id="search-box" name="search-box" aria-label="Search" aria-labelledby="search-box">
+    <input type="text" id="search-box" name="search-box" aria-label="Search">
     <a class="search-icon">
       <img data-icon-name="search" src="/icons/search-red.svg" class="search-icon" alt="Search" />
     </a> 
