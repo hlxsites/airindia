@@ -2759,13 +2759,13 @@ body,html {
 }
 
 .booking-form .label,.booking-form label {
-    color: #8f959a;
+    color: #70777B;
     font-size: 9pt;
     margin-bottom: 0
 }
 
 .booking-form input {
-    border: 1px solid #8f959a;
+    border: 1px solid #70777B;
     padding: 10px;
     width: 100%
 }
@@ -4598,8 +4598,6 @@ textarea.form-control-lg {
 
 .form-select {
     -moz-padding-start: calc(.75rem - 3px);
-    appearance: none;
-    appearance: none;
     appearance: none;
     background-color: #fff;
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
@@ -10938,13 +10936,13 @@ textarea.form-control-lg {
 }
 
 .book-with-points .label,.book-with-points label {
-    color: #8f959a;
+    color: #70777B;
     font-size: 9pt;
     margin-bottom: 0
 }
 
 .book-with-points input {
-    border: 1px solid #8f959a;
+    border: 1px solid #70777B;
     padding: 10px;
     width: 100%
 }
