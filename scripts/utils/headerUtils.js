@@ -86,6 +86,7 @@ export async function getMembership() {
 
     return await response.json();
   } catch (err) {
+    // eslint-disable-next-line
     console.error(err);
     throw err;
   }

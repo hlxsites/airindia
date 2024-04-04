@@ -86,7 +86,7 @@ function sampleRUM(checkpoint, data = {}) {
         'LCP',
         'INP',
       ];
-      const sendPing = (pdata = data) => {
+      const sendPing = () => {
         // eslint-disable-next-line object-curly-newline, max-len, no-use-before-define
         const body = JSON.stringify(
           {
