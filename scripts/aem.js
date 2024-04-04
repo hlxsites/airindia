@@ -102,8 +102,6 @@ function sampleRUM(checkpoint, data = {}) {
         const url = `https://rum.hlx.page/.rum/${weight}`;
         // eslint-disable-next-line no-unused-expressions
         navigator.sendBeacon(url, body);
-        // eslint-disable-next-line no-console
-        console.debug(`ping:${checkpoint}`, pdata);
       };
       sampleRUM.cases = sampleRUM.cases || {
         cwv: () => sampleRUM.cwv(data) || true,

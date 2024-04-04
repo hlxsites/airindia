@@ -95,8 +95,6 @@ export async function initBooking() {
             });
 
             window.dispatchEvent(configset);
-            // eslint-disable-next-line
-            console.log('[booking.js] [initBooking] event dispatched for configset');
           })
           .catch((err) => {
             // eslint-disable-next-line

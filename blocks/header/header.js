@@ -349,9 +349,6 @@ function attachHrefToAnchorTags() {
     if (!anchor.getAttribute('href')) {
       anchor.setAttribute('href', '#');
     }
-    anchor.addEventListener('click', (e) => {
-      e.preventDefault();
-    });
   });
 }
 
@@ -377,12 +374,6 @@ export default async function decorate(block) {
   });
 
   const navBrand = nav.querySelector('.nav-brand');
-  const brandImg = navBrand.querySelectorAll('img');
-  if (brandImg.length > 0) {
-    brandImg.forEach((img) => {
-      img.setAttribute('alt', 'Air India');
-    });
-  }
   const brandLink = navBrand.querySelector('.button');
   if (brandLink) {
     brandLink.className = '';
