@@ -128,3 +128,15 @@ export async function getUserInfo() {
     club,
   };
 }
+
+/**
+ * add href attribute with default # value to Anchor tags with no href to improve accessibility
+ */
+export function addDefaultHrefToElementAnchorTags(elementId) {
+  const element = document.getElementById(elementId);
+  element.querySelectorAll('a').forEach((anchor) => {
+    if (!anchor.getAttribute('href')) {
+      anchor.setAttribute('href', '#');
+    }
+  });
+}

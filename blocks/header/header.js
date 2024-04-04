@@ -1,6 +1,11 @@
 import { getMetadata, fetchPlaceholders } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
-import { getUserInfo, getPlaceholderDataFor, isLoggedIn } from '../../scripts/utils/headerUtils.js';
+import {
+  getUserInfo,
+  getPlaceholderDataFor,
+  isLoggedIn,
+  addDefaultHrefToElementAnchorTags,
+} from '../../scripts/utils/blockUtils.js';
 
 // media query match that indicates mobile/tablet width
 const isDesktop = window.matchMedia('(min-width: 1024px)');
@@ -340,19 +345,6 @@ function addGlobalEventHandlers() {
 }
 
 /**
- * attach href attributes to Anchor tags
- */
-
-function attachHrefToAnchorTags() {
-  const nav = document.getElementById('nav');
-  nav.querySelectorAll('a').forEach((anchor) => {
-    if (!anchor.getAttribute('href')) {
-      anchor.setAttribute('href', '#');
-    }
-  });
-}
-
-/**
  * decorates the header, mainly the nav
  * @param {Element} block The header block element
  */
@@ -431,5 +423,5 @@ export default async function decorate(block) {
   addGlobalEventHandlers();
   // add skip to main link
   addSkipToMain();
-  attachHrefToAnchorTags();
+  addDefaultHrefToElementAnchorTags('nav');
 }
