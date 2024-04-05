@@ -26,8 +26,11 @@
 @media only screen and (min-width:992px){.search-flight .book input:focus,.search-flight .book input:not(:placeholder-shown){padding-top:0 !important}
 }
 .search-flight .date-picker .form-label,.search-flight app-add-passenger .form-label,.search-flight app-class-type .label{position:absolute;transform:translateY(-30px) !important;background:#fff;display:inline-flex !important;padding-left:5px !important;padding-right:5px !important}
+<<<<<<<< HEAD:etc.clientlibs/airindia/components/AIComponents/flightsearch/clientlibs.lc-0a0f7442c40226c04d15438672316227-lc.min.css
 .search-flight .date-picker .return-date-label{margin-top:1px}
 .search-flight app-class-type .label{padding-top:3px}
+========
+>>>>>>>> 63-booking-widget-changes:etc.clientlibs/airindia/components/AIComponents/flightsearch/clientlibs.lc-7bcf2200d80a8abaf40de594a5114172-lc.min.css
 .search-flight app-concession-type .label{position:absolute;transform:translateY(-24px) !important;background:#fff;display:inline-flex !important;padding-left:5px !important;padding-right:5px !important}
 .search-flight .date-picker .add-return-label{position:relative;transform:unset !important}
 .search-flight .date-picker .row{display:flex;align-items:center;height:100%}

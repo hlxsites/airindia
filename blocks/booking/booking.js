@@ -105,7 +105,7 @@ export async function initBooking() {
 
             window.dispatchEvent(configset);
 
-            console.log('[booking.js] [initBooking] event dispatched for configset');
+            // console.log('[booking.js] [initBooking] event dispatched for configset');
           })
           .catch((err) => {
             console.error('[booking.js] [initBooking]', err);
