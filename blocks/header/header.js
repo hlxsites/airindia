@@ -22,6 +22,12 @@ function wrapNavDrops(navSections, parentSelector, linkTextClass) {
     if (Array.from(navDrop.querySelectorAll('ul')).length === 0) {
       navDrop.classList.add('sub-link-text');
       navDrop.setAttribute('tabindex', 0);
+      const linkElem = navDrop.querySelector('a');
+      const picElem = navDrop.querySelector('picture');
+      if (picElem) {
+        linkElem.textContent = '';
+        linkElem.appendChild(picElem);
+      }
       return;
     }
     const textContent = navDrop.firstChild?.nodeValue?.trim();
