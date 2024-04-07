@@ -14,6 +14,13 @@ const envDetails = {};
 
 let container;
 
+function updateDateButtonAriaLabels() {
+  const dateButtons = document.querySelectorAll('.btn.bi.bi-calendar3');
+  dateButtons.forEach((dateButton) => {
+    dateButton.setAttribute('aria-label', 'Date button');
+  });
+}
+
 /**
  * updates the additional content for flight search
  * Copied form Live site 'https://www.airindia.com/etc.clientlibs/air-india/components/AIComponents/flightSearch/clientlibs.lc-3d41f7d1323459209150a2d7287c7da7-lc.min.js'
@@ -138,6 +145,7 @@ export async function initBooking() {
       }
       return true;
     });
+    updateDateButtonAriaLabels();
 }
 
 /**

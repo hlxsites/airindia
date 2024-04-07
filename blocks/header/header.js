@@ -343,6 +343,28 @@ function addGlobalEventHandlers() {
     window.removeEventListener('keydown', globalEscapeHandler);
   }
 }
+function addAltTextToHeaderIcons() {
+  // Add alt attribute to brand icon
+  const airIndiaIcon = document.querySelector('img[data-icon-name="ai-logo-white"]');
+  if (airIndiaIcon) {
+    airIndiaIcon.setAttribute('alt', 'Air India');
+  }
+  // Add alt attribute to search icon
+  const searchIcon = document.querySelector('img[data-icon-name="search-light"]');
+  if (searchIcon) {
+    searchIcon.setAttribute('alt', 'Search');
+  }
+  // Add alt attribute to support icon
+  const supportIcon = document.querySelector('img[data-icon-name="support-light"]');
+  if (supportIcon) {
+    supportIcon.setAttribute('alt', 'Support');
+  }
+  // Add alt attribute to signin icon
+  const signinIcon = document.querySelector('img[data-icon-name="signin-light"]');
+  if (signinIcon) {
+    signinIcon.setAttribute('alt', 'Signin');
+  }
+}
 
 /**
  * decorates the header, mainly the nav
@@ -424,4 +446,5 @@ export default async function decorate(block) {
   // add skip to main link
   addSkipToMain();
   addDefaultHrefToElementAnchorTags('nav');
+  addAltTextToHeaderIcons();
 }
