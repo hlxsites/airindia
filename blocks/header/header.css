@@ -574,7 +574,7 @@ header .nav-wrapper .section.nav-tools .default-content-wrapper p a {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  animation: navBadge 12s linear infinite;
+  animation: nav-badge 12s linear infinite;
   animation-fill-mode: forward;
   background: linear-gradient(100deg, #b61132 -9.01%, #82102c 92.66%);
   border-radius: 2px;
@@ -597,9 +597,7 @@ header .nav-wrapper .section.nav-tools .default-content-wrapper p a {
 }
 
 .nav-badge-text span {
-  -webkit-animation: rotatetext 12s linear infinite;
   animation: rotatetext 12s linear infinite;
-  -webkit-animation-fill-mode: forwards;
   animation-fill-mode: forwards;
   display: inline-block;
   font-style: normal;
@@ -1061,14 +1059,12 @@ header .block .nav-wrapper.expanded nav .nav-sections .nav-drop .link-title {
 ANIMATION
 **/
 
-@keyframes navBadge {
-
+@keyframes nav-badge {
   0.0%,
   16.67%,
   8.33% {
     background: linear-gradient(100deg, #b61132 -9.01%, #82102c 92.66%);
     color: #fff;
-    -webkit-transform: rotateY(0deg);
     transform: rotateY(0deg)
   }
 
@@ -1077,7 +1073,6 @@ ANIMATION
   41.67% {
     background: linear-gradient(103deg, #eceef0 -131.29%, #bcc0be 109.54%);
     color: #1c1213;
-    -webkit-transform: rotateY(180deg);
     transform: rotateY(180deg)
   }
 
@@ -1087,7 +1082,6 @@ ANIMATION
     background: -webkit-gradient(linear, left top, right top, color-stop(-321.46%, #fed9a0), color-stop(99.9%, #ebbe69));
     background: linear-gradient(90deg, #fed9a0 -321.46%, #ebbe69 99.9%);
     color: #1c1213;
-    -webkit-transform: rotateY(1turn);
     transform: rotateY(1turn)
   }
 
@@ -1097,50 +1091,42 @@ ANIMATION
     background: #252f3a;
     border-radius: 2px;
     color: #fff;
-    -webkit-transform: rotateY(540deg);
     transform: rotateY(540deg)
   }
 
   100.0% {
     background: linear-gradient(100deg, #b61132 -9.01%, #82102c 92.66%);
     color: #fff;
-    -webkit-transform: rotateY(2turn);
     transform: rotateY(2turn)
   }
 }
 
 @keyframes rotatetext {
-
   0.0%,
   16.67%,
   8.33% {
-    -webkit-transform: rotateY(0deg);
     transform: rotateY(0deg)
   }
 
   25.0%,
   33.33%,
   41.67% {
-    -webkit-transform: rotateY(-180deg);
     transform: rotateY(-180deg)
   }
 
   50.0%,
   58.33%,
   66.67% {
-    -webkit-transform: rotateY(-1turn);
     transform: rotateY(-1turn)
   }
 
   75.0%,
   83.33%,
   91.67% {
-    -webkit-transform: rotateY(-540deg);
     transform: rotateY(-540deg)
   }
 
   100.0% {
-    -webkit-transform: rotateY(-2turn);
     transform: rotateY(-2turn)
   }
 }
