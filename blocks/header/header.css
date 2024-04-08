@@ -576,7 +576,7 @@ header .nav-wrapper .section.nav-tools .default-content-wrapper p a {
   align-items: center;
   animation: nav-badge 12s linear infinite;
   animation-fill-mode: forward;
-  background: linear-gradient(100deg, #b61132 -9.01%, #82102c 92.66%);
+  background: var(--gradient-100);
   border-radius: 2px;
   justify-content: center;
   padding: 3px;
@@ -1063,40 +1063,39 @@ ANIMATION
   0.0%,
   16.67%,
   8.33% {
-    background: linear-gradient(100deg, #b61132 -9.01%, #82102c 92.66%);
-    color: #fff;
+    background: var(--gradient-100);
+    color: var(--color-white);
     transform: rotateY(0deg)
   }
 
   25.0%,
   33.33%,
   41.67% {
-    background: linear-gradient(103deg, #eceef0 -131.29%, #bcc0be 109.54%);
-    color: #1c1213;
+    background: var(--gradient-103);
+    color: var(--global-ai-black);
     transform: rotateY(180deg)
   }
 
   50.0%,
   58.33%,
   66.67% {
-    background: -webkit-gradient(linear, left top, right top, color-stop(-321.46%, #fed9a0), color-stop(99.9%, #ebbe69));
-    background: linear-gradient(90deg, #fed9a0 -321.46%, #ebbe69 99.9%);
-    color: #1c1213;
+    background: var(--gradient-90);
+    color: var(--global-ai-black);
     transform: rotateY(1turn)
   }
 
   75.0%,
   83.33%,
   91.67% {
-    background: #252f3a;
+    background: var(--global-ai-black);
     border-radius: 2px;
-    color: #fff;
+    color: var(--color-white);
     transform: rotateY(540deg)
   }
 
   100.0% {
-    background: linear-gradient(100deg, #b61132 -9.01%, #82102c 92.66%);
-    color: #fff;
+    background: var(--gradient-100);
+    color: var(--color-white);
     transform: rotateY(2turn)
   }
 }
