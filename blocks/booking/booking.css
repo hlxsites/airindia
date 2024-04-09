@@ -10936,13 +10936,13 @@ textarea.form-control-lg {
 }
 
 .book-with-points .label,.book-with-points label {
-    color: #70777B;
+    color: #8f959a;
     font-size: 9pt;
     margin-bottom: 0
 }
 
 .book-with-points input {
-    border: 1px solid #70777B;
+    border: 1px solid #8f959a;
     padding: 10px;
     width: 100%
 }
