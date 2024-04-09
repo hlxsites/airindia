@@ -138,5 +138,12 @@ export function addDefaultHrefToElementAnchorTags(elementId) {
     if (!anchor.getAttribute('href')) {
       anchor.setAttribute('href', '#');
     }
+    // eslint-disable-next-line no-script-url
+    if (anchor.getAttribute('href') === 'javascript:void(0)') {
+      anchor.setAttribute('href', '#');
+      anchor.addEventListener('click', (event) => {
+        event.preventDefault();
+      });
+    }
   });
 }
