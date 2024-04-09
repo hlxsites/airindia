@@ -27,13 +27,22 @@ function updateDateButtonAriaLabels() {
 */
 function updateFlightContent() {
   const t = document.documentElement.lang;
-  document.querySelector('#searchflightangularselecter').setAttribute('language', t);
+  document
+    .querySelector('#searchflightangularselecter')
+    .setAttribute('language', t);
   const e = document.querySelectorAll('.flightsearch-link');
   const l = {
     multicity: [...e][0].textContent.split(',')[0],
     eligibility: [...e][0].textContent.split(',')[1],
+    returnnoofdays: [...e][0].textContent.split(',')[3],
+    cashpluspointsimage: [...e][0].textContent.split(',')[4],
+    cashpluspointstext: [...e][0].textContent.split(',')[5],
+    pointsimage: [...e][0].textContent.split(',')[6],
+    pointstext: [...e][0].textContent.split(',')[7],
   };
-  document.querySelector('#searchflightangularselecter').setAttribute('contentlist', JSON.stringify(l));
+  document
+    .querySelector('#searchflightangularselecter')
+    .setAttribute('contentlist', JSON.stringify(l));
 }
 
 /**
@@ -102,6 +111,7 @@ export async function initBooking() {
             });
 
             window.dispatchEvent(configset);
+            // console.log('[booking.js] [initBooking] event dispatched for configset');
           })
           .catch((err) => {
             // eslint-disable-next-line
@@ -145,7 +155,7 @@ export async function initBooking() {
       }
       return true;
     });
-    updateDateButtonAriaLabels();
+  updateDateButtonAriaLabels();
 }
 
 /**

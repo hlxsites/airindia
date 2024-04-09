@@ -19,6 +19,22 @@ function createAccordion() {
   }
 }
 
+function decorateSocialLinkPictures($block) {
+  $block.querySelectorAll('picture').forEach(($picture) => {
+    const $picParent = $picture.parentNode;
+    if ($picParent) {
+      const $a = $picParent.querySelector('a');
+      if ($a && $a.textContent.startsWith('https://')) {
+        $a.innerHTML = '';
+        $a.className = '';
+        $a.title = '';
+        $a.appendChild($picture);
+        $a.previousSibling.remove();
+      }
+    }
+  });
+}
+
 function decorateFooter(block, selectorClass) {
   const footerTop = block.querySelector(`.${selectorClass}`);
   const tempDiv = footerTop.querySelector('.default-content-wrapper');
@@ -72,4 +88,5 @@ export default async function decorate(block) {
   decorateFooter(block, 'footer-middle');
   createAccordion();
   addDefaultHrefToElementAnchorTags('footer');
+  decorateSocialLinkPictures(block);
 }
