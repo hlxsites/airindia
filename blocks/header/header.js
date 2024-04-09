@@ -469,6 +469,6 @@ export default async function decorate(block) {
   addGlobalEventHandlers();
   // add skip to main link
   addSkipToMain();
-  addDefaultHrefToElementAnchorTags('nav');
+  // addDefaultHrefToElementAnchorTags('nav');
   addAltTextToHeaderIcons();
 }

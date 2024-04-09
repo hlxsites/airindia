@@ -87,6 +87,6 @@ export default async function decorate(block) {
   decorateFooter(block, 'footer-top');
   decorateFooter(block, 'footer-middle');
   createAccordion();
-  addDefaultHrefToElementAnchorTags('footer');
+  // addDefaultHrefToElementAnchorTags('footer');
   decorateSocialLinkPictures(block);
 }
