@@ -38,24 +38,14 @@ async function fetchMockPlaceholders(key) {
   try {
     // Parse and return the JSON data
     const mockData = placeholders[key];
-<<<<<<< HEAD
-    // eslint-disable-next-line
-    console.log('fetchMockPlaceholders: Mock data=>', mockData);
-=======
     // console.log('fetchMockPlaceholders: Mock data=>', mockData);
->>>>>>> 98dbd28311d07b3b9ab87ecd2908781214133ba6
 
     return new Response(mockData, {
       status: 200,
       headers: { 'Content-Type': 'application/json' },
     });
   } catch (error) {
-<<<<<<< HEAD
-    // eslint-disable-next-line
-    console.error('[sw.js] fetchMockPlaceholders: Error fetching mock data =>', error);
-=======
     // console.error('[sw.js] fetchMockPlaceholders: Error fetching mock data =>', error);
->>>>>>> 98dbd28311d07b3b9ab87ecd2908781214133ba6
     // Return an error response if fetching fails
     return new Response(null, { status: 500, statusText: 'Internal Server Error' });
   }
@@ -73,24 +63,14 @@ async function fetchMockData(key) {
 
     // Parse and return the JSON data
     const mockData = await response.json();
-<<<<<<< HEAD
-    // eslint-disable-next-line
-    console.log('[sw.js] fetchMockData: Mock data =>', mockData);
-=======
     // console.log('[sw.js] fetchMockData: Mock data =>', mockData);
->>>>>>> 98dbd28311d07b3b9ab87ecd2908781214133ba6
 
     return new Response(JSON.stringify(mockData), {
       status: 200,
       headers: { 'Content-Type': 'application/json' },
     });
   } catch (error) {
-<<<<<<< HEAD
-    // eslint-disable-next-line
-    console.error(`[sw.js] fetchMockData: Error fetching mock data of url:${path} =>`, error);
-=======
     // console.error(`[sw.js] fetchMockData: Error fetching mock data of url:${path} =>`, error);
->>>>>>> 98dbd28311d07b3b9ab87ecd2908781214133ba6
     // Return an error response if fetching fails
     return new Response(null, { status: 500, statusText: 'Internal Server Error' });
   }
@@ -99,31 +79,16 @@ async function fetchMockData(key) {
 // Install and activate the service worker
 self.addEventListener('install', (event) => {
   event.waitUntil(self.skipWaiting());
-<<<<<<< HEAD
-  // eslint-disable-next-line
-  console.log('[sw.js] install: Service Worker installed');
-=======
   // console.log('[sw.js] install: Service Worker installed');
->>>>>>> 98dbd28311d07b3b9ab87ecd2908781214133ba6
 });
 
 self.addEventListener('message', (event) => {
   placeholders = event.data?.default;
-<<<<<<< HEAD
-  // eslint-disable-next-line
-  console.log('[sw.js] message: Placeholders received=>', placeholders);
-});
-
-self.addEventListener('activate', (event) => {
-  // eslint-disable-next-line
-  console.log('[sw.js] activate: Service Worker activated');
-=======
   // console.log('[sw.js] message: Placeholders received=>', placeholders);
 });
 
 self.addEventListener('activate', (event) => {
   // console.log('[sw.js] activate: Service Worker activated');
->>>>>>> 98dbd28311d07b3b9ab87ecd2908781214133ba6
   // Perform activation tasks if needed
   event.waitUntil(self.clients.claim());
 });
@@ -134,18 +99,6 @@ self.addEventListener('fetch', async (event) => {
   // Check if the request is an API request with a different port
   if (((request.url.includes('api') && !request.url.includes('cbot') && !request.url.includes('chrome-extension')) || request.url.includes('EnvironmentVariableServlet')) && hostURL.port !== '4502') {
     const paths = request.url.split('/');
-<<<<<<< HEAD
-    // eslint-disable-next-line
-    console.log('[sw.js] fetch: API request and not from the port 4502 =>', request.url);
-    if (tokens.includes(paths[paths.length - 1])) {
-      // eslint-disable-next-line
-      console.log('[sw.js] fetch: Request is for placeholders =>', request.url);
-      event.respondWith(fetchMockPlaceholders(toCamelCase(paths[paths.length - 1])));
-      return;
-    }
-    // eslint-disable-next-line
-    console.log('[sw.js] fetch: Request is for mock data =>', request.url);
-=======
     // console.log('[sw.js] fetch: API request and not from the port 4502 =>', request.url);
     if (tokens.includes(paths[paths.length - 1])) {
       // console.log('[sw.js] fetch: Request is for placeholders =>', request.url);
@@ -153,7 +106,6 @@ self.addEventListener('fetch', async (event) => {
       return;
     }
     // console.log('[sw.js] fetch: Request is for mock data =>', request.url);
->>>>>>> 98dbd28311d07b3b9ab87ecd2908781214133ba6
     event.respondWith(fetchMockData(paths[paths.length - 1]));
   } else {
     // Continue with the regular fetch
