@@ -2759,13 +2759,13 @@ body,html {
 }
 
 .booking-form .label,.booking-form label {
-    color: #70777B;
+    color: #8f959a;
     font-size: 9pt;
     margin-bottom: 0
 }
 
 .booking-form input {
-    border: 1px solid #70777B;
+    border: 1px solid #8f959a;
     padding: 10px;
     width: 100%
 }
