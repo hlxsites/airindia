@@ -4,7 +4,7 @@ import {
   getUserInfo,
   getPlaceholderDataFor,
   isLoggedIn,
-  addDefaultHrefToElementAnchorTags,
+  // addDefaultHrefToElementAnchorTags,
 } from '../../scripts/utils/blockUtils.js';
 
 // media query match that indicates mobile/tablet width

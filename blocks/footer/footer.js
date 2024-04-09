@@ -1,6 +1,6 @@
 import { getMetadata, createOptimizedPicture } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
-import { addDefaultHrefToElementAnchorTags } from '../../scripts/utils/blockUtils.js';
+// import { addDefaultHrefToElementAnchorTags } from '../../scripts/utils/blockUtils.js';
 
 function createAccordion() {
   const acc = document.querySelectorAll('.footer-top-item h6');
