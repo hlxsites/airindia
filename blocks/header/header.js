@@ -4,7 +4,7 @@ import {
   getUserInfo,
   getPlaceholderDataFor,
   isLoggedIn,
-  // addDefaultHrefToElementAnchorTags,
+  addDefaultHrefToElementAnchorTags,
 } from '../../scripts/utils/blockUtils.js';
 
 // media query match that indicates mobile/tablet width
@@ -469,6 +469,6 @@ export default async function decorate(block) {
   addGlobalEventHandlers();
   // add skip to main link
   addSkipToMain();
-  // addDefaultHrefToElementAnchorTags('nav');
+  addDefaultHrefToElementAnchorTags('nav');
   addAltTextToHeaderIcons();
 }
