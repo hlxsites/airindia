@@ -385,7 +385,12 @@ function addAltTextToHeaderIcons() {
   // Add alt attribute to signin icon
   const signinIcon = document.querySelector('img[data-icon-name="signin-light"]');
   if (signinIcon) {
-    signinIcon.setAttribute('alt', 'Signin');
+    signinIcon.setAttribute('alt', 'Sign in');
+  }
+  // Add alt attribute to Profile icon
+  const profileIcon = document.querySelector('img[data-icon-name="profile"]');
+  if (profileIcon) {
+    profileIcon.setAttribute('alt', 'My Profile');
   }
 }
 
@@ -461,8 +466,6 @@ export default async function decorate(block) {
   navWrapper.className = 'nav-wrapper';
   navWrapper.append(nav);
   block.append(navWrapper);
-
-  navWrapper.querySelector('.icon-profile img')?.setAttribute('alt', 'My Profile');
 
   decorateNavTools(navSections);
   addGlobalEventHandlers();
