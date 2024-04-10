@@ -71,12 +71,37 @@ function buildAutoBlocks(main) {
   }
 }
 
+export function linkPicture($picture) {
+  const $picParent = $picture.parentNode;
+  const $nextSib = $picParent.nextElementSibling;
+  if ($nextSib && $nextSib.tagName === 'P') {
+    const $a = $nextSib.querySelector('a') || $picture.parentNode.querySelector('a');
+    if ($a && $a.textContent.startsWith('https://')) {
+      $a.innerHTML = '';
+      $a.className = '';
+      $a.appendChild($picture);
+      $picParent.remove();
+    }
+  }
+}
+
+export function decorateLinkedPictures($main) {
+  /* thanks to word online */
+  $main.querySelectorAll('picture').forEach(($picture) => {
+    if (!$picture.closest('div.block')) {
+      linkPicture($picture);
+    }
+  });
+}
+
 /**
  * Decorates the main element.
  * @param {Element} main The main element
  */
 // eslint-disable-next-line import/prefer-default-export
 export function decorateMain(main) {
+  decorateLinkedPictures(main);
+
   // hopefully forward compatible button decoration
   decorateButtons(main);
   decorateIcons(main);
@@ -142,14 +167,14 @@ function loadDelayed() {
   // load anything that can be postponed to the latest here
 }
 
-function isEDSHost(url) {
-  return (url.includes('.hlx.page') || url.includes('.hlx.live') || url.includes('localhost'));
+function isEDSBranch(url) {
+  return (((url.includes('.hlx.page') || url.includes('.hlx.live')) && !url.includes('main--airindia')) || url.includes('localhost'));
 }
 
 async function loadPage() {
   // Initialize service worker
   // TODO: remove once the API is ready
-  if (isEDSHost(window.location.hostname)) {
+  if (isEDSBranch(window.location.hostname)) {
     initServiceWorker();
   }
 
