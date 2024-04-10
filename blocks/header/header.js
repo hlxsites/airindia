@@ -212,7 +212,6 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
   if (isDesktop.matches) {
     navDrops.forEach((drop) => {
       if (!drop.hasAttribute('tabindex')) {
-        drop.setAttribute('role', 'button');
         drop.setAttribute('tabindex', 0);
         drop.addEventListener('focus', focusNavSection);
       }
@@ -376,12 +375,12 @@ function addAltTextToHeaderIcons() {
   // Add alt attribute to search icon
   const searchIcon = document.querySelector('img[data-icon-name="search-light"]');
   if (searchIcon) {
-    searchIcon.setAttribute('alt', 'Search');
+    searchIcon.setAttribute('alt', 'Search icon');
   }
   // Add alt attribute to support icon
   const supportIcon = document.querySelector('img[data-icon-name="support-light"]');
   if (supportIcon) {
-    supportIcon.setAttribute('alt', 'Support');
+    supportIcon.setAttribute('alt', 'Support icon');
   }
   // Add alt attribute to signin icon
   const signinIcon = document.querySelector('img[data-icon-name="signin-light"]');
