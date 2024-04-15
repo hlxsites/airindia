@@ -49,7 +49,5 @@ export function pushPageLoadedAnalytics() {
       trackingCode: getQueryParameters(window.location.href),
     },
   };
-  console.log(dataLayerObj);
-  console.log(window.adobeDataLayer);
   pushToAdobeDataLayer(dataLayerObj);
 }
