@@ -4,7 +4,7 @@ export function getQueryParameters(url) {
   const urlParams = new URLSearchParams(url.split('?')[1]);
   let capturedParams = '';
   const marketingParms = getPlaceholderDataFor('marketingQueryParamsAnalytics') || '';
-  const marketingParmsArr = marketingParms.split(',')?.map((item) => item?.trim()) || [];
+  const marketingParmsArr = marketingParms.split(',')?.map((item) => item?.trim?.() || '') || [];
   marketingParmsArr.forEach((param) => {
     if (urlParams.has(param)) {
       capturedParams += `${param}=${urlParams.get(param)}&`;
