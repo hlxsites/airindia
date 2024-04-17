@@ -1,4 +1,5 @@
 import { getMetadata, createOptimizedPicture } from '../../scripts/aem.js';
+import { pushFooterLinkClickAnalytics } from '../../scripts/analytics.js';
 import { loadFragment } from '../fragment/fragment.js';
 
 function createAccordion() {
@@ -66,6 +67,34 @@ function decorateFooter(block, selectorClass) {
   tempDiv.querySelectorAll('img').forEach((img) => img.closest('picture').replaceWith(createOptimizedPicture(img.src, img.alt, false, [{ width: '750' }])));
 }
 
+function AddclickEventToFooterLinks() {
+  const footer = document.querySelector('footer');
+  if (!footer) return;
+  footer.addEventListener('click', (e) => {
+    const link = e.target.closest('a');
+    const isImage = e.target.tagName.toLowerCase() === 'img';
+    if (link) {
+      const dataLayerObj = {
+        siteSection: 'AEM Site Section',
+        pageType: 'AEM Page',
+        clickName: link.getAttribute('title') || link.textContent,
+        clickComponentType: 'URL',
+        componentName: '',
+        componentID: link.id,
+        clickLocation: 'Footer',
+        ...(isImage && { clickIcon: link.getAttribute('title') || link.textContent }),
+        type: 'other',
+        URL: link.href,
+      };
+      pushFooterLinkClickAnalytics(dataLayerObj);
+    }
+  });
+}
+
+function addGlobalEventHandlers() {
+  AddclickEventToFooterLinks();
+}
+
 /**
  * loads and decorates the footer
  * @param {Element} block The footer block element
@@ -87,4 +116,5 @@ export default async function decorate(block) {
   decorateFooter(block, 'footer-middle');
   createAccordion();
   decorateSocialLinkPictures(block);
+  addGlobalEventHandlers();
 }
