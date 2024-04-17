@@ -1,4 +1,6 @@
+import { EVENTS } from './utils/constants.js';
 import { getPlaceholderDataFor } from './utils/headerUtils.js';
+import { capitalize } from './utils/helpers.js';
 
 export function getQueryParameters(url) {
   const urlParams = new URLSearchParams(url.split('?')[1]);
@@ -89,3 +91,36 @@ export function pushPageLoadedAnalytics({ siteSection, pageType }) {
   };
   pushToAdobeDataLayer(dataLayerObj);
 }
+
+function AddclickEventToLinks() {
+  const footer = document.querySelector('footer');
+  if (!footer) return;
+  footer.addEventListener('click', (e) => {
+    const link = e.target.closest('a');
+    const isImage = e.target.tagName.toLowerCase() === 'img';
+    const clickLocation = capitalize(e.target.closest('.block')?.dataset.blockName || 'Others');
+    if (link) {
+      const dataLayerObj = {
+        siteSection: 'AEM Site Section',
+        pageType: 'AEM Page',
+        clickName: link.getAttribute('title') || link.textContent,
+        clickComponentType: (link.localName === 'a' ? 'URL' : 'Button'),
+        componentName: link.textContent,
+        componentID: link.id,
+        clickLocation,
+        ...(isImage && { clickIcon: link.getAttribute('title') || link.textContent }),
+        type: 'other',
+        URL: link.href,
+      };
+      pushFooterLinkClickAnalytics(dataLayerObj);
+    }
+  });
+}
+
+function AddAdobeLaunchLoadedHandler() {
+  window.addEventListener(EVENTS.ADOBE_LAUNCH_LOADED, () => {
+    AddclickEventToLinks();
+  });
+}
+
+AddAdobeLaunchLoadedHandler();
