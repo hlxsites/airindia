@@ -93,7 +93,7 @@ export function pushPageLoadedAnalytics({ siteSection, pageType }) {
 }
 
 function AddclickEventToLinks() {
-  const footer = document.querySelector('footer');
+  const footer = document.querySelector('body');
   if (!footer) return;
   footer.addEventListener('click', (e) => {
     const link = e.target.closest('a');
