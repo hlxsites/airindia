@@ -49,6 +49,7 @@ async function loadCookieConsentManager() {
 }
 
 await loadCookieConsentManager();
+window.adobeDataLayer = window.adobeDataLayer || [];
 await loadAdobeLaunch();
 pushPageLoadedAnalytics();
 await loadGTM();
