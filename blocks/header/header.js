@@ -354,7 +354,7 @@ function globalEscapeHandler(e) {
   hideProfileInfo();
 }
 
-function AddAdobeLaunchLoadedHandler() {
+function addAdobeLaunchLoadedHandler() {
   window.addEventListener(EVENTS.ADOBE_LAUNCH_LOADED, () => {
     const dataObj = {
       siteSection: 'AEM Site Section',
@@ -373,7 +373,7 @@ function addGlobalEventHandlers() {
   } else {
     window.removeEventListener('keydown', globalEscapeHandler);
   }
-  AddAdobeLaunchLoadedHandler();
+  addAdobeLaunchLoadedHandler();
 }
 
 /**

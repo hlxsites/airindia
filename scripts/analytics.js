@@ -92,7 +92,7 @@ export function pushPageLoadedAnalytics({ siteSection, pageType }) {
   pushToAdobeDataLayer(dataLayerObj);
 }
 
-function AddclickEventToLinks() {
+function addclickEventToLinks() {
   const footer = document.querySelector('body');
   if (!footer) return;
   footer.addEventListener('click', (e) => {
@@ -117,10 +117,10 @@ function AddclickEventToLinks() {
   });
 }
 
-function AddAdobeLaunchLoadedHandler() {
+function addAdobeLaunchLoadedHandler() {
   window.addEventListener(EVENTS.ADOBE_LAUNCH_LOADED, () => {
-    AddclickEventToLinks();
+    addclickEventToLinks();
   });
 }
 
-AddAdobeLaunchLoadedHandler();
+addAdobeLaunchLoadedHandler();

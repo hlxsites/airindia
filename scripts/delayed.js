@@ -56,7 +56,6 @@ async function loadCookieConsentManager() {
 
 await loadCookieConsentManager();
 await loadAdobeLaunch();
-// pushPageLoadedAnalytics();
 await loadGTM();
 
 // Load chatbot script
