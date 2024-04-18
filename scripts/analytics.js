@@ -103,10 +103,10 @@ function addclickEventToLinks() {
       const dataLayerObj = {
         siteSection: 'AEM Site Section',
         pageType: 'AEM Page',
-        clickName: link.getAttribute('alt') || link.textContent,
+        clickName: (isImage ? e.target.getAttribute('alt') : link.textContent),
         clickComponentType: (link.localName === 'a' ? 'URL' : 'Button'),
-        componentName: link.getAttribute('alt') || link.textContent,
-        componentID: link.id,
+        componentName: (isImage ? e.target.getAttribute('alt') : link.textContent),
+        componentID: (isImage ? e.target.getAttribute('alt') : link.id),
         clickLocation,
         ...(isImage && { clickIcon: link.getAttribute('alt') || link.textContent }),
         type: 'other',
