@@ -48,7 +48,7 @@ export function pushFooterLinkClickAnalytics({
       clickInfo: {
         clickName,
         clickComponentType,
-        componentName,
+        componentName: '',
         componentID,
         clickLocation,
         ...(clickIcon && { clickIcon }),
