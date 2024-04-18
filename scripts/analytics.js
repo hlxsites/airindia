@@ -36,9 +36,9 @@ function buildCommonDataLayer({ siteSection, pageType }) {
   };
 }
 
-export function pushFooterLinkClickAnalytics({
+export function pushLinkClickAnalytics({
   siteSection, pageType, clickName,
-  clickComponentType, componentID, clickLocation,
+  clickComponentType, componentName, componentID, clickLocation,
   clickIcon, type, URL,
 }) {
   const dataLayerObj = {
@@ -48,7 +48,7 @@ export function pushFooterLinkClickAnalytics({
       clickInfo: {
         clickName,
         clickComponentType,
-        componentName: '',
+        componentName,
         componentID,
         clickLocation,
         ...(clickIcon && { clickIcon }),
@@ -108,11 +108,11 @@ function addclickEventToLinks() {
         componentName: (isImage ? e.target.getAttribute('alt') : link.textContent),
         componentID: (isImage ? e.target.getAttribute('alt') : link.id),
         clickLocation,
-        ...(isImage && { clickIcon: link.getAttribute('alt') || link.textContent }),
+        ...(isImage && { clickIcon: e.target.getAttribute('alt') || link.textContent }),
         type: 'other',
         URL: link.href,
       };
-      pushFooterLinkClickAnalytics(dataLayerObj);
+      pushLinkClickAnalytics(dataLayerObj);
     }
   });
 }
