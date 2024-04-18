@@ -93,9 +93,7 @@ export function pushPageLoadedAnalytics({ siteSection, pageType }) {
 }
 
 function addclickEventToLinks() {
-  const footer = document.querySelector('body');
-  if (!footer) return;
-  footer.addEventListener('click', (e) => {
+  document.addEventListener('click', (e) => {
     const link = e.target.closest('a');
     const isImage = e.target.tagName.toLowerCase() === 'img';
     const clickLocation = capitalize(e.target.closest('.block')?.dataset.blockName || 'Others');
@@ -106,7 +104,7 @@ function addclickEventToLinks() {
         clickName: (isImage ? e.target.getAttribute('alt') : link.textContent),
         clickComponentType: (link.localName === 'a' ? 'URL' : 'Button'),
         componentName: (isImage ? e.target.getAttribute('alt') : link.textContent),
-        componentID: (isImage ? e.target.getAttribute('alt') : link.id),
+        componentID: (isImage ? e.target.getAttribute('alt') : (link.id || link.textContent)),
         clickLocation,
         ...(isImage && { clickIcon: e.target.getAttribute('alt') || link.textContent }),
         type: 'other',
