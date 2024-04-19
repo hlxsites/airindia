@@ -8,8 +8,12 @@ import { pushPageLoadedAnalytics } from './analytics.js';
 
 // Initialize the booking block if present on the page
 if (document.querySelector('.booking')) {
-  initBooking();
+  await initBooking();
 }
+
+// Auth scripts
+await loadScript('/scripts/auth/msal.js');
+await loadScript('/scripts/auth/authRedirect.js');
 
 // Core Web Vitals RUM collection
 sampleRUM('cwv');
@@ -49,7 +53,6 @@ async function loadCookieConsentManager() {
 }
 
 await loadCookieConsentManager();
-window.adobeDataLayer = window.adobeDataLayer || [];
 await loadAdobeLaunch();
 pushPageLoadedAnalytics();
 await loadGTM();

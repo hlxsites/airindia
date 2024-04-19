@@ -93,15 +93,15 @@ function selectAccount(firstResponse = false, checkLoginResponse = false) {
       window.sessionStorage.removeItem('isLoggedIn');
       window.sessionStorage.removeItem('lyt-ud');
       window.sessionStorage.removeItem('lty-md');
-      document.getElementById('signIn').classList.remove('d-none');
-      document.getElementById('signIn-mob').classList.remove('d-none');
-      document.getElementById('signOut').classList.add('d-none');
-      document.getElementById('signOut-mob').classList.add('d-none');
+      document.getElementById('signIn')?.classList.remove('d-none');
+      document.getElementById('signIn-mob')?.classList.remove('d-none');
+      document.getElementById('signOut')?.classList.add('d-none');
+      document.getElementById('signOut-mob')?.classList.add('d-none');
       document.getElementById('isloggedIn')?.classList.add('d-none'); // To show/hide paragraph in loyalty FAQ page
       document.getElementById('isNotloggedIn')?.classList.remove('d-none');
       if (document.getElementById('homepagerebrand') != null) {
-        signInDrop.classList.remove('d-none');
-        signInDropMob.classList.remove('d-none');
+        signInDrop?.classList.remove('d-none');
+        signInDropMob?.classList.remove('d-none');
         displaySignIn();
       }
     }
@@ -388,12 +388,14 @@ setTimeout(() => {
 }, '3000');
 
 function displaySignIn() {
-  if (signInDrop.classList.contains('hide-signin') || signInDropMob.classList.contains('hide-signin')) {
-    signInDrop.classList.remove('hide-signin');
-    signInDrop.classList.add('display-signin');
-    signInDropMob.classList.remove('hide-signin');
-    signInDropMob.classList.add('display-signin');
-  } else hideSignIn();
+  if (signInDrop || signInDropMob) {
+    if (signInDrop.classList.contains('hide-signin') || signInDropMob.classList.contains('hide-signin')) {
+      signInDrop.classList.remove('hide-signin');
+      signInDrop.classList.add('display-signin');
+      signInDropMob.classList.remove('hide-signin');
+      signInDropMob.classList.add('display-signin');
+    } else hideSignIn();
+  }
 }
 
 function hideSignIn() {
@@ -407,8 +409,10 @@ function hideSignIn() {
     }
 
     setTimeout(() => {
-      signInDrop.classList.add('d-none');
-      signInDropMob.classList.add('d-none');
+      if (signInDrop || signInDropMob) {
+        signInDrop.classList.add('d-none');
+        signInDropMob.classList.add('d-none');
+      }
     }, '800');
   }
 }
@@ -740,11 +744,13 @@ window.dispatchEvent(authRedirectLoad);
 
 // new sign up flow
 
-document.onreadystatechange = () => {
-  if (document.readyState !== 'loading') {
-    onClickSignUp(1);
-  }
-};
+// document.onreadystatechange = () => {
+//   if (document.readyState !== 'loading') {
+//     onClickSignUp(1);
+//   }
+// };
+
+onClickSignUp(1);
 
 function nonloggedInComEnrollnowlink() {
   onClickSignUp(0);
