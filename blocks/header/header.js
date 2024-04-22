@@ -6,6 +6,8 @@ import {
   isLoggedIn,
   addDefaultHrefToElementAnchorTags,
 } from '../../scripts/utils/blockUtils.js';
+import { pushPageLoadedAnalytics } from '../../scripts/analytics.js';
+import { EVENTS } from '../../scripts/utils/constants.js';
 
 // media query match that indicates mobile/tablet width
 const isDesktop = window.matchMedia('(min-width: 1024px)');
@@ -356,6 +358,16 @@ function globalEscapeHandler(e) {
   hideProfileInfo();
 }
 
+function addAdobeLaunchLoadedHandler() {
+  window.addEventListener(EVENTS.ADOBE_LAUNCH_LOADED, () => {
+    const dataObj = {
+      siteSection: 'AEM Site Section',
+      pageType: 'AEM Page',
+    };
+    pushPageLoadedAnalytics(dataObj);
+  });
+}
+
 function addGlobalEventHandlers() {
   addScrollHandler();
   // enable menu collapse on escape keypress
@@ -365,6 +377,7 @@ function addGlobalEventHandlers() {
   } else {
     window.removeEventListener('keydown', globalEscapeHandler);
   }
+  addAdobeLaunchLoadedHandler();
 }
 function addAltTextToHeaderIcons() {
   // Add alt attribute to brand icon
