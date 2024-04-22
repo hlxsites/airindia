@@ -383,27 +383,27 @@ function addAltTextToHeaderIcons() {
   // Add alt attribute to brand icon
   const airIndiaIcon = document.querySelector('img[data-icon-name="ai-logo-white"]');
   if (airIndiaIcon) {
-    airIndiaIcon.setAttribute('alt', 'Air India');
+    airIndiaIcon.setAttribute('alt', getPlaceholderDataFor('airIndiaAltText'));
   }
   // Add alt attribute to search icon
   const searchIcon = document.querySelector('img[data-icon-name="search-light"]');
   if (searchIcon) {
-    searchIcon.setAttribute('alt', 'Search icon');
+    searchIcon.setAttribute('alt', getPlaceholderDataFor('searchAltText'));
   }
   // Add alt attribute to support icon
   const supportIcon = document.querySelector('img[data-icon-name="support-light"]');
   if (supportIcon) {
-    supportIcon.setAttribute('alt', 'Support icon');
+    supportIcon.setAttribute('alt', getPlaceholderDataFor('supportAltText'));
   }
   // Add alt attribute to signin icon
   const signinIcon = document.querySelector('img[data-icon-name="signin-light"]');
   if (signinIcon) {
-    signinIcon.setAttribute('alt', 'Sign in');
+    signinIcon.setAttribute('alt', getPlaceholderDataFor('signInAltText'));
   }
   // Add alt attribute to Profile icon
   const profileIcon = document.querySelector('img[data-icon-name="profile"]');
   if (profileIcon) {
-    profileIcon.setAttribute('alt', 'My Profile');
+    profileIcon.setAttribute('alt', getPlaceholderDataFor('myProfileAltText'));
   }
 }
 
