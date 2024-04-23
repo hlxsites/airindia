@@ -8,7 +8,7 @@ const CMP_CONFIG = {
 };
 
 export const SCRIPTS = {
-  wcmDataLayer: 'https://www.airindia.com/etc.clientlibs/core/wcm/components/commons/datalayer/v1/clientlibs/core.wcm.components.commons.datalayer.v1.lc-904d3c2f1e821ab45124d66de422b409-lc.min.js',
+  wcmDataLayer: '/etc.clientlibs/core/wcm/components/commons/datalayer/v1/clientlibs/core.wcm.components.commons.datalayer.v1.lc-904d3c2f1e821ab45124d66de422b409-lc.min.js',
   adobeotmSrc: {
     dev: 'https://assets.adobedtm.com/d8581f94b285/4e9e4938e0dc/launch-43a3ffd400eb-development.min.js',
     preview: 'https://assets.adobedtm.com/d8581f94b285/4e9e4938e0dc/launch-ce0d5a5ddfb7-staging.min.js',
