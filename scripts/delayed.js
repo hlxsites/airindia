@@ -13,6 +13,7 @@ if (document.querySelector('.booking')) {
 
 // Auth scripts
 await loadScript('/scripts/auth/msal.js');
+await loadScript('/scripts/auth/authConfig.js');
 await loadScript('/scripts/auth/authRedirect.js');
 
 // Core Web Vitals RUM collection
