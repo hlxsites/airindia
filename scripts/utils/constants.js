@@ -7,6 +7,10 @@ const CMP_CONFIG = {
   searchFlightStyle: '/etc.clientlibs/airindia/components/AIComponents/flightsearch/clientlibs.lc-0a0f7442c40226c04d15438672316227-lc.min.css',
 };
 
+export const HOST = {
+  origin: 'https://www.airindia.com',
+};
+
 export const EVENTS = {
   ADOBE_LAUNCH_LOADED: 'ADOBE_LAUNCH_LOADED',
 };

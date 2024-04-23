@@ -14,6 +14,8 @@ import {
   fetchPlaceholders,
 } from './aem.js';
 
+import { HOST } from './utils/constants.js';
+
 import { initServiceWorker } from '../blocks/booking/booking-helpers.js';
 
 const LCP_BLOCKS = []; // add your LCP blocks to the list
@@ -94,6 +96,16 @@ export function decorateLinkedPictures($main) {
   });
 }
 
+// Add _blank to anchor links if the href is external
+function decorateExternalLinks($main) {
+  $main.querySelectorAll('a').forEach(($a) => {
+    if ($a.href && $a.href.startsWith('http') && !$a.href.startsWith(window.location.origin) && !$a.href.startsWith(HOST.origin)) {
+      $a.rel = 'noopener noreferrer';
+      $a.target = '_blank';
+    }
+  });
+}
+
 /**
  * Decorates the main element.
  * @param {Element} main The main element
@@ -108,6 +120,7 @@ export function decorateMain(main) {
   buildAutoBlocks(main);
   decorateSections(main);
   decorateBlocks(main);
+  decorateExternalLinks(main);
 }
 
 /**
