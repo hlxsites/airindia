@@ -203,7 +203,7 @@ function toggleMenu(nav, navSections, forceExpanded = null) {
     document.querySelector('header .nav-wrapper')?.classList.remove('expanded');
   }
   // enable nav dropdown keyboard accessibility
-  const navDrops = navSections.querySelectorAll('.nav-drop');
+  const navDrops = navSections?.querySelectorAll('.nav-drop') || [];
   if (isDesktop.matches) {
     navDrops.forEach((drop) => {
       if (!drop.hasAttribute('tabindex')) {
@@ -291,7 +291,7 @@ function toggleProfileInfo() {
 function decorateNavTools(navSections) {
   const navTools = document.querySelector('.nav-tools');
   // navSections.insertBefore(navTools, navSections.firstChild);
-  const navToolLists = Array.from(navTools.querySelectorAll('ul>li')) || [];
+  const navToolLists = Array.from(navTools?.querySelectorAll('ul>li')) || [];
   navToolLists.forEach((list) => {
     if (list.querySelector('ul')) {
       list.addEventListener('mouseover', () => {
@@ -376,7 +376,7 @@ export default async function decorate(block) {
   // decorate nav DOM
   const nav = document.createElement('nav');
   nav.id = 'nav';
-  while (fragment.firstElementChild) nav.append(fragment.firstElementChild);
+  while (fragment?.firstElementChild) nav.append(fragment.firstElementChild);
 
   const classes = ['brand', 'sections', 'tools'];
   classes.forEach((c, i) => {
