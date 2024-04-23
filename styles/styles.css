@@ -379,7 +379,7 @@ main .section.highlight {
 
 @media (min-width: 1024px) {
   main .section {
-    padding: 2rem 2rem;
+    padding: 2rem;
   }
 
   .section > div {
