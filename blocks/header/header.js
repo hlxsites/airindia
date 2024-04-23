@@ -19,9 +19,10 @@ function toggleAllNavSections(sections, expanded = false) {
 function wrapPictueWithLink(navDrop) {
   const linkElem = navDrop.querySelector('a');
   const picElem = navDrop.querySelector('picture');
-  if (picElem) {
+  if (picElem && linkElem) {
     linkElem.textContent = '';
     linkElem.appendChild(picElem);
+    linkElem.title = picElem.querySelector('img')?.getAttribute('alt');
   }
 }
 
@@ -288,6 +289,22 @@ function toggleProfileInfo() {
   document.querySelector('.profile-wrapper')?.classList.toggle('show');
 }
 
+function attachSiginListener(parentElem) {
+  const links = [...parentElem.querySelectorAll('a')] || [];
+  const signInLinks = links.filter((link) => link.href?.endsWith('#signin'));
+  const signUpLinks = links.filter((link) => link.href?.endsWith('#signup'));
+  signInLinks?.forEach((signInLink) => {
+    signInLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      window.signIn();
+    });
+  });
+
+  signUpLinks?.forEach((signUpLink) => {
+    signUpLink.classList.add('enrollnowlink');
+  });
+}
+
 function decorateNavTools(navSections) {
   const navTools = document.querySelector('.nav-tools');
   // navSections.insertBefore(navTools, navSections.firstChild);
@@ -306,7 +323,6 @@ function decorateNavTools(navSections) {
   if (search) {
     search.addEventListener('click', headerSearchClickHandler.bind(null, search, navSections));
   }
-
   const paragraphs = navTools.querySelectorAll('.default-content-wrapper p');
   if (isLoggedIn() && paragraphs?.length >= 0) {
     paragraphs[paragraphs.length - 2]?.classList.add('hide');
@@ -385,11 +401,11 @@ export default async function decorate(block) {
   });
 
   const navBrand = nav.querySelector('.nav-brand');
-  const brandImg = navBrand.querySelector('img');
+  const brandImg = navBrand?.querySelector('img');
   if (brandImg) {
     brandImg.setAttribute('alt', 'Air India');
   }
-  const brandLink = navBrand.querySelector('.button');
+  const brandLink = navBrand?.querySelector('.button');
   if (brandLink) {
     brandLink.className = '';
     brandLink.closest('.button-container').className = '';
@@ -442,6 +458,7 @@ export default async function decorate(block) {
 
   decorateNavTools(navSections);
   addGlobalEventHandlers();
+  attachSiginListener(block);
   // add skip to main link
   addSkipToMain();
 }
