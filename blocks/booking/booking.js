@@ -1,5 +1,7 @@
 import loadExternalComponent from '../../scripts/utils/initializer.js';
 
+import { getPlaceholderDataFor } from '../../scripts/utils/blockUtils.js';
+
 const urlParams = 'https://www.airindia.in';
 
 const configModelUrl = (window.location.hostname === urlParams) ? `${urlParams}/content/.EnvironmentVariableServlet.json` : '/blocks/booking/config.json';
@@ -17,7 +19,7 @@ let container;
 function updateDateButtonAriaLabels() {
   const dateButtons = document.querySelectorAll('.btn.bi.bi-calendar3');
   dateButtons.forEach((dateButton) => {
-    dateButton.setAttribute('aria-label', 'Date button');
+    dateButton.setAttribute('aria-label', getPlaceholderDataFor('bookingDateButtonAriaLabel'));
   });
 }
 
