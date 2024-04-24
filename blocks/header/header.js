@@ -296,18 +296,18 @@ function toggleProfileInfo() {
 }
 
 function attachSiginListener(parentElem) {
-  const links = [...parentElem.querySelectorAll('a')] || [];
-  const signInLinks = links.filter((link) => link.href?.endsWith('#signin'));
+  const links = [...parentElem.querySelectorAll('a')];
   const signUpLinks = links.filter((link) => link.href?.endsWith('#signup'));
-  signInLinks?.forEach((signInLink) => {
-    signInLink.addEventListener('click', (e) => {
-      e.preventDefault();
-      window.signIn();
-    });
-  });
-
   signUpLinks?.forEach((signUpLink) => {
     signUpLink.classList.add('enrollnowlink');
+  });
+
+  parentElem.addEventListener('click', (e) => {
+    const aElem = e.target.closest('a');
+    if (aElem?.href?.endsWith?.('#signin')) {
+      e.preventDefault();
+      window.signIn();
+    }
   });
 }
 
@@ -384,6 +384,18 @@ function addAdobeLaunchLoadedHandler() {
   });
 }
 
+function addSigninEventHandlers() {
+  const signInIcons = [...document.querySelectorAll('.icon-signin-light, .icon-signin')];
+  signInIcons?.forEach((icon) => {
+    icon.addEventListener('click', (e) => {
+      const clickedIcon = e.target.closest('.icon-signin-light') || e.target.closest('.icon-signin');
+      if (clickedIcon) {
+        window.signIn();
+      }
+    });
+  });
+}
+
 function addGlobalEventHandlers() {
   addScrollHandler();
   // enable menu collapse on escape keypress
@@ -393,6 +405,7 @@ function addGlobalEventHandlers() {
   } else {
     window.removeEventListener('keydown', globalEscapeHandler);
   }
+  addSigninEventHandlers();
   addAdobeLaunchLoadedHandler();
 }
 function addAltTextToHeaderIcons() {
