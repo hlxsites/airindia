@@ -24,27 +24,27 @@ const LCP_BLOCKS = []; // add your LCP blocks to the list
 /*
   * Returns the environment type based on the hostname.
 */
-export function getEnvType(hostname = window.location.hostname) {
+export function getEnvType (hostname = window.location.hostname) {
   const fqdnToEnvType = {
     'www.airindia.com': 'live',
     'airindia.com': 'live',
     'main--airindia--hlxsites.hlx.page': 'preview',
     'main--airindia--hlxsites.hlx.live': 'live',
   };
-  return fqdnToEnvType[hostname] || 'dev';
+  return fqdnToEnvType[ hostname ] || 'dev';
 }
 
 /**
  * Builds hero block and prepends to main in a new section.
  * @param {Element} main The container element
  */
-function buildHeroBlock(main) {
+function buildHeroBlock (main) {
   const h1 = main.querySelector('h1');
   const picture = main.querySelector('picture');
   // eslint-disable-next-line no-bitwise
   if (h1 && picture && (h1.compareDocumentPosition(picture) & Node.DOCUMENT_POSITION_PRECEDING)) {
     const section = document.createElement('div');
-    section.append(buildBlock('hero', { elems: [picture, h1] }));
+    section.append(buildBlock('hero', { elems: [ picture, h1 ] }));
     main.prepend(section);
   }
 }
@@ -52,7 +52,7 @@ function buildHeroBlock(main) {
 /**
  * load fonts.css and set a session storage flag
  */
-async function loadFonts() {
+async function loadFonts () {
   await loadCSS(`${window.hlx.codeBasePath}/styles/fonts.css`);
   try {
     if (!window.location.hostname.includes('localhost')) sessionStorage.setItem('fonts-loaded', 'true');
@@ -65,7 +65,7 @@ async function loadFonts() {
  * Builds all synthetic blocks in a container element.
  * @param {Element} main The container element
  */
-function buildAutoBlocks(main) {
+function buildAutoBlocks (main) {
   try {
     buildHeroBlock(main);
   } catch (error) {
@@ -74,7 +74,7 @@ function buildAutoBlocks(main) {
   }
 }
 
-export function linkPicture($picture) {
+export function linkPicture ($picture) {
   const $picParent = $picture.parentNode;
   const $nextSib = $picParent.nextElementSibling;
   if ($nextSib && $nextSib.tagName === 'P') {
@@ -88,7 +88,7 @@ export function linkPicture($picture) {
   }
 }
 
-export function decorateLinkedPictures($main) {
+export function decorateLinkedPictures ($main) {
   /* thanks to word online */
   $main.querySelectorAll('picture').forEach(($picture) => {
     if (!$picture.closest('div.block')) {
@@ -98,10 +98,14 @@ export function decorateLinkedPictures($main) {
 }
 
 // Add _blank to anchor links if the href is external
-function decorateExternalLinks($main) {
+function decorateExternalLinks ($main) {
   $main.querySelectorAll('a').forEach(($a) => {
     const thisUrl = new URL($a.href);
-    if ($a.href && $a.href.startsWith('http') && !$a.href.startsWith(window.location.origin) && !thisUrl?.origin?.endsWith(HOST.domain)) {
+    if ($a.href
+      && $a.href.startsWith('http')
+      && !$a.href.startsWith(window.location.origin)
+      && !thisUrl?.origin?.endsWith(HOST.domain)
+      && (thisUrl.hash === '#signin' || thisUrl.hash === '#signup')) {
       $a.rel = 'noopener noreferrer';
       $a.target = '_blank';
     }
@@ -113,7 +117,7 @@ function decorateExternalLinks($main) {
  * @param {Element} main The main element
  */
 // eslint-disable-next-line import/prefer-default-export
-export function decorateMain(main) {
+export function decorateMain (main) {
   decorateLinkedPictures(main);
 
   // hopefully forward compatible button decoration
@@ -129,7 +133,7 @@ export function decorateMain(main) {
  * Loads everything needed to get to LCP.
  * @param {Element} doc The container element
  */
-async function loadEager(doc) {
+async function loadEager (doc) {
   document.documentElement.lang = 'en';
   decorateTemplateAndTheme();
   const main = doc.querySelector('main');
@@ -153,7 +157,7 @@ async function loadEager(doc) {
  * Loads everything that doesn't need to be delayed.
  * @param {Element} doc The container element
  */
-async function loadLazy(doc) {
+async function loadLazy (doc) {
   const main = doc.querySelector('main');
   await loadBlocks(main);
 
@@ -176,17 +180,17 @@ async function loadLazy(doc) {
  * Loads everything that happens a lot later,
  * without impacting the user experience.
  */
-function loadDelayed() {
+function loadDelayed () {
   // eslint-disable-next-line import/no-cycle
   window.setTimeout(() => import('./delayed.js'), 3000);
   // load anything that can be postponed to the latest here
 }
 
-function isEDSBranch(url) {
+function isEDSBranch (url) {
   return (((url.includes('.hlx.page') || url.includes('.hlx.live')) && !url.includes('main--airindia')) || url.includes('localhost'));
 }
 
-async function loadPage() {
+async function loadPage () {
   // Initialize service worker
   // TODO: remove once the API is ready
   if (isEDSBranch(window.location.hostname)) {
