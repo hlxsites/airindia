@@ -35,7 +35,7 @@ function addDomainToLinks(element) {
   const links = element.querySelectorAll('a');
   links.forEach((link) => {
     // replace the origin with the HOST origin if the link is a relative path
-    if(isRelativePath(link)) {
+    if (isRelativePath(link)) {
       link.setAttribute('href', `${HOST.origin}${link.getAttribute('href')}`);
     }
   });
