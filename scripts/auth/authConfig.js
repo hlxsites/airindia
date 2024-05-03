@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 function isEdsTestSubdomain(urlStr) {
   const url = new URL(urlStr);
   return url?.origin === HOST.edsSubDomain;
@@ -8,6 +9,10 @@ const HOST = {
   edsTestPage: 'https://ai-eds-test.airindia.com/in/en/book/special-offers/global-connectivity',
 };
 
+=======
+import { isEdsTestSubdomain } from "../scripts";
+import { HOST } from "../utils/constants";
+>>>>>>> e26d38eee0e3dc46ed242ea18f8f63827f6fcb68
 const envWiseLoginConfig = {
   prod: {
     tenant: 'login',
