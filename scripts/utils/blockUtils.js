@@ -1,5 +1,36 @@
 /* eslint-disable */
 let _keyStr = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
+
+function _utf8_encode(r) {
+  r = r.replace(/\r\n/g, "\n");
+  let e = "";
+  for (let t = 0; t < r.length; t++) {
+      let o = r.charCodeAt(t);
+      o < 128 ? e += String.fromCharCode(o) : o > 127 && o < 2048 ? (e += String.fromCharCode(o >> 6 | 192),
+      e += String.fromCharCode(63 & o | 128)) : (e += String.fromCharCode(o >> 12 | 224),
+      e += String.fromCharCode(o >> 6 & 63 | 128),
+      e += String.fromCharCode(63 & o | 128))
+  }
+  return e
+}
+
+function _utf8_decode(r) {
+  let e = ""
+    , t = 0
+    , o = 0
+    , n = 0;
+  for (; t < r.length; )
+      o = r.charCodeAt(t),
+      o < 128 ? (e += String.fromCharCode(o),
+      t++) : o > 191 && o < 224 ? (n = r.charCodeAt(t + 1),
+      e += String.fromCharCode((31 & o) << 6 | 63 & n),
+      t += 2) : (n = r.charCodeAt(t + 1),
+      c3 = r.charCodeAt(t + 2),
+      e += String.fromCharCode((15 & o) << 12 | (63 & n) << 6 | 63 & c3),
+      t += 3);
+  return e
+}
+
 window.encode = (r) => {
     let e, t, o, n, a, d, h, C = "", c = 0;
     for (r = _utf8_encode(r); c < r.length; )
@@ -31,34 +62,7 @@ window.decode = (r) => {
     return C = _utf8_decode(C),
     C
 }
-function _utf8_encode(r) {
-    r = r.replace(/\r\n/g, "\n");
-    let e = "";
-    for (let t = 0; t < r.length; t++) {
-        let o = r.charCodeAt(t);
-        o < 128 ? e += String.fromCharCode(o) : o > 127 && o < 2048 ? (e += String.fromCharCode(o >> 6 | 192),
-        e += String.fromCharCode(63 & o | 128)) : (e += String.fromCharCode(o >> 12 | 224),
-        e += String.fromCharCode(o >> 6 & 63 | 128),
-        e += String.fromCharCode(63 & o | 128))
-    }
-    return e
-}
-function _utf8_decode(r) {
-    let e = ""
-      , t = 0
-      , o = 0
-      , n = 0;
-    for (; t < r.length; )
-        o = r.charCodeAt(t),
-        o < 128 ? (e += String.fromCharCode(o),
-        t++) : o > 191 && o < 224 ? (n = r.charCodeAt(t + 1),
-        e += String.fromCharCode((31 & o) << 6 | 63 & n),
-        t += 2) : (n = r.charCodeAt(t + 1),
-        c3 = r.charCodeAt(t + 2),
-        e += String.fromCharCode((15 & o) << 12 | (63 & n) << 6 | 63 & c3),
-        t += 3);
-    return e
-}
+
 /* eslint-enable */
 
 export function getLang() {
