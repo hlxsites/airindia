@@ -288,9 +288,12 @@ async function setupProfileInfo(profileElem) {
   `;
 
   profileElem?.appendChild(profileWrapper);
-  const userNameElem = document.querySelector('.icon.icon-profile');
+  const userNameElem = document.querySelector('header .icon.icon-profile');
   if (userNameElem?.parentElement) {
-    [...userNameElem.parentElement.childNodes].at(-1).textContent = userInfo?.name;
+    const profileElemChildren = [...userNameElem.parentElement.childNodes];
+    if (profileElemChildren.length > 0) {
+      profileElemChildren.at(-1).textContent = userInfo?.name;
+    }
   }
 }
 
