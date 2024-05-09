@@ -291,7 +291,7 @@ async function setupProfileInfo(profileElem) {
   const userNameElem = document.querySelector('header .icon.icon-profile');
   if (userNameElem?.parentElement) {
     const profileElemChildren = [...userNameElem.parentElement.childNodes];
-    profileElemChildren.forEach((item) => {
+    profileElemChildren?.forEach((item) => {
       if (item.nodeType === Node.TEXT_NODE) {
         item.nodeValue = userInfo?.name;
       }
