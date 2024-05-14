@@ -152,11 +152,11 @@ function saveAccountSummary(membershipDataResponse) {
   sessionStorage.setItem(STORAGE.LTY_MD, window.encode(JSON.stringify(membershipData)));
   sessionStorage.setItem(
     STORAGE.LTY_MEM_TIER,
-    window.encode(JSON.stringify(membershipData?.mainTier?.allianceTier?.ffpTierCode))
+    window.encode(JSON.stringify(membershipData?.mainTier?.allianceTier?.ffpTierCode)),
   );
   sessionStorage.setItem(
     STORAGE.LTY_UD,
-    window.encode(JSON.stringify(membershipData?.contact?.emails?.[0]?.address))
+    window.encode(JSON.stringify(membershipData?.contact?.emails?.[0]?.address)),
   );
   return membershipData;
 }
