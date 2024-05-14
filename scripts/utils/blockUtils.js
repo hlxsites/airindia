@@ -1,3 +1,5 @@
+import { STORAGE } from './constants.js';
+
 const AIEnvBaseUrl = {
   DEV: 'https://ai-shrd-sandbx-apgw-001.azure-api.net/',
   QA: 'https://ai-shrd-sandbx-apgw-001.azure-api.net/',
@@ -145,9 +147,30 @@ function getInititals(firstName, lastName) {
   );
 }
 
+function saveAccountSummary(membershipData) {
+  sessionStorage.setItem(STORAGE.LTY_MD, window.encode(JSON.stringify(membershipData)));
+}
+
+function getAccountSummaryFromSessionStorage() {
+  const accountSummary = sessionStorage.getItem(STORAGE.LTY_MD);
+  let accountSummaryData;
+  try {
+    if (accountSummary) {
+      accountSummaryData = JSON.parse(window.decode(accountSummary));
+    }
+  } catch (err) {
+    accountSummaryData = null;
+  }
+  return accountSummaryData;
+}
+
 // Temporary placeholder function to mimic the signin behaviour. Will be refactored
 export async function getUserInfo() {
-  const membershipData = await getAccountSummary();
+  let membershipData = getAccountSummaryFromSessionStorage();
+  if (!membershipData) {
+    membershipData = await getAccountSummary();
+    saveAccountSummary(membershipData);
+  }
   const {
     responsePayload: {
       data: [userData],
@@ -166,6 +189,7 @@ export async function getUserInfo() {
     loyaltyAward: [loyalty],
     mainTier: { label: club },
   } = userData;
+
   return {
     initials: getInititals(romanized?.firstName, romanized?.lastName),
     name: romanized?.firstName,
