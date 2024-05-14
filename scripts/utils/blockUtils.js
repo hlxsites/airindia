@@ -147,8 +147,18 @@ function getInititals(firstName, lastName) {
   );
 }
 
-function saveAccountSummary(membershipData) {
+function saveAccountSummary(membershipDataResponse) {
+  const [membershipData] = membershipDataResponse?.responsePayload?.data || [];
   sessionStorage.setItem(STORAGE.LTY_MD, window.encode(JSON.stringify(membershipData)));
+  sessionStorage.setItem(
+    STORAGE.LTY_MEM_TIER,
+    window.encode(JSON.stringify(membershipData?.mainTier?.allianceTier?.ffpTierCode))
+  );
+  sessionStorage.setItem(
+    STORAGE.LTY_UD,
+    window.encode(JSON.stringify(membershipData?.contact?.emails?.[0]?.address))
+  );
+  return membershipData;
 }
 
 function getAccountSummaryFromSessionStorage() {
@@ -169,13 +179,9 @@ export async function getUserInfo() {
   let membershipData = getAccountSummaryFromSessionStorage();
   if (!membershipData) {
     membershipData = await getAccountSummary();
-    saveAccountSummary(membershipData);
+    membershipData = saveAccountSummary(membershipData);
   }
-  const {
-    responsePayload: {
-      data: [userData],
-    },
-  } = membershipData;
+
   const {
     individual: {
       identity: {
@@ -188,7 +194,7 @@ export async function getUserInfo() {
     },
     loyaltyAward: [loyalty],
     mainTier: { label: club },
-  } = userData;
+  } = membershipData;
 
   return {
     initials: getInititals(romanized?.firstName, romanized?.lastName),

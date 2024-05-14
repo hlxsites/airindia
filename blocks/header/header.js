@@ -300,7 +300,7 @@ async function setupProfileInfo() {
       <div class="user-club">${userInfo?.club}</div>
       <div class="user-actions">
         <button type="button" class="my-account">My account</button>
-        <button type="button" class="change-pwd">Change Password</button>
+        <button type="button" class="change-pwd" onclick='changePassword();'>Change Password</button>
         <button type="button" class="logoutbtn" onclick='signOut();'>Log out</button>
       </div>
     `;

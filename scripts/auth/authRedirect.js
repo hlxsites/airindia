@@ -5,18 +5,6 @@ const AIEnvBaseUrl = {
   PROD: 'https://api-loyalty.airindia.com/',
 };
 
-if (window.sessionStorage.getItem('lyt-ud') !== null) {
-  const authUserData = JSON.parse(decode(window.sessionStorage.getItem('lyt-ud')));
-  if (authUserData.FIRSTNAME !== undefined) {
-    if (authUserData.FIRSTNAME.length > 16) {
-      const tempFNM = authUserData.FIRSTNAME.substring(0, 16);
-      document.querySelector('#signOut>.userDetails>.lty_userName').innerHTML = `${tempFNM}...`;
-    } else document.querySelector('#signOut>.userDetails>.lty_userName').innerHTML = authUserData.FIRSTNAME; // TASK - 14996,
-  }
-  document.getElementById('signIn').classList.add('d-none');
-  document.getElementById('signOut').classList.remove('d-none');
-}
-
 if (window.sessionStorage.getItem('lty-md') !== null) { // Added for Loyalty Rebranding
   const ltyUserData = JSON.parse(decode(JSON.stringify(window.sessionStorage.getItem('lty-md'))));
   // populateLoyaltyMemberDetails(ltyUserData);
@@ -333,7 +321,7 @@ function changePassword() {
       }&tier_status=${
         tier_status
       }&emailId=${
-        email.EMAIL}`;
+        email}`;
 
       const changePwdUrl = document.createElement('a');
       changePwdUrl.href = PRUrl;
