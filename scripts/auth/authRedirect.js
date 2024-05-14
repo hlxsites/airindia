@@ -73,7 +73,11 @@ myMSALObj.addEventCallback((event) => {
 
 myMSALObj
   .handleRedirectPromise()
-  .then(handleResponse)
+  .then((res) => {
+      handleResponse(res);
+      const customEvent = new Event("LOGIN_SUCCESS");
+      window.dispatchEvent(customEvent);
+  })
   .catch((error) => {
     // if (error.errorMessage?.indexOf("AADB2C90118") > -1) {
     //     try {
@@ -119,7 +123,7 @@ function selectAccount(firstResponse = false, checkLoginResponse = false) {
       username = originalSignInAccount.username
         ? originalSignInAccount.username
         : originalSignInAccount.name;
-      welcomeUser(username);
+      //welcomeUser(username);
       myMSALObj
         .acquireTokenSilent({
           account: myMSALObj.getAccountByHomeId(accountId),
@@ -156,14 +160,14 @@ function selectAccount(firstResponse = false, checkLoginResponse = false) {
     }
     // == ADDED FOR CAROUSEL BANNER: END ===
 
-    welcomeUser(username);
-    if (!checkLoginResponse) {
-      if (firstResponse) {
-        getEnvironment(responseState);
-      } else {
-        getEnvironment('');
-      }
-    }
+    // welcomeUser(username);
+    // if (!checkLoginResponse) {
+    //   if (firstResponse) {
+    //     getEnvironment(responseState);
+    //   } else {
+    //     getEnvironment('');
+    //   }
+    // }
     document.getElementById('isloggedIn')?.classList.remove('d-none'); // To show/hide paragraph in loyalty FAQ page
     document.getElementById('isNotloggedIn')?.classList.add('d-none');
 
