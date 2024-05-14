@@ -2728,10 +2728,6 @@ body,html {
     min-width: 20pc
 }
 
-.booking-form {
-    --bs-gutter-x: 1.5rem;
-}
-
 .booking-form .mat-tab-label-active .mat-icon {
     background-color: #cd333e
 }
@@ -3118,7 +3114,6 @@ body,html {
 
 button {
     border-radius: 0;
-    margin: 0;
 }
 
 
@@ -12307,7 +12302,6 @@ main .section.booking-container .booking-wrapper {
 .booking.search-flight  .search-flight .tooltip-div .tooltip .tooltip-text.top {
     margin-left: 0;
     left: 50%;
-    transform: translateX(-50%);
     bottom: 200%;
 }
 
@@ -12319,6 +12313,10 @@ main .section.booking-container .booking-wrapper {
 
     .booking.search-flight {
         min-height: 260px;
+    }
+
+    .booking.search-flight  .search-flight .tooltip-div .tooltip .tooltip-text.top {
+        transform: translateX(-50%);
     }
 }
 
@@ -12356,6 +12354,10 @@ main .section.booking-container .booking-wrapper {
     text-align: left;
 }
 
+.booking-form {
+    --bs-gutter-x: 1.5rem;
+}
+
 .offcanvas.offcanvas-bottom {
     height: auto;
     z-index: 999999;
@@ -12377,6 +12379,10 @@ main .section.booking-container .booking-wrapper {
     flex-grow: 1;
     overflow-y: auto;
     padding: 1rem;
+}
+
+.offcanvas.offcanvas-bottom .offcanvas-body button {
+    margin: 0;
 }
 
 #searchflightangularselecter .booking-form {
