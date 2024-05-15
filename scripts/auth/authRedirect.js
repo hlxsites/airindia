@@ -315,7 +315,7 @@ function changePassword() {
       }&code_challenge_method=S256&nonce=${
         codeVerifier
       }&redirect_uri=${
-        msalConfig.auth.redirectUri
+        msalConfig.auth.postLogoutRedirectUri
       }&scope=openid%20offline_access%20profile%20phone%20email&response_type=id_token&points=${
         flyingReturnsPointBalance
       }&tier_status=${

@@ -278,8 +278,13 @@ async function setupProfileInfo() {
     paragraphs[paragraphs.length - 2]?.classList.add('show');
     return;
   }
+  paragraphs[paragraphs.length - 2]?.classList.remove('show');
   paragraphs[paragraphs.length - 2]?.classList.add('hide');
+  paragraphs[paragraphs.length - 1]?.classList.remove('hide');
   paragraphs[paragraphs.length - 1]?.classList.add('show');
+  paragraphs[paragraphs.length - 2]?.classList.add('visibility-none');
+  paragraphs[paragraphs.length - 1]?.classList.add('visibility-none');
+
   paragraphs[paragraphs.length - 1]?.addEventListener('click', toggleProfileInfo);
 
   const profileElem = paragraphs?.[paragraphs.length - 1];
@@ -316,6 +321,8 @@ async function setupProfileInfo() {
       }
     });
   }
+  paragraphs[paragraphs.length - 2]?.classList.remove('visibility-none');
+  paragraphs[paragraphs.length - 1]?.classList.remove('visibility-none');
 }
 
 function attachSiginListener(parentElem) {
