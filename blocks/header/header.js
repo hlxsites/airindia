@@ -309,7 +309,7 @@ async function setupProfileInfo() {
       <h6 class="user-points">${userInfo?.points} POINTS</h6>
       <div class="user-club">${userInfo?.club}</div>
       <div class="user-actions">
-        <button type="button" class="my-account">My account</button>
+        <button type="button" class="my-account" onclick='redirectToAccount();'>My account</button>
         <button type="button" class="change-pwd" onclick='changePassword();'>Change Password</button>
         <button type="button" class="logoutbtn" onclick='signOut();'>Log out</button>
       </div>
