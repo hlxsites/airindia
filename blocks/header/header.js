@@ -5,6 +5,7 @@ import {
   getPlaceholderDataFor,
   isLoggedIn,
   addDefaultHrefToElementAnchorTags,
+  containsHashAndState,
 } from '../../scripts/utils/blockUtils.js';
 import { pushPageLoadedAnalytics } from '../../scripts/analytics.js';
 import { EVENTS } from '../../scripts/utils/constants.js';
@@ -272,6 +273,10 @@ function toggleProfileInfo() {
 async function setupProfileInfo() {
   const navTools = document.querySelector('.nav-tools');
   const paragraphs = navTools.querySelectorAll('.default-content-wrapper p');
+
+  if (containsHashAndState()) {
+    paragraphs[paragraphs.length - 2]?.classList.add('visibility-none');
+  }
 
   if (!isLoggedIn()) {
     paragraphs[paragraphs.length - 1]?.classList.add('hide');
