@@ -12,7 +12,7 @@ if (window.sessionStorage.getItem('lty-md') !== null) { // Added for Loyalty Reb
 }
 
 function redirectToAccount() {
-  window.location.href = '/in/en/flying-returns/account-summary.html';
+  window.location.href = 'https://www.airindia.com/in/en/flying-returns/account-summary.html';
 }
 
 // Create the main myMSALObj instance
