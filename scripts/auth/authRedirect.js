@@ -486,8 +486,7 @@ function onClickSignUp(isLoading) {
   const script = document.createElement('script');
   script.type = 'text/javascript';
 
-  const redirect_uri = `${window.location.origin}/in/en/flying-returns/account-summary.html`;
-
+  const redirect_uri = `https://newai-staging.airindia.com/in/en/flying-returns/account-summary.html`;
   const codeVerifier = generateCodeVerifier();
   generateCodeChallenge(codeVerifier).then((codeChallenge) => {
     const createAccountUrl = `https://${
