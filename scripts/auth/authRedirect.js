@@ -17,8 +17,16 @@ if (window.sessionStorage.getItem('lty-md') !== null) { // Added for Loyalty Reb
   loyaltyThemeSelection(ltyUserData);
 }
 
+function isEDSBranch(url) {
+  return (((url.includes('.hlx.page') || url.includes('.hlx.live')) && !url.includes('main--airindia')) || url.includes('localhost') || url.includes('ai-eds-test.'));
+}
+
 function redirectToAccount() {
-  window.location.href = 'https://www.airindia.com/in/en/flying-returns/account-summary.html';
+  if(isEDSBranch(location.href)) {
+    window.location.href = 'https://www.airindia.com/in/en/flying-returns/account-summary.html';
+  } else {
+    window.location.href = '/in/en/flying-returns/account-summary.html';
+  }
 }
 
 // Create the main myMSALObj instance
