@@ -2,19 +2,19 @@ const CMP_CONFIG = {
   chatbotPlaceholder: '<div class="airindiaChatBot"></div>',
   chatbotScript: {
     stage: 'https://code.jquery.com/jquery-3.7.1.min.js, https://cbot-scripts-staging.airindia.com/ai-chatbot.js',
-    prod: 'https://code.jquery.com/jquery-3.7.1.min.js, https://cbot-scripts-staging.airindia.com/ai-chatbot.js',
+    prod: 'https://code.jquery.com/jquery-3.7.1.min.js, https://cbot-scripts.airindia.com/ai-chatbot.js',
   },
   chatbotStyle: {
     stage: 'https://cbot-scripts-staging.airindia.com/ai-chatbot.css',
-    prod: 'https://cbot-scripts-staging.airindia.com/ai-chatbot.css',
+    prod: 'https://cbot-scripts.airindia.com/ai-chatbot.css',
   },
   searchFlightPlaceholder: '<search-flight id="searchflightangularselecter" language="" contentlist=""></search-flight> <div class="flightsearch-link" style="display: none;">/content/air-india/in/en/multicity-booking, ,,,/content/dam/air-india/redesign-loyalty/cards/cashPointSignUp.png,&lt;p class=&#34;signupCashPointPopupText&#34;&gt;Sign in to your Flying Returns account&lt;/p&gt;&lt;p class=&#34;signupCashPointPopupDescription&#34;&gt;Use a combination of cash and points on your next booking and continue exploring the world. Sign in to your Flying Returns account to discover exciting benefits.&lt;/p&gt;,/content/dam/air-india/redesign-loyalty/cards/pointSignUp.png,&lt;p class=&#34;signupCashPointPopupText&#34;&gt;Sign in to your Flying Returns account&lt;/p&gt;&lt;p class=&#34;signupCashPointPopupDescription&#34;&gt;Spend points on your next booking and continue exploring the world. Sign in to your Flying Returns account and make the most of your journey.&lt;/p&gt; </div>',
   searchFlightScript: {
-    prod: '/etc.clientlibs/airindia/clientlibs/clientlib-booking.lc-94222fc7d1c0fa2b361c184876ba4790-lc.min.js',
+    prod: 'https://www.airindia.com/etc.clientlibs/air-india/clientlibs/clientlib-booking.lc-7300c1a101c391adae9520d097de59ec-lc.min.js',
     stage: 'https://newai-staging.airindia.com/etc.clientlibs/air-india/clientlibs/clientlib-booking.lc-7300c1a101c391adae9520d097de59ec-lc.min.js',
   },
   searchFlightStyle: {
-    prod: '/etc.clientlibs/airindia/components/AIComponents/flightsearch/clientlibs.lc-0a0f7442c40226c04d15438672316227-lc.min.css',
+    prod: 'https://www.airindia.com/etc.clientlibs/air-india/components/AIComponents/flightSearch/clientlibs.lc-0a0f7442c40226c04d15438672316227-lc.min.css',
     stage: 'https://newai-staging.airindia.com/etc.clientlibs/air-india/components/AIComponents/BookingFrom/clientlibs.lc-8c7e61d764627a838f7bc3511d3519cc-lc.min.css',
   },
 };
