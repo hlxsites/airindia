@@ -1,7 +1,6 @@
 // This is a test comment
 import {
   sampleRUM,
-  buildBlock,
   loadHeader,
   loadFooter,
   decorateButtons,
