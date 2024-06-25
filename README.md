@@ -53,7 +53,7 @@ Below are the steps to include the latest version of the booking widget:
 
 ## Chatbot integration
 
-The chatbot integrated at the global level at it will be displayed on all the pages/
+The chatbot is integrated at the global level and it will be displayed on all the pages.
 
 Below are the steps to include the latest version of the chatbot widget:
 
